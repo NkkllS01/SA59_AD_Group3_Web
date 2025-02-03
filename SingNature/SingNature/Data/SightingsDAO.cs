@@ -1,15 +1,15 @@
 using SingNature.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace SingNature.Data
 {
-     public class SinghtingsDAO
+     public class SightingsDAO
     {
-        private static string connString = "Server=localhost;Database=SingNature;User=root;Password=Heythere12#;";
+        private const string connString = "Server=localhost;Database=SingNature;User=root;Password=Heythere12#;";
 
-        [HttpGet]
-        public static List<Sightings> GetAllSightings()
+        public List<Sightings> GetAllSightings()
         {
             List<Sightings> sightings = new List<Sightings>();
 
@@ -27,19 +27,27 @@ namespace SingNature.Data
                     {
                         while (reader.Read())
                         {
-                            Sightings sighting = new Sightings()
+                            if (!reader.IsDBNull(reader.GetOrdinal("SightingId")))
                             {
-                                SightingId = reader.GetInt32("SightingId"),
-                                UserId = reader.GetInt32("UserId"),
-                                Date = reader.GetDateTime("Date"),
-                                SpecieId = reader.GetInt32("SpecieId"),
-                                Details = reader["Details"] as string ?? "",
-                                ImageUrl = reader["ImageUrl"] as string ?? "",
-                                Latitude = reader["Latitude"].ToString(),
-                                Longitude = reader["Longitude"].ToString(),
-                                Status = (SightingStatus)Enum.Parse(typeof(SightingStatus), reader["Status"].ToString())
-                            };
-                            sightings.Add(sighting);
+                                int sightingId = reader.GetInt32("SightingId");
+                                int userId = reader.GetInt32("UserId");
+                                DateTime date = reader.GetDateTime("Date");
+                                int specieId = reader.GetInt32("SpecieId");
+                                string details = reader.IsDBNull(reader.GetOrdinal("Details")) ? "" : reader.GetString("Details");
+                                string imageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? "" : reader.GetString("ImageUrl");
+                                decimal latitude = reader.GetDecimal("Latitude");
+                                decimal longitude = reader.GetDecimal("Longitude");
+                                SightingStatus status = Enum.TryParse(reader["Status"].ToString(), out SightingStatus parsedStatus)
+                                    ? parsedStatus : SightingStatus.Active;
+
+                                sightings.Add(new Sightings(
+                                    sightingId, userId, date, specieId, details ?? "", imageUrl ?? "", latitude, longitude, status
+                                ));
+                            } 
+                            else 
+                            {
+                                Console.WriteLine("SightingId is NULL or not found!");
+                            }
                         }
                     }
                 }
@@ -51,5 +59,62 @@ namespace SingNature.Data
 
             return sightings;
         }
+
+        public Sightings? GetSightingById(int id)
+        {
+            Sightings? sighting = null;
+            
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connString))
+                {
+                    conn.Open();
+                    string sql = @"
+                    SELECT SightingId, UserId, Date, SpecieId, Details, ImageUrl, Latitude, Longitude, Status 
+                    FROM Sightings
+                    WHERE SightingId = @id";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                if (!reader.IsDBNull(reader.GetOrdinal("SightingId")))
+                                {
+                                    int sightingId = reader.GetInt32("SightingId");
+                                    int userId = reader.GetInt32("UserId");
+                                    DateTime date = reader.GetDateTime("Date");
+                                    int specieId = reader.GetInt32("SpecieId");
+                                    string details = reader.IsDBNull(reader.GetOrdinal("Details")) ? "" : reader.GetString("Details");
+                                    string imageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? "" : reader.GetString("ImageUrl");
+                                    decimal latitude = reader.GetDecimal("Latitude");
+                                    decimal longitude = reader.GetDecimal("Longitude");
+                                    SightingStatus status = Enum.TryParse(reader["Status"].ToString(), out SightingStatus parsedStatus)
+                                        ? parsedStatus : SightingStatus.Active;
+
+                                    sighting = new Sightings(
+                                        sightingId, userId, date, specieId, details, imageUrl, latitude, longitude, status
+                                    );
+                                }
+                                else
+                                {
+                                    Console.WriteLine("SightingId is NULL or not found!");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching sighting: " + ex.Message);
+            }
+
+            return sighting;
+        }
+
     }
 }

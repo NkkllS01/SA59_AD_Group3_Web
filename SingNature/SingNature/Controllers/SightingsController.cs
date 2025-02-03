@@ -14,10 +14,17 @@ namespace SingNature.Controllers
     [ApiController]
     public class SightingsController : Controller
     {
+        private readonly SightingsDAO _sightingsDAO;
+
+        public SightingsController(SightingsDAO sightingsDAO)
+        {
+            _sightingsDAO = sightingsDAO;
+        }
+
         [HttpGet]
         public ActionResult<List<Sightings>> GetAllSightings()
         {
-            var sightings = SinghtingsDAO.GetAllSightings();
+            var sightings = _sightingsDAO.GetAllSightings();
             if (sightings == null || sightings.Count == 0)
             {
                 return NotFound("No sightings found.");
@@ -28,13 +35,12 @@ namespace SingNature.Controllers
         [HttpGet("{id}")]
         public ActionResult<Sightings> GetSightingById(int id)
         {
-            var sighting = SinghtingsDAO.GetSightingById(id);
+            var sighting = _sightingsDAO.GetSightingById(id);
             if (sighting == null) 
             {
                 return NotFound("Sighting not found.");
             }
             return Ok(sighting);
         }
-        
     }
 }

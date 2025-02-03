@@ -18,7 +18,6 @@
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/scopedcss/bundle/SingNature.styles.css
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/scopedcss/projectbundle/SingNature.bundle.scp.css
-/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/ummgmuykh3-b9sayid5wm.gz
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/y9r8pwf2i4-61n19gt1b8.gz
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/fvzz8rxqtp-xtxxf3hu2r.gz
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/2gc2e19n0o-bqjiyaj88i.gz
@@ -96,4 +95,4 @@
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/SingNature.pdb
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/SingNature.genruntimeconfig.cache
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/ref/SingNature.dll
-/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-ryboerrdmu.gz
+/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/ummgmuykh3-ktkj6bz9j4.gz

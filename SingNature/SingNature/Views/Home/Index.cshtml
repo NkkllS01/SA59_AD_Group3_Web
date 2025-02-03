@@ -1,8 +1,37 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<head>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+</head>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+
+    <div class="sightings">
+        <gmp-map
+            center="1.29245,103.77657"
+            zoom="15"
+            map-id="map"
+            style="height: 400px"
+        ></gmp-map>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&loading=async&libraries=maps&v=beta" defer>
+        </script>
+    </div>
+</body>
+
+    <!--  <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 1.29245, lng: 103.77657 },
+                zoom:15
+            });
+        }
+    </script> -->
+
+    
+

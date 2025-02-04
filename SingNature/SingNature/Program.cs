@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -26,12 +27,10 @@ app.MapStaticAssets();
 
 app.MapControllers();
 
-/* 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets(); 
-*/
 
 Console.WriteLine("Application Running...");
 app.Run();

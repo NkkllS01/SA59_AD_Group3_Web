@@ -12,13 +12,13 @@ namespace SingNature.Controllers
 {
     [Route("api/sightings")]
     [ApiController]
-    public class SightingsController : Controller
+    public class SightingsController : ControllerBase
     {
         private readonly SightingsDAO _sightingsDAO;
 
-        public SightingsController(SightingsDAO sightingsDAO)
+        public SightingsController()
         {
-            _sightingsDAO = sightingsDAO;
+            _sightingsDAO = new SightingsDAO();
         }
 
         [HttpGet]

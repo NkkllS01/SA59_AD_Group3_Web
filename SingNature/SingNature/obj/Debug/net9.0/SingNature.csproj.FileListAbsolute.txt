@@ -17,6 +17,9 @@
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Relational.dll
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/bin/Debug/net9.0/MySql.Data.dll
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/bin/Debug/net9.0/MySql.EntityFrameworkCore.dll
+/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/bin/Debug/net9.0/MySqlConnector.dll
+/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/bin/Debug/net9.0/Newtonsoft.Json.dll
+/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/bin/Debug/net9.0/Pomelo.EntityFrameworkCore.MySql.dll
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/bin/Debug/net9.0/System.Configuration.ConfigurationManager.dll
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/bin/Debug/net9.0/System.Security.Cryptography.ProtectedData.dll
 /Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/bin/Debug/net9.0/System.Security.Permissions.dll

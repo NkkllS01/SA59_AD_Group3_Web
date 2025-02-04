@@ -2,12 +2,20 @@ using SingNature.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace SingNature.Data
 {
      public class SightingsDAO
     {
-        private const string connString = "Server=localhost;Database=SingNature;User=root;Password=Heythere12#;";
+        private readonly string _connectionString;
+
+        public SightingsDAO()
+        {
+            var json = File.ReadAllText("appsettings.json");
+            var jObject = JObject.Parse(json);
+            _connectionString = jObject["ConnectionStrings"]["DefaultConnection"].ToString();
+        }
 
         public List<Sightings> GetAllSightings()
         {
@@ -15,7 +23,7 @@ namespace SingNature.Data
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connString))
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
                     string sql = @"
@@ -66,7 +74,7 @@ namespace SingNature.Data
             
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connString))
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
                     string sql = @"

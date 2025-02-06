@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using SingNature.Data;
 using SingNature.Models;
 
@@ -41,6 +35,17 @@ namespace SingNature.Controllers
                 return NotFound("Sighting not found.");
             }
             return Ok(sighting);
+        }
+
+        [HttpGet("search/{keyword}")]
+         public ActionResult<List<Sightings>> GetSightingsByKeyword(string keyword)
+        {
+            var sightings = _sightingsDAO.GetSightingsByKeyword(keyword);
+            if (sightings == null || sightings.Count == 0) 
+            {
+                return NotFound("No sightings found.");
+            }
+            return Ok(sightings);
         }
     }
 }

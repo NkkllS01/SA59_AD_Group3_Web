@@ -27,8 +27,11 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT SightingId, UserId, Date, SpecieId, Details, ImageUrl, Latitude, Longitude, Status 
-                    FROM Sightings";
+                    SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude, s.status
+                    FROM Sightings s
+                    JOIN Species sp ON s.specieId = sp.specieId
+                    JOIN Users u ON s.userId = u.userId
+                    ";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -39,8 +42,10 @@ namespace SingNature.Data
                             {
                                 int sightingId = reader.GetInt32("SightingId");
                                 int userId = reader.GetInt32("UserId");
+                                string userName = reader.GetString("UserName");
                                 DateTime date = reader.GetDateTime("Date");
                                 int specieId = reader.GetInt32("SpecieId");
+                                string specieName = reader.GetString("SpecieName");
                                 string details = reader.IsDBNull(reader.GetOrdinal("Details")) ? "" : reader.GetString("Details");
                                 string imageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? "" : reader.GetString("ImageUrl");
                                 decimal latitude = reader.GetDecimal("Latitude");
@@ -49,7 +54,7 @@ namespace SingNature.Data
                                     ? parsedStatus : SightingStatus.Active;
 
                                 sightings.Add(new Sightings(
-                                    sightingId, userId, date, specieId, details ?? "", imageUrl ?? "", latitude, longitude, status
+                                    sightingId, userId, userName, date, specieId, specieName, details ?? "", imageUrl ?? "", latitude, longitude, status
                                 ));
                             } 
                             else 
@@ -78,9 +83,12 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT SightingId, UserId, Date, SpecieId, Details, ImageUrl, Latitude, Longitude, Status 
-                    FROM Sightings
-                    WHERE SightingId = @id";
+                    SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude, s.status
+                    FROM Sightings s
+                    JOIN Species sp ON s.specieId = sp.specieId
+                    JOIN Users u ON s.userId = u.userId
+                    WHERE s.SightingId = @id
+                    ";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
@@ -94,8 +102,10 @@ namespace SingNature.Data
                                 {
                                     int sightingId = reader.GetInt32("SightingId");
                                     int userId = reader.GetInt32("UserId");
+                                    string userName = reader.GetString("UserName");
                                     DateTime date = reader.GetDateTime("Date");
                                     int specieId = reader.GetInt32("SpecieId");
+                                    string specieName = reader.GetString("SpecieName");
                                     string details = reader.IsDBNull(reader.GetOrdinal("Details")) ? "" : reader.GetString("Details");
                                     string imageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? "" : reader.GetString("ImageUrl");
                                     decimal latitude = reader.GetDecimal("Latitude");
@@ -104,7 +114,7 @@ namespace SingNature.Data
                                         ? parsedStatus : SightingStatus.Active;
 
                                     sighting = new Sightings(
-                                        sightingId, userId, date, specieId, details, imageUrl, latitude, longitude, status
+                                        sightingId, userId, userName, date, specieId, specieName, details, imageUrl, latitude, longitude, status
                                     );
                                 }
                                 else
@@ -122,6 +132,67 @@ namespace SingNature.Data
             }
 
             return sighting;
+        }
+
+        public List<Sightings> GetSightingsByKeyword(string keyword)
+        {
+            List<Sightings> sightings = new List<Sightings>();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string sql = @"
+                    SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude, s.status
+                    FROM Sightings s
+                    JOIN Species sp ON s.specieId = sp.specieId
+                    JOIN Users u ON s.userId = u.userId
+                    WHERE LOWER(sp.specieName) LIKE LOWER(@keyword)
+                    ";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                    
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                if (!reader.IsDBNull(reader.GetOrdinal("SightingId")))
+                                {
+                                    int sightingId = reader.GetInt32("SightingId");
+                                    int userId = reader.GetInt32("UserId");
+                                    string userName = reader.GetString("UserName");
+                                    DateTime date = reader.GetDateTime("Date");
+                                    int specieId = reader.GetInt32("SpecieId");
+                                    string specieName = reader.GetString("SpecieName");
+                                    string details = reader.IsDBNull(reader.GetOrdinal("Details")) ? "" : reader.GetString("Details");
+                                    string imageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? "" : reader.GetString("ImageUrl");
+                                    decimal latitude = reader.GetDecimal("Latitude");
+                                    decimal longitude = reader.GetDecimal("Longitude");
+                                    SightingStatus status = Enum.TryParse(reader["Status"].ToString(), out SightingStatus parsedStatus)
+                                        ? parsedStatus : SightingStatus.Active;
+
+                                    sightings.Add(new Sightings(
+                                        sightingId, userId, userName, date, specieId, specieName, details ?? "", imageUrl ?? "", latitude, longitude, status
+                                    ));
+                                } 
+                                else 
+                                {
+                                    Console.WriteLine("Sightings not found!");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching sightings: " + ex.Message);
+            }
+
+            return sightings;
         }
 
     }

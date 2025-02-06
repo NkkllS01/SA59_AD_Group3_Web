@@ -13,10 +13,12 @@ namespace SingNature.Models
         public int SightingId {get; set;}
         [Required]
         public int UserId {get; set;}
+        public string? UserName {get; set;} = string.Empty;
         [Required]
         public DateTime Date {get; set;}
         [Required]
         public int SpecieId {get; set;}
+        public string? SpecieName {get; set;} = string.Empty;
         [MaxLength(500)] 
         public string? Details {get; set;} = string.Empty;
         public string? ImageUrl {get; set;} = string.Empty;
@@ -29,12 +31,14 @@ namespace SingNature.Models
 
         public Sightings() { }
 
-        public Sightings(int sightingId, int userId, DateTime date, int specieId, string? details, string? imageUrl, decimal latitude, decimal longitude, SightingStatus status)
+        public Sightings(int sightingId, int userId, string userName, DateTime date, int specieId, string specieName, string? details, string? imageUrl, decimal latitude, decimal longitude, SightingStatus status)
         {
             SightingId = sightingId;
             UserId = userId;
+            UserName = userName;
             Date = date;
             SpecieId = specieId;
+            SpecieName = specieName;
             Details = details ?? string.Empty;
             ImageUrl = imageUrl ?? string.Empty;
             Latitude = latitude;

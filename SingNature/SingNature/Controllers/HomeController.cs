@@ -1,31 +1,25 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using SingNature.Models;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
-namespace SingNature.Controllers;
-
-public class HomeController : Controller
+namespace SingNature.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        public IActionResult Index()
+        {
+            // Hardcode the categories for now
+            var categories = new List<Category>
+            {
+                new Category { CategoryId = 1, CategoryName = "Bees" },
+                new Category { CategoryId = 2, CategoryName = "Mushrooms" },
+                new Category { CategoryId = 3, CategoryName = "Monitor Lizards" }
+            };
 
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(categories);
+        }
     }
 }

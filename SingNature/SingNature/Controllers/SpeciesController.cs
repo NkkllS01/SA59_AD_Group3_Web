@@ -1,57 +1,62 @@
 using Microsoft.AspNetCore.Mvc;
-using SingNature.Data;
 using SingNature.Models;
+using SingNature.Data;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace SingNature.Controllers
 {
-    [Route("api/species")]
-    [ApiController]
-    public class SpeciesController : ControllerBase
+[Route("Species")]
+public class SpeciesController : Controller
+{
+    private readonly SpeciesDAO _speciesDAO;
+
+    public SpeciesController()
     {
-        private readonly SpeciesDAO _speciesDAO;
+        _speciesDAO = new SpeciesDAO(); // Assume DAO handles data fetching
+    }
 
-        public SpeciesController()
+        [HttpGet("SpeciesList/{categoryId}")]
+        public IActionResult SpeciesList(int CategoryId)
         {
-            _speciesDAO = new SpeciesDAO();
-        }
+            var species = _speciesDAO.GetSpeciesByCategoryId(CategoryId);
 
-        [HttpGet("search/{keyword}")]
-         public ActionResult<List<Species>> GetSpeciesByKeyword(string keyword)
-        {
-            var species = _speciesDAO.GetSpeciesByKeyword(keyword);
-            if (species == null || species.Count == 0) 
-            {
-                return NotFound("No matching species found.");
-            }
-            return Ok(species);
-        }
-
-        [HttpGet("{specieId}")]
-        public ActionResult<Species> GetSpeciesById(int specieId)
-        {
-         if (specieId <= 0)
-         {
-            return BadRequest("Invalid species ID.");
-         }
-
-        var species = _speciesDAO.GetSpeciesById(specieId);
-        if (species == null)
-        {
-            return NotFound("Species not found.");
-        }
-
-            return Ok(species);
-        }
-
-        [HttpGet("category/{categoryId}")]
-        public ActionResult<List<Species>> GetSpeciesByCategory(int categoryId)
-        {
-            var species = _speciesDAO.GetSpeciesByCategoryId(categoryId);
-            if (species == null || species.Count == 0)
+            if (species == null || !species.Any())
             {
                 return NotFound("No species found for this category.");
             }
-            return Ok(species);
+
+            return View(species); // Pass species data to the view
         }
+        
+       [HttpGet("SpeciesDetail/{specieId}")]
+       public IActionResult SpeciesDetail(int specieId)
+        {
+            var species = _speciesDAO.GetSpeciesById(specieId);
+
+            if (species == null)
+            {
+                return NotFound("Species not found.");
+            }
+
+    /* Add image from Digital Ocean later
+    var baseImageUrl = "https://my-bucket-name.nyc3.digitaloceanspaces.com/species/";
+    var imageUrl = baseImageUrl + species.SpecieName.ToLower().Replace(" ", "_") + ".jpg";
+    ViewData["ImageUrl"] = imageUrl;
+    */
+
+            return View(species);
+        }
+
+        [HttpGet("SpeciesCategory")]
+        public IActionResult SpeciesCategory()
+        {
+        var categories = _speciesDAO.GetSpeciesCategory(); 
+
+        return View(categories);
+        }
+
     }
 }

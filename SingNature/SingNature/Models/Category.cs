@@ -1,9 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 
-public class Category
+namespace SingNature.Models
 {
-    [Key]
-    public int CategoryId { get; set; }
-    [Required]
-    public string CategoryName { get; set; }
+    public class Category
+    {
+        [Key]
+        public int CategoryId { get; set; }
+        [Required]
+        public string CategoryName { get; set; }
+
+        public List<Species> Species { get; set; } // Navigation property for species in this category
+    }
 }

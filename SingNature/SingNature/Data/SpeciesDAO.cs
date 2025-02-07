@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using SingNature.Data;
 
 namespace SingNature.Data
 {
@@ -27,9 +28,10 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT specieId, specieName, description, highlights
-                    FROM Species
-                    WHERE LOWER(specieName) LIKE LOWER(@keyword)
+                    SELECT s.specieId, s.specieName, s.description, s.highlights, c.categoryId, c.categoryName
+                    FROM Species s
+                    JOIN Categories c ON s.categoryId = c.categoryId
+                    WHERE LOWER(s.specieName) LIKE LOWER(@keyword)
                     ";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
@@ -46,9 +48,17 @@ namespace SingNature.Data
                                     string specieName = reader.GetString("SpecieName");
                                     string description = reader.GetString("Description");
                                     string highlights = reader.GetString("Highlights");
+                                    int categoryId = reader.GetInt32("CategoryId");
+                                    string categoryName = reader.GetString("CategoryName");
+
+                                    Category category = new Category
+                                    {
+                                        CategoryId = categoryId,
+                                        CategoryName = categoryName
+                                    };
 
                                     species.Add(new Species(
-                                        specieId, specieName, description, highlights
+                                        specieId, specieName, description, highlights,category
                                     ));
                                 } 
                                 else 
@@ -67,6 +77,105 @@ namespace SingNature.Data
 
             return species;
         }
+        public List<Species> GetSpeciesByCategoryId(int categoryId)
+        {
+            List<Species> species = new List<Species>();
 
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string sql = @"
+                    SELECT SpecieId, SpecieName, Description, Highlights, CategoryId
+                    FROM Species
+                    WHERE CategoryId = @categoryId";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@categoryId", categoryId);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                            if (!reader.IsDBNull(reader.GetOrdinal("SpecieId")))
+                            {
+                                int specieId = reader.GetInt32("SpecieId");
+                                string specieName = reader.GetString("SpecieName");
+                                string description = reader.GetString("Description");
+                                string highlights = reader.GetString("Highlights");
+                                int catId = reader.GetInt32("CategoryId");
+
+                                species.Add(new Species(specieId, specieName, description, highlights, catId));
+                            };
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error fetching species by categoryId: " + ex.Message);
+        }
+
+        return species;
+        }
+
+        public Species GetSpeciesById(int specieId)
+        {
+            Species species = null;
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string sql = @"
+                    SELECT s.specieId, s.specieName, s.description, s.highlights, s.categoryId, c.categoryName
+                    FROM Species s
+                    INNER JOIN Categories c ON s.categoryId = c.categoryId
+                    WHERE s.specieId = @specieId
+                    ";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@specieId", specieId);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int categoryId = reader.GetInt32("CategoryId");
+                                string categoryName = reader.GetString("CategoryName");
+
+                                Category category = new Category
+                                {
+                                    CategoryId = categoryId,
+                                    CategoryName = categoryName
+                                };
+
+                                species = new Species(
+                                    reader.GetInt32("SpecieId"),
+                                    reader.GetString("SpecieName"),
+                                    reader.GetString("Description"),
+                                    reader.GetString("Highlights"),
+                                    category
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching species by id: " + ex.Message);
+            }
+
+            return species;
+        }
     }
 }
+
+                    
+            

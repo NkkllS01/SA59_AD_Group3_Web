@@ -15,14 +15,17 @@
         <input id="searchBox" placeholder="Search for a place..." type="text" />
         <div id="map"></div>
 
-        <script 
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places"
-            async defer>
-        </script>
+        <script src="https://unpkg.com/%40googlemaps/markerclusterer/dist/index.min.js"></script>
 
         <script>
         function initMap() {
             console.log("Initializing Google Map...");
+
+            const mapElement = document.getElementById("map");
+            if (!mapElement) {
+                console.error("ERROR: Map container #map not found in the DOM.");
+                return;
+            }
 
             const map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: 1.29245, lng: 103.77657 },
@@ -42,7 +45,6 @@
 
             searchBox.addListener("places_changed", () => {
                 const places = searchBox.getPlaces();
-
                 if (places.length === 0) {
                     console.warn("No places found.");
                     return;
@@ -91,30 +93,43 @@
             .catch(error => console.error("ERROR: Failed to fetch sightings data", error));
         }
 
-        // Function to add markers for sightings
         function addSightingsToMap(map, sightings) {
+            const markers = []; 
             sightings.forEach(sighting => {
-                const marker = new google.maps.Marker({
-                    position: { lat: sighting.latitude, lng: sighting.longitude },
+                const position = { lat: sighting.latitude, lng: sighting.longitude };
+
+                const marker = new google.maps.marker.AdvancedMarkerElement({
                     map: map,
+                    position: position,
                     title: sighting.specieName,
-                    icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
                 });
 
-                // Info window for each sighting
                 const infoWindow = new google.maps.InfoWindow({
-                    content:    `<h4>${sighting.specieName}</h4>
-                                <p><b>Reported by:</b> ${sighting.userName}</p>`,
+                    content: `<h4>${sighting.specieName}</h4>
+                              <p><b>Reported by:</b> ${sighting.userName}</p>`,
                 });
 
-                // Show info window on marker click
-                marker.addListener("click", () => {
-                infoWindow.open(map, marker);
+                marker.addListener("gmp-click", (event) => {
+                    infoWindow.open(map, marker);
                 });
+
+                markers.push(marker);
             });
-        }
+
+            new markerClusterer.MarkerClusterer({
+                map,
+                markers: markers,
+                algorithm: new markerClusterer.GridAlgorithm({ gridSize: 50 }),
+                renderer: new markerClusterer.DefaultRenderer(),
+            });
+        }       
 
         window.initMap = initMap;
         </script>
+
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
+        </script>
+
     </div>
 </body>

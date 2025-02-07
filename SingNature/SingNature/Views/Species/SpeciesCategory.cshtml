@@ -1,0 +1,23 @@
+@model IEnumerable<SingNature.Models.Category>
+
+@{
+    ViewData["Title"] = "Species Categories";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/index.css" asp-append-version="true" />
+</head>
+
+<h2>Species Categories</h2>
+
+<div class="wildlife-container">
+    @foreach (var category in Model)
+    {
+        <div class="wildlife-card">
+            <!-- Display image for category -->
+            <img src="~/images/@category.CategoryName.ToLower().Replace(" ", "_")_category.jpg" alt="@category.CategoryName" class="category-image" />
+            <h3>@category.CategoryName</h3>
+            <a href="@Url.Action("SpeciesList", "Species", new { CategoryId = category.CategoryId })" class="btn">View Species →</a>
+        </div>
+    }
+</div>

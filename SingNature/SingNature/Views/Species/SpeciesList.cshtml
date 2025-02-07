@@ -1,0 +1,22 @@
+@model List<SingNature.Models.Species>
+
+@{
+    ViewData["Title"] = "Species List";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/index.css" asp-append-version="true" />
+</head>
+
+<h2>Species List</h2>
+
+<div class="species-container">
+    @foreach (var species in Model)
+    {
+        <div class="wildlife-card">
+            <h3>@species.SpecieName</h3>
+            <a href="@Url.Action("SpeciesDetail", "Species", new { specieId = species.SpecieId })" class="btn">View Details</a>
+        </div>
+    }
+</div>
+

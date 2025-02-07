@@ -108,7 +108,7 @@ namespace SingNature.Data
                                 int catId = reader.GetInt32("CategoryId");
 
                                 species.Add(new Species(specieId, specieName, description, highlights, catId));
-                            };
+                            }
                         }
                     }
                 }
@@ -174,6 +174,41 @@ namespace SingNature.Data
 
             return species;
         }
+        public List<Category> GetSpeciesCategory()
+        {
+            List<Category> categories = new List<Category>();   
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT CategoryId, CategoryName FROM Categories";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                categories.Add(new Category
+                                {
+                                    CategoryId = reader.GetInt32("CategoryId"),
+                                    CategoryName = reader.GetString("CategoryName")
+                                 });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                 Console.WriteLine("Error fetching categories: " + ex.Message);
+            }
+
+            return categories;
+        }
+
     }
 }
 

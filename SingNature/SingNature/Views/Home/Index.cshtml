@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 <head>
-    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" asp-append-version="true" />
 </head>
 
 <body>
@@ -11,18 +11,76 @@
         <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     </div>
 
-    <div class="sightings">
-        <gmp-map
-            center="1.29245,103.77657"
-            zoom="15"
-            map-id="53f04509b9ddcd70"
-            style="height: 400px"
-        ></gmp-map>
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&loading=async&libraries=maps&v=beta" defer>
+    <div class="sightings"> 
+        <input id="searchBox" placeholder="Search for a place..." type="text" />
+        <div id="map"></div>
+
+        <script 
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places"
+            async defer>
+        </script>
+
+        <script>
+        function initMap() {
+            console.log("Initializing Google Map...");
+
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 1.29245, lng: 103.77657 },
+                zoom: 12,
+                mapId: "53f04509b9ddcd70",
+            });
+
+            const input = document.getElementById("searchBox");
+            const searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            map.addListener("bounds_changed", () => {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            let markers = [];
+
+            searchBox.addListener("places_changed", () => {
+                const places = searchBox.getPlaces();
+
+                if (places.length === 0) {
+                    console.warn("No places found.");
+                    return;
+                }
+
+                markers.forEach(marker => marker.setMap(null));
+                markers = [];
+
+                const bounds = new google.maps.LatLngBounds();
+
+                places.forEach(place => {
+                    if (!place.geometry || !place.geometry.location) {
+                        console.warn("Returned place contains no geometry.");
+                        return;
+                    }
+
+                    if (place.geometry.viewport) {
+                        map.fitBounds(place.geometry.viewport);
+                    } else {
+                        map.setCenter(place.geometry.location);
+                        map.setZoom(14);
+                    }
+
+                    const marker = new google.maps.Marker({
+                        map,
+                        position: place.geometry.location,
+                        title: place.name,
+                        visible: true
+                    });
+
+                    markers.push(marker);
+                    bounds.extend(place.geometry.location);
+                });
+                map.fitBounds(bounds);
+            });
+        }
+
+        window.initMap = initMap;
         </script>
     </div>
 </body>
-
-    
-

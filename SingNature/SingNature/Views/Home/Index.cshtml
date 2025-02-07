@@ -78,6 +78,40 @@
                 });
                 map.fitBounds(bounds);
             });
+            fetchSightings(map);
+        }
+
+        function fetchSightings(map) {
+        fetch("/api/sightings") 
+            .then(response => response.json())
+            .then(data => {
+                console.log("Fetched sightings:", data);
+                addSightingsToMap(map, data);
+            })
+            .catch(error => console.error("ERROR: Failed to fetch sightings data", error));
+        }
+
+        // Function to add markers for sightings
+        function addSightingsToMap(map, sightings) {
+            sightings.forEach(sighting => {
+                const marker = new google.maps.Marker({
+                    position: { lat: sighting.latitude, lng: sighting.longitude },
+                    map: map,
+                    title: sighting.specieName,
+                    icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                });
+
+                // Info window for each sighting
+                const infoWindow = new google.maps.InfoWindow({
+                    content:    `<h4>${sighting.specieName}</h4>
+                                <p><b>Reported by:</b> ${sighting.userName}</p>`,
+                });
+
+                // Show info window on marker click
+                marker.addListener("click", () => {
+                infoWindow.open(map, marker);
+                });
+            });
         }
 
         window.initMap = initMap;

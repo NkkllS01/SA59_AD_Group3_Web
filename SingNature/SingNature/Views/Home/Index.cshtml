@@ -18,11 +18,15 @@
     <div class="sightings"> 
         <input id="searchBox" placeholder="Search for a place..." type="text" />
         <div id="map"></div>
+
+        <script src="https://unpkg.com/%40googlemaps/markerclusterer/dist/index.min.js"></script>
     </div>
 
     <!-- Load Marker Cluster and Maps JS -->
     <script src="~/js/maps.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker" async defer></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
+        </script>
 
 
     <!-- Wildlife Information Section -->

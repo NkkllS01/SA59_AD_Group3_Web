@@ -6,7 +6,7 @@ namespace authorization.Data
 {
     public class UserDao
     {
-        private readonly string _connectionString;
+        private readonly string _connectionString; 
 
         public UserDao() {
             var json = File.ReadAllText("appsettings.json");
@@ -51,7 +51,7 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "SELECT * FROM user WHERE Id = @UserId";
+                string sql = "SELECT * FROM user WHERE UserId = @UserId";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {

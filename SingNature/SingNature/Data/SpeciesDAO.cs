@@ -183,7 +183,7 @@ namespace SingNature.Data
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT CategoryId, CategoryName FROM Categories";
+                    string sql = "SELECT CategoryId, CategoryName FROM Category";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {

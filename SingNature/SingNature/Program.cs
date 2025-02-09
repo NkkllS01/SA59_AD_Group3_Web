@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.ConfigureKestrel(options =>
 {
+    
     options.ListenAnyIP(5075); 
     options.ListenAnyIP(5076, listenOptions => listenOptions.UseHttps());
 });

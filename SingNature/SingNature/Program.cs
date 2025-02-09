@@ -1,4 +1,6 @@
 using SingNature.Data;
+using authorization.Data; 
+
 
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,11 @@ builder.WebHost.ConfigureKestrel(options =>
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<UserDao>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,7 +33,7 @@ if (!app.Environment.IsDevelopment())
 Console.WriteLine("Configuring Middleware...");
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
 app.MapStaticAssets();

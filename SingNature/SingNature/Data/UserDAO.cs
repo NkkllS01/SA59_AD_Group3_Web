@@ -5,9 +5,10 @@ namespace authorization.Data
 {
     public class UserDao
     {
-        private readonly string _connectionString = "server=localhost;uid=root;pwd=Gzj20011027;database=AdProject";
+        private readonly string _connectionString = "server=localhost;uid=root;pwd=Gzj20011027;database=adproject";
 
-  
+        public UserDao() { } 
+
         public User? GetUserByUsername(string username)
         {
             using (var conn = new MySqlConnection(_connectionString))
@@ -88,6 +89,7 @@ namespace authorization.Data
                     cmd.Parameters.AddWithValue("@Phone", user.Phone ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@SubscribeWarning", user.SubscribeWarning);
                     cmd.Parameters.AddWithValue("@SubscribeNewsletter", user.SubscribeNewsletter);
+
 
                     cmd.ExecuteNonQuery();
                 }

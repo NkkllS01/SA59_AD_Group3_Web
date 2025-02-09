@@ -56,7 +56,9 @@ namespace authorization.Controllers
                 Username = request.Username,
                 Password = request.Password,
                 Email = request.Email,
-                Phone = request.Phone
+                Phone = request.Phone,
+                SubscribeWarning = request.SubscribeWarning,
+                SubscribeNewsletter = request.SubscribeNewsletter
             };
 
             _userDao.CreateUser(newUser);
@@ -95,22 +97,21 @@ namespace authorization.Controllers
             {
                 return Unauthorized(new { message = "User not logged in" });
             }
-
-            var user = _userDao.GetUserById((int)userId);
-            if (user == null)
-            {
-                return NotFound(new { message = "User not found" });
-            }
-
-         
-            user.Username = request.Username ?? user.Username;
-            user.Email = request.Email ?? user.Email;
-            user.Phone = request.Phone ?? user.Phone;
-
-            _userDao.UpdateUser(user);
-
-            return Ok(new { message = "Profile updated successfully" });
+                var user = _userDao.GetUserById((int)userId);
+                if (user == null)
+                {
+                    return NotFound(new { message = "User not found" });
+                }
+                
+                user.Email = request.Email ?? user.Email;
+                user.Phone = request.Phone ?? user.Phone;
+                user.SubscribeWarning = request.SubscribeWarning ?? user.SubscribeWarning;
+                user.SubscribeNewsletter = request.SubscribeNewsletter ?? user.SubscribeNewsletter;
+                _userDao.UpdateUser(user);
+                return Ok(new { message = "Profile updated successfully" });
         }
+
+
 
         [HttpPut("subscribe")]
         public IActionResult UpdateSubscription([FromBody] SubscriptionRequest request)
@@ -162,15 +163,19 @@ namespace authorization.Controllers
         public string Password { get; set; }
         public string? Email { get; set; }
         public string? Phone { get; set; }
+        public bool SubscribeWarning { get; set; } = false;
+        public bool SubscribeNewsletter { get; set; } = false;
     }
-
 
     public class UpdateProfileRequest
-    {
-        public string? Username { get; set; }
-        public string? Email { get; set; }
-        public string? Phone { get; set; }
-    }
+{
+    public string? Email { get; set; }
+    public string? Phone { get; set; }
+    public bool? SubscribeWarning { get; set; }
+    public bool? SubscribeNewsletter { get; set; }
+}
+
+
 
         public class SubscriptionRequest
     {

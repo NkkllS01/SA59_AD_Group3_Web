@@ -28,16 +28,35 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/NUS_Study/Sa_Learning/AD_Project/Web_Project/SingNature/SingNature/Views/Home/_WildlifeInfo.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfV2lsZGxpZmVJbmZvLmNzaHRtbA==
+
+[/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/Views/Home/_WildlifeInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9fV2lsZGxpZmVJbmZvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/NUS_Study/Sa_Learning/AD_Project/Web_Project/SingNature/SingNature/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/NUS_Study/Sa_Learning/AD_Project/Web_Project/SingNature/SingNature/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/Views/Species/SpeciesCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3BlY2llcy9TcGVjaWVzQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/Views/Species/SpeciesDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3BlY2llcy9TcGVjaWVzRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/Views/Species/SpeciesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3BlY2llcy9TcGVjaWVzTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/NUS_Study/Sa_Learning/AD_Project/Web_Project/SingNature/SingNature/Views/Species/SpeciesCategory.cshtml]

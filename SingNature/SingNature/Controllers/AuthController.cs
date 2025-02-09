@@ -16,7 +16,6 @@ namespace authorization.Controllers
             _userDao = userDao;
         }
 
-
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
@@ -25,14 +24,19 @@ namespace authorization.Controllers
             {
                 return Unauthorized(new { message = "Invalid username or password" });
             }
-
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("Username", user.Username);
-
-            return Ok(new { message = "Login successful" });
+            return Ok(new 
+            { 
+                message = "Login successful",
+                userId = user.Id,
+                username = user.Username,
+                email = user.Email,
+                phone = user.Phone,
+                subscribeWarning = user.SubscribeWarning,
+                subscribeNewsletter = user.SubscribeNewsletter
+                });
         }
-
-
 
         [HttpPost("logout")]
         public IActionResult Logout()
@@ -92,23 +96,19 @@ namespace authorization.Controllers
         [HttpPut("update-profile")]
         public IActionResult UpdateProfile([FromBody] UpdateProfileRequest request)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
+            var userId = request.UserId;
+            var user = _userDao.GetUserById(userId);
+            if (user == null)
             {
-                return Unauthorized(new { message = "User not logged in" });
+                return NotFound(new { message = "User not found" });
             }
-                var user = _userDao.GetUserById((int)userId);
-                if (user == null)
-                {
-                    return NotFound(new { message = "User not found" });
-                }
                 
-                user.Email = request.Email ?? user.Email;
-                user.Phone = request.Phone ?? user.Phone;
-                user.SubscribeWarning = request.SubscribeWarning ?? user.SubscribeWarning;
-                user.SubscribeNewsletter = request.SubscribeNewsletter ?? user.SubscribeNewsletter;
-                _userDao.UpdateUser(user);
-                return Ok(new { message = "Profile updated successfully" });
+            user.Email = request.Email ?? user.Email;
+            user.Phone = request.Phone ?? user.Phone;
+            user.SubscribeWarning = request.SubscribeWarning;
+            user.SubscribeNewsletter = request.SubscribeNewsletter;
+            _userDao.UpdateUser(user);
+            return Ok(new { message = "Profile updated successfully" });
         }
 
 
@@ -169,10 +169,11 @@ namespace authorization.Controllers
 
     public class UpdateProfileRequest
 {
+    public int UserId { get; set; }
     public string? Email { get; set; }
     public string? Phone { get; set; }
-    public bool? SubscribeWarning { get; set; }
-    public bool? SubscribeNewsletter { get; set; }
+    public bool SubscribeWarning { get; set; }
+    public bool SubscribeNewsletter { get; set; }
 }
 
 

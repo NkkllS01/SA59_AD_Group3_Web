@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/maps.js",
+      "PackagePath": "staticwebassets/js/maps.js"
+    },
+    {
       "Id": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },

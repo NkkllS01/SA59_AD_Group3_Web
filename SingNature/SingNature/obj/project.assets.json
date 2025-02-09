@@ -2307,6 +2307,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "MySql.Data >= 9.2.0",
       "MySql.EntityFrameworkCore >= 9.0.0",
       "Newtonsoft.Json >= 13.0.3",
       "Pomelo.EntityFrameworkCore.MySql >= 8.0.2"
@@ -2355,6 +2356,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "MySql.Data": {
+            "target": "Package",
+            "version": "[9.2.0, )"
+          },
           "MySql.EntityFrameworkCore": {
             "target": "Package",
             "version": "[9.0.0, )"

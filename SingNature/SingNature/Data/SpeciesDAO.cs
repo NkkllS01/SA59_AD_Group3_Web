@@ -29,8 +29,8 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT s.specieId, s.specieName, s.description, s.highlights, c.categoryId, c.categoryName
-                    FROM Species s
-                    JOIN Categories c ON s.categoryId = c.categoryId
+                    FROM Specie s
+                    JOIN Category c ON s.categoryId = c.categoryId
                     WHERE LOWER(s.specieName) LIKE LOWER(@keyword)
                     ";
 
@@ -88,7 +88,7 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT SpecieId, SpecieName, Description, Highlights, CategoryId
-                    FROM Species
+                    FROM Specie
                     WHERE CategoryId = @categoryId";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
@@ -133,8 +133,8 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT s.specieId, s.specieName, s.description, s.highlights, s.categoryId, c.categoryName
-                    FROM Species s
-                    INNER JOIN Categories c ON s.categoryId = c.categoryId
+                    FROM Specie s
+                    INNER JOIN Category c ON s.categoryId = c.categoryId
                     WHERE s.specieId = @specieId
                     ";
 

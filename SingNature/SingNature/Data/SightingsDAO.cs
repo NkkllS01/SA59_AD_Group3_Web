@@ -28,9 +28,9 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude, s.status
-                    FROM Sightings s
-                    JOIN Species sp ON s.specieId = sp.specieId
-                    JOIN Users u ON s.userId = u.userId
+                    FROM Sighting s
+                    JOIN Specie sp ON s.specieId = sp.specieId
+                    JOIN User u ON s.userId = u.userId
                     ";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
@@ -84,9 +84,9 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude, s.status
-                    FROM Sightings s
-                    JOIN Species sp ON s.specieId = sp.specieId
-                    JOIN Users u ON s.userId = u.userId
+                    FROM Sighting s
+                    JOIN Specie sp ON s.specieId = sp.specieId
+                    JOIN User u ON s.userId = u.userId
                     WHERE s.SightingId = @id
                     ";
 
@@ -145,9 +145,9 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude, s.status
-                    FROM Sightings s
-                    JOIN Species sp ON s.specieId = sp.specieId
-                    JOIN Users u ON s.userId = u.userId
+                    FROM Sighting s
+                    JOIN Specie sp ON s.specieId = sp.specieId
+                    JOIN User u ON s.userId = u.userId
                     WHERE LOWER(sp.specieName) LIKE LOWER(@keyword)
                     ";
 

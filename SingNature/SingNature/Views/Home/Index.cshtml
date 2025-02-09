@@ -13,9 +13,11 @@
         <h1 class="display-4">Welcome</h1>
         <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     </div>
+    <br>
 
     <!-- Google Maps Section -->
     <div class="sightings"> 
+        <h2>Wildlife Sightings</h2>
         <input id="searchBox" placeholder="Search for a place..." type="text" />
         <div id="map"></div>
 
@@ -25,9 +27,9 @@
     <!-- Load Marker Cluster and Maps JS -->
     <script src="~/js/maps.js"></script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
-        </script>
-
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
+    </script>
+    <br>
 
     <!-- Wildlife Information Section -->
     @Html.Partial("_WildlifeInfo")

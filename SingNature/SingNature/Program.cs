@@ -1,10 +1,13 @@
 using SingNature.Data;
+using authorization.Data; 
+
 
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.ConfigureKestrel(options =>
 {
+    
     options.ListenAnyIP(5075); 
     options.ListenAnyIP(5076, listenOptions => listenOptions.UseHttps());
 });
@@ -12,6 +15,11 @@ builder.WebHost.ConfigureKestrel(options =>
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<UserDao>();
 
 var app = builder.Build();
 
@@ -26,10 +34,10 @@ if (!app.Environment.IsDevelopment())
 Console.WriteLine("Configuring Middleware...");
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
-app.MapStaticAssets();
+app.UseStaticFiles();
 
 app.MapControllers();
 

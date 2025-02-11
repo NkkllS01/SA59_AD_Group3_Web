@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SingNature")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd59261453e48e19e961538f75394eefdb9758db")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+737cc6ddbeaeb570d87d8e5c4c3cf3600f9e6949")]
 [assembly: System.Reflection.AssemblyProductAttribute("SingNature")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SingNature")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

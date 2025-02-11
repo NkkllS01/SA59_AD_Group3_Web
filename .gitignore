@@ -1,0 +1,47 @@
+# Ignore build and output files
+bin/
+obj/
+publish/
+out/
+
+# Ignore user settings and temp files
+.vs/
+*.user
+*.suo
+*.sln.docstates
+*.swp
+*.swo
+
+# Ignore secrets and configuration files
+appsettings.Development.json
+secrets.json
+cert.pfx
+localhost.*
+*.p12
+*.pem
+*.crt
+
+# Ignore logs, cache, and test results
+logs/
+*.log
+TestResults/
+coverage/
+*.coverage
+*.trx
+*.coveragexml
+
+# Ignore NuGet and package artifacts
+*.nupkg
+packages/
+project.lock.json
+project.assets.json
+
+# Ignore CI/CD cache
+/.github/workflows/cache/
+
+# Ignore Rider/JetBrains IDE files
+.idea/
+*.sln.iml
+
+# Ignore node_modules (if frontend dependencies exist)
+node_modules/

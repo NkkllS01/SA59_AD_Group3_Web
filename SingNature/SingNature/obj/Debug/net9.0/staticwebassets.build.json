@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9SAYWf710Bm7uHv549BEIJjCQIft+KCcwvaYcGtnXkQ=",
+  "Hash": "dRC29a2huCp3eidRhxAW6ijnXV45ADjqoyq7u/1t68c=",
   "Source": "SingNature",
   "BasePath": "_content/SingNature",
   "Mode": "Default",
@@ -36,6 +36,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/1efuxqt1vw-zxf7h4dtiu.gz",
+      "SourceId": "SingNature",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/SingNature",
+      "RelativePath": "js/search#[.{fingerprint=zxf7h4dtiu}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/search.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "ilbjvapyq9",
+      "Integrity": "ikeiyKsOlmiqXpSRwjRUWdJtt0lQgXks4q7XRoUvRls=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/search.js"
     },
     {
       "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/2gc2e19n0o-bqjiyaj88i.gz",
@@ -101,12 +122,12 @@
       "OriginalItemSpec": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
-      "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-m2rl9lvewd.gz",
+      "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-mxt102kg1j.gz",
       "SourceId": "SingNature",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/SingNature",
-      "RelativePath": "css/index#[.{fingerprint=m2rl9lvewd}]?.css.gz",
+      "RelativePath": "css/index#[.{fingerprint=mxt102kg1j}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -115,8 +136,8 @@
       "RelatedAsset": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/index.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "n20z3u841y",
-      "Integrity": "4XmAy7xDIyy2Ub+rFed8Pih1O3dxu9eAlleSSUMe+z8=",
+      "Fingerprint": "zfnzs8710v",
+      "Integrity": "kTIQIJfH83Lt8WvYRTqyD+QXUcNyFkHfwmrikaNLNuc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/index.css"
@@ -269,6 +290,27 @@
       "OriginalItemSpec": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
+      "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/7yc6ubhpnq-858f530qk8.gz",
+      "SourceId": "SingNature",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/SingNature",
+      "RelativePath": "js/LoginPage#[.{fingerprint=858f530qk8}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/LoginPage.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "1003ang4sm",
+      "Integrity": "P9eKxLV/W0yYp5Wv6T0nLN161T1nm+eDFLvsReQxEsw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/LoginPage.js"
+    },
+    {
       "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/8unwsi3g4f-x0q3zqp4vz.gz",
       "SourceId": "SingNature",
       "SourceType": "Discovered",
@@ -309,6 +351,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/lib/jquery/dist/jquery.js"
+    },
+    {
+      "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/9pnq7vdckf-5jf8ibvg2m.gz",
+      "SourceId": "SingNature",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/SingNature",
+      "RelativePath": "css/result#[.{fingerprint=5jf8ibvg2m}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/result.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "bryj7ip1b8",
+      "Integrity": "t/WyaG8rvdkcJcv1SdecQ0N4CN6dPyylf3DibaB0tSE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/result.css"
     },
     {
       "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/9xbq786405-r4e9w2rdcm.gz",
@@ -1459,11 +1522,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "m2rl9lvewd",
-      "Integrity": "TgmkubBWAEUg+NahdxGa4fV6ekuKLdA2RlkPCA6ZJww=",
+      "Fingerprint": "mxt102kg1j",
+      "Integrity": "ytXEmMSxTkBVRpanCm8LFAPlG1aLaAqByWOSvdEEppU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/index.css"
+    },
+    {
+      "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/result.css",
+      "SourceId": "SingNature",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/",
+      "BasePath": "_content/SingNature",
+      "RelativePath": "css/result#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5jf8ibvg2m",
+      "Integrity": "oU7JJjNXDV0e1Pt/mI9B43fC73LlUDmt3yL/1S9N2mY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/result.css"
     },
     {
       "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/site.css",
@@ -1508,6 +1592,27 @@
       "OriginalItemSpec": "wwwroot/favicon.ico"
     },
     {
+      "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/LoginPage.js",
+      "SourceId": "SingNature",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/",
+      "BasePath": "_content/SingNature",
+      "RelativePath": "js/LoginPage#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "858f530qk8",
+      "Integrity": "/GehXd9QACJVkEbkepDnNiE7hbNgQ5Rr3YcR0ZibII8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/LoginPage.js"
+    },
+    {
       "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/maps.js",
       "SourceId": "SingNature",
       "SourceType": "Discovered",
@@ -1527,6 +1632,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/maps.js"
+    },
+    {
+      "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/search.js",
+      "SourceId": "SingNature",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/",
+      "BasePath": "_content/SingNature",
+      "RelativePath": "js/search#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "zxf7h4dtiu",
+      "Integrity": "d51+P7R5whQws2wWooO/N2JRfKJntJViVh6Bsito5aI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/search.js"
     },
     {
       "Identity": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/site.js",
@@ -2813,12 +2939,12 @@
   "Endpoints": [
     {
       "Route": "css/index.css",
-      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-m2rl9lvewd.gz",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-mxt102kg1j.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001569858713"
+          "Quality": "0.001179245283"
         }
       ],
       "ResponseHeaders": [
@@ -2828,15 +2954,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "636"
+          "Value": "847"
         },
         {
           "Name": "ETag",
-          "Value": "\"4XmAy7xDIyy2Ub+rFed8Pih1O3dxu9eAlleSSUMe+z8=\""
+          "Value": "\"kTIQIJfH83Lt8WvYRTqyD+QXUcNyFkHfwmrikaNLNuc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 13:06:38 GMT"
+          "Value": "Tue, 11 Feb 2025 02:59:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2856,13 +2982,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"TgmkubBWAEUg+NahdxGa4fV6ekuKLdA2RlkPCA6ZJww=\""
+          "Value": "W/\"ytXEmMSxTkBVRpanCm8LFAPlG1aLaAqByWOSvdEEppU=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-TgmkubBWAEUg+NahdxGa4fV6ekuKLdA2RlkPCA6ZJww="
+          "Value": "sha256-ytXEmMSxTkBVRpanCm8LFAPlG1aLaAqByWOSvdEEppU="
         }
       ]
     },
@@ -2877,7 +3003,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1812"
+          "Value": "2587"
         },
         {
           "Name": "Content-Type",
@@ -2885,11 +3011,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"TgmkubBWAEUg+NahdxGa4fV6ekuKLdA2RlkPCA6ZJww=\""
+          "Value": "\"ytXEmMSxTkBVRpanCm8LFAPlG1aLaAqByWOSvdEEppU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 13:06:38 GMT"
+          "Value": "Tue, 11 Feb 2025 02:59:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2899,13 +3025,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-TgmkubBWAEUg+NahdxGa4fV6ekuKLdA2RlkPCA6ZJww="
+          "Value": "sha256-ytXEmMSxTkBVRpanCm8LFAPlG1aLaAqByWOSvdEEppU="
         }
       ]
     },
     {
       "Route": "css/index.css.gz",
-      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-m2rl9lvewd.gz",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-mxt102kg1j.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2914,7 +3040,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "636"
+          "Value": "847"
         },
         {
           "Name": "Content-Type",
@@ -2922,11 +3048,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4XmAy7xDIyy2Ub+rFed8Pih1O3dxu9eAlleSSUMe+z8=\""
+          "Value": "\"kTIQIJfH83Lt8WvYRTqyD+QXUcNyFkHfwmrikaNLNuc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 13:06:38 GMT"
+          "Value": "Tue, 11 Feb 2025 02:59:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2944,18 +3070,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-4XmAy7xDIyy2Ub+rFed8Pih1O3dxu9eAlleSSUMe+z8="
+          "Value": "sha256-kTIQIJfH83Lt8WvYRTqyD+QXUcNyFkHfwmrikaNLNuc="
         }
       ]
     },
     {
-      "Route": "css/index.m2rl9lvewd.css",
-      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-m2rl9lvewd.gz",
+      "Route": "css/index.mxt102kg1j.css",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-mxt102kg1j.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001569858713"
+          "Quality": "0.001179245283"
         }
       ],
       "ResponseHeaders": [
@@ -2965,15 +3091,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "636"
+          "Value": "847"
         },
         {
           "Name": "ETag",
-          "Value": "\"4XmAy7xDIyy2Ub+rFed8Pih1O3dxu9eAlleSSUMe+z8=\""
+          "Value": "\"kTIQIJfH83Lt8WvYRTqyD+QXUcNyFkHfwmrikaNLNuc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 13:06:38 GMT"
+          "Value": "Tue, 11 Feb 2025 02:59:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2993,13 +3119,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"TgmkubBWAEUg+NahdxGa4fV6ekuKLdA2RlkPCA6ZJww=\""
+          "Value": "W/\"ytXEmMSxTkBVRpanCm8LFAPlG1aLaAqByWOSvdEEppU=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "m2rl9lvewd"
+          "Value": "mxt102kg1j"
         },
         {
           "Name": "label",
@@ -3007,12 +3133,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-TgmkubBWAEUg+NahdxGa4fV6ekuKLdA2RlkPCA6ZJww="
+          "Value": "sha256-ytXEmMSxTkBVRpanCm8LFAPlG1aLaAqByWOSvdEEppU="
         }
       ]
     },
     {
-      "Route": "css/index.m2rl9lvewd.css",
+      "Route": "css/index.mxt102kg1j.css",
       "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/index.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3022,7 +3148,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1812"
+          "Value": "2587"
         },
         {
           "Name": "Content-Type",
@@ -3030,11 +3156,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"TgmkubBWAEUg+NahdxGa4fV6ekuKLdA2RlkPCA6ZJww=\""
+          "Value": "\"ytXEmMSxTkBVRpanCm8LFAPlG1aLaAqByWOSvdEEppU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 13:06:38 GMT"
+          "Value": "Tue, 11 Feb 2025 02:59:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3044,7 +3170,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "m2rl9lvewd"
+          "Value": "mxt102kg1j"
         },
         {
           "Name": "label",
@@ -3052,13 +3178,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-TgmkubBWAEUg+NahdxGa4fV6ekuKLdA2RlkPCA6ZJww="
+          "Value": "sha256-ytXEmMSxTkBVRpanCm8LFAPlG1aLaAqByWOSvdEEppU="
         }
       ]
     },
     {
-      "Route": "css/index.m2rl9lvewd.css.gz",
-      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-m2rl9lvewd.gz",
+      "Route": "css/index.mxt102kg1j.css.gz",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/4h88bqmx45-mxt102kg1j.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3067,7 +3193,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "636"
+          "Value": "847"
         },
         {
           "Name": "Content-Type",
@@ -3075,11 +3201,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4XmAy7xDIyy2Ub+rFed8Pih1O3dxu9eAlleSSUMe+z8=\""
+          "Value": "\"kTIQIJfH83Lt8WvYRTqyD+QXUcNyFkHfwmrikaNLNuc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 13:06:38 GMT"
+          "Value": "Tue, 11 Feb 2025 02:59:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3097,7 +3223,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "m2rl9lvewd"
+          "Value": "mxt102kg1j"
         },
         {
           "Name": "label",
@@ -3105,7 +3231,305 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-4XmAy7xDIyy2Ub+rFed8Pih1O3dxu9eAlleSSUMe+z8="
+          "Value": "sha256-kTIQIJfH83Lt8WvYRTqyD+QXUcNyFkHfwmrikaNLNuc="
+        }
+      ]
+    },
+    {
+      "Route": "css/result.5jf8ibvg2m.css",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/9pnq7vdckf-5jf8ibvg2m.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001841620626"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "542"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"t/WyaG8rvdkcJcv1SdecQ0N4CN6dPyylf3DibaB0tSE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 08:44:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"oU7JJjNXDV0e1Pt/mI9B43fC73LlUDmt3yL/1S9N2mY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5jf8ibvg2m"
+        },
+        {
+          "Name": "label",
+          "Value": "css/result.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-oU7JJjNXDV0e1Pt/mI9B43fC73LlUDmt3yL/1S9N2mY="
+        }
+      ]
+    },
+    {
+      "Route": "css/result.5jf8ibvg2m.css",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/result.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1517"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"oU7JJjNXDV0e1Pt/mI9B43fC73LlUDmt3yL/1S9N2mY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 08:44:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5jf8ibvg2m"
+        },
+        {
+          "Name": "label",
+          "Value": "css/result.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-oU7JJjNXDV0e1Pt/mI9B43fC73LlUDmt3yL/1S9N2mY="
+        }
+      ]
+    },
+    {
+      "Route": "css/result.5jf8ibvg2m.css.gz",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/9pnq7vdckf-5jf8ibvg2m.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "542"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"t/WyaG8rvdkcJcv1SdecQ0N4CN6dPyylf3DibaB0tSE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 08:44:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5jf8ibvg2m"
+        },
+        {
+          "Name": "label",
+          "Value": "css/result.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-t/WyaG8rvdkcJcv1SdecQ0N4CN6dPyylf3DibaB0tSE="
+        }
+      ]
+    },
+    {
+      "Route": "css/result.css",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/9pnq7vdckf-5jf8ibvg2m.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001841620626"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "542"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"t/WyaG8rvdkcJcv1SdecQ0N4CN6dPyylf3DibaB0tSE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 08:44:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"oU7JJjNXDV0e1Pt/mI9B43fC73LlUDmt3yL/1S9N2mY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-oU7JJjNXDV0e1Pt/mI9B43fC73LlUDmt3yL/1S9N2mY="
+        }
+      ]
+    },
+    {
+      "Route": "css/result.css",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/result.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1517"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"oU7JJjNXDV0e1Pt/mI9B43fC73LlUDmt3yL/1S9N2mY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 08:44:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-oU7JJjNXDV0e1Pt/mI9B43fC73LlUDmt3yL/1S9N2mY="
+        }
+      ]
+    },
+    {
+      "Route": "css/result.css.gz",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/9pnq7vdckf-5jf8ibvg2m.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "542"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"t/WyaG8rvdkcJcv1SdecQ0N4CN6dPyylf3DibaB0tSE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 08:44:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-t/WyaG8rvdkcJcv1SdecQ0N4CN6dPyylf3DibaB0tSE="
         }
       ]
     },
@@ -3706,6 +4130,304 @@
       ]
     },
     {
+      "Route": "js/LoginPage.858f530qk8.js",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/7yc6ubhpnq-858f530qk8.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001858736059"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "537"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"P9eKxLV/W0yYp5Wv6T0nLN161T1nm+eDFLvsReQxEsw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 11:13:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"/GehXd9QACJVkEbkepDnNiE7hbNgQ5Rr3YcR0ZibII8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "858f530qk8"
+        },
+        {
+          "Name": "label",
+          "Value": "js/LoginPage.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/GehXd9QACJVkEbkepDnNiE7hbNgQ5Rr3YcR0ZibII8="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.858f530qk8.js",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/LoginPage.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1187"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/GehXd9QACJVkEbkepDnNiE7hbNgQ5Rr3YcR0ZibII8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 11:13:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "858f530qk8"
+        },
+        {
+          "Name": "label",
+          "Value": "js/LoginPage.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/GehXd9QACJVkEbkepDnNiE7hbNgQ5Rr3YcR0ZibII8="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.858f530qk8.js.gz",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/7yc6ubhpnq-858f530qk8.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "537"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"P9eKxLV/W0yYp5Wv6T0nLN161T1nm+eDFLvsReQxEsw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 11:13:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "858f530qk8"
+        },
+        {
+          "Name": "label",
+          "Value": "js/LoginPage.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-P9eKxLV/W0yYp5Wv6T0nLN161T1nm+eDFLvsReQxEsw="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.js",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/7yc6ubhpnq-858f530qk8.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001858736059"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "537"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"P9eKxLV/W0yYp5Wv6T0nLN161T1nm+eDFLvsReQxEsw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 11:13:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"/GehXd9QACJVkEbkepDnNiE7hbNgQ5Rr3YcR0ZibII8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/GehXd9QACJVkEbkepDnNiE7hbNgQ5Rr3YcR0ZibII8="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.js",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/LoginPage.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1187"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/GehXd9QACJVkEbkepDnNiE7hbNgQ5Rr3YcR0ZibII8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 11:13:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/GehXd9QACJVkEbkepDnNiE7hbNgQ5Rr3YcR0ZibII8="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.js.gz",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/7yc6ubhpnq-858f530qk8.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "537"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"P9eKxLV/W0yYp5Wv6T0nLN161T1nm+eDFLvsReQxEsw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 11:13:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-P9eKxLV/W0yYp5Wv6T0nLN161T1nm+eDFLvsReQxEsw="
+        }
+      ]
+    },
+    {
       "Route": "js/maps.j4fzh55xdi.js",
       "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/6zf76awei3-j4fzh55xdi.gz",
       "Selectors": [
@@ -4000,6 +4722,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-F4i4z6oefnvBNBMHu//xbdUL/Y7VaCQNYqT0bCod3Hc="
+        }
+      ]
+    },
+    {
+      "Route": "js/search.js",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/1efuxqt1vw-zxf7h4dtiu.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002000000000"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "499"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ikeiyKsOlmiqXpSRwjRUWdJtt0lQgXks4q7XRoUvRls=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 02:59:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"d51+P7R5whQws2wWooO/N2JRfKJntJViVh6Bsito5aI=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-d51+P7R5whQws2wWooO/N2JRfKJntJViVh6Bsito5aI="
+        }
+      ]
+    },
+    {
+      "Route": "js/search.js",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/search.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1075"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"d51+P7R5whQws2wWooO/N2JRfKJntJViVh6Bsito5aI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 02:59:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-d51+P7R5whQws2wWooO/N2JRfKJntJViVh6Bsito5aI="
+        }
+      ]
+    },
+    {
+      "Route": "js/search.js.gz",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/1efuxqt1vw-zxf7h4dtiu.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "499"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ikeiyKsOlmiqXpSRwjRUWdJtt0lQgXks4q7XRoUvRls=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 02:59:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ikeiyKsOlmiqXpSRwjRUWdJtt0lQgXks4q7XRoUvRls="
+        }
+      ]
+    },
+    {
+      "Route": "js/search.zxf7h4dtiu.js",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/1efuxqt1vw-zxf7h4dtiu.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002000000000"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "499"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ikeiyKsOlmiqXpSRwjRUWdJtt0lQgXks4q7XRoUvRls=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 02:59:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"d51+P7R5whQws2wWooO/N2JRfKJntJViVh6Bsito5aI=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zxf7h4dtiu"
+        },
+        {
+          "Name": "label",
+          "Value": "js/search.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-d51+P7R5whQws2wWooO/N2JRfKJntJViVh6Bsito5aI="
+        }
+      ]
+    },
+    {
+      "Route": "js/search.zxf7h4dtiu.js",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/search.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1075"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"d51+P7R5whQws2wWooO/N2JRfKJntJViVh6Bsito5aI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 02:59:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zxf7h4dtiu"
+        },
+        {
+          "Name": "label",
+          "Value": "js/search.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-d51+P7R5whQws2wWooO/N2JRfKJntJViVh6Bsito5aI="
+        }
+      ]
+    },
+    {
+      "Route": "js/search.zxf7h4dtiu.js.gz",
+      "AssetFile": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/Debug/net9.0/compressed/1efuxqt1vw-zxf7h4dtiu.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "499"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ikeiyKsOlmiqXpSRwjRUWdJtt0lQgXks4q7XRoUvRls=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Feb 2025 02:59:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zxf7h4dtiu"
+        },
+        {
+          "Name": "label",
+          "Value": "js/search.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ikeiyKsOlmiqXpSRwjRUWdJtt0lQgXks4q7XRoUvRls="
         }
       ]
     },

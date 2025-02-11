@@ -8,11 +8,11 @@ namespace authorization.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -28,13 +28,13 @@ namespace authorization.Models
 
         [Required]
         [StringLength(8)]
-        public string Mobile { get; set; }
+        public string Phone { get; set; }
 
         [Required]
-        public bool Newsletter { get; set; }
+        public bool SubscribeNewsletter { get; set; }
 
         [Required]
-        public bool Warning { get; set; }
+        public bool SubscribeWarning { get; set; }
 
         [Required]
         [Column(TypeName = "ENUM('Public', 'Staff', 'Pest Control Company')")]

@@ -170,7 +170,6 @@ E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\scopedcss\bundle\SingNature.styles.css
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\scopedcss\projectbundle\SingNature.bundle.scp.css
-E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\4h88bqmx45-a3iog28sac.gz
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\ummgmuykh3-9kwb4z18du.gz
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\y9r8pwf2i4-61n19gt1b8.gz
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\6zf76awei3-g3beuumv4w.gz
@@ -251,4 +250,7 @@ E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\SingNature.pdb
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\SingNature.genruntimeconfig.cache
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\ref\SingNature.dll
-E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\7yc6ubhpnq-qm2635avue.gz
+E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\4h88bqmx45-or4ejkwgzk.gz
+E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\9pnq7vdckf-ytfrttil6h.gz
+E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\7yc6ubhpnq-sd6jj0jruv.gz
+E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\1efuxqt1vw-xm4yuljlw0.gz

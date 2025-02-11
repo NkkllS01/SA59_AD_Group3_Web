@@ -1,25 +1,32 @@
+<<<<<<< HEAD
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace authorization.Models
+public class User
 {
-    public class User
-    {
-        [Key]
-        public int Id { get; set; }
+    [Key]
+    public int UserId { get; set; }
 
-        [Required]
-        public string Username { get; set; }
+    [Required]
+    [StringLength(50)]
+    public string Username { get; set; }
 
-        [Required]
-        public string Password { get; set; }
+    [Required]
+    [StringLength(100)]
+    public string Email { get; set; }
 
-        [EmailAddress]
-        public string? Email { get; set; }
+    [Column("password_hash")] // 映射到数据库的 `password_hash` 字段
+    public string PasswordHash { get; set; } 
 
-        [Phone]
-        public string? Phone { get; set; }
+    [Required]
+    [StringLength(20)]
+    public string Role { get; set; } 
 
-        public bool SubscribeWarning { get; set; } = false;
-        public bool SubscribeNewsletter { get; set; } = false;
-    }
-}
+    public bool IsActive { get; set; } = true;
+
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    public DateTime? LastLogin { get; set; } 
+=======
+

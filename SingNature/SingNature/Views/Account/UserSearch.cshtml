@@ -1,0 +1,90 @@
+<!-- Views/Account/UserSearch.cshtml -->
+<div class="container">
+    <div class="search-section">
+        <input type="number" id="userId" placeholder="Enter User ID" />
+        <button onclick="searchUser()">Search User</button>
+    </div>
+
+    <div id="userResult" class="user-details" style="display: none;">
+        <h3>User Details</h3>
+        <div id="userData"></div>
+
+        <h4>User's Sightings</h4>
+        <div id="userSightings"></div>
+    </div>
+</div>
+
+<script>
+function searchUser() {
+    const userId = document.getElementById('userId').value;
+    if (!userId) {
+        alert('Please enter a user ID');
+        return;
+    }
+
+    fetch(`/api/account/${userId}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('User not found');
+        }
+        return response.json();
+    })
+    .then(data => {
+        displayUserData(data);
+    })
+    .catch(error => {
+        alert(error.message);
+    });
+}
+
+function displayUserData(data) {
+    const userResult = document.getElementById('userResult');
+    const userData = document.getElementById('userData');
+    const userSightings = document.getElementById('userSightings');
+
+    // Display user info
+    userData.innerHTML = `
+        <p><strong>Username:</strong> ${data.user.username}</p>
+        <p><strong>Email:</strong> ${data.user.email}</p>
+        <p><strong>Member Since:</strong> ${new Date(data.user.createdAt).toLocaleDateString()}</p>
+    `;
+
+    // Display user sightings
+    userSightings.innerHTML = data.userSightings.map(sighting => `
+        <div class="sighting-item">
+            <p><strong>Species Name:</strong> ${sighting.speciesName || 'N/A'}</p>
+            <p>Latitude: ${sighting.latitude}</p>
+            <p>Longitude: ${sighting.longitude}</p>
+            <p>Description: ${sighting.sightingDescription}</p>
+            <p>Weather: ${sighting.weatherConditions}</p>
+        </div>
+    `).join('');
+
+    userResult.style.display = 'block';
+}
+</script>
+
+<style>
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.search-section {
+    margin-bottom: 20px;
+}
+
+.user-details {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.sighting-item {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+</style>

@@ -1,19 +1,25 @@
 using MySql.Data.MySqlClient;
 using authorization.Models;
+using Newtonsoft.Json.Linq;
 
 namespace authorization.Data
 {
     public class UserDao
     {
-        private readonly string _connectionString = "server=localhost;uid=root;pwd=Gzj20011027;database=AdProject";
+        private readonly string _connectionString; 
 
-  
+        public UserDao() {
+            var json = File.ReadAllText("appsettings.json");
+            var jObject = JObject.Parse(json);
+            _connectionString = jObject["ConnectionStrings"]["DefaultConnection"].ToString();
+        }
+
         public User? GetUserByUsername(string username)
         {
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "SELECT * FROM users WHERE Username = @Username";
+                string sql = "SELECT * FROM user WHERE Username = @Username";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {
@@ -24,13 +30,13 @@ namespace authorization.Data
                         {
                             return new User
                             {
-                                Id = reader.GetInt32("Id"),
+                                Id = reader.GetInt32("UserId"),
                                 Username = reader.GetString("Username"),
                                 Password = reader.GetString("Password"),
                                 Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString("Email"),
-                                Phone = reader.IsDBNull(reader.GetOrdinal("Phone")) ? null : reader.GetString("Phone"),
-                                SubscribeWarning = reader.GetBoolean("SubscribeWarning"),
-                                SubscribeNewsletter = reader.GetBoolean("SubscribeNewsletter")
+                                Phone = reader.IsDBNull(reader.GetOrdinal("Mobile")) ? null : reader.GetString("Mobile"),
+                                SubscribeWarning = reader.GetBoolean("Warning"),
+                                SubscribeNewsletter = reader.GetBoolean("Newsletter")
                             };
                         }
                     }
@@ -45,7 +51,7 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "SELECT * FROM users WHERE Id = @UserId";
+                string sql = "SELECT * FROM user WHERE UserId = @UserId";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {
@@ -56,13 +62,13 @@ namespace authorization.Data
                         {
                             return new User
                             {
-                                Id = reader.GetInt32("Id"),
+                                Id = reader.GetInt32("UserId"),
                                 Username = reader.GetString("Username"),
                                 Password = reader.GetString("Password"),
                                 Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString("Email"),
-                                Phone = reader.IsDBNull(reader.GetOrdinal("Phone")) ? null : reader.GetString("Phone"),
-                                SubscribeWarning = reader.GetBoolean("SubscribeWarning"),
-                                SubscribeNewsletter = reader.GetBoolean("SubscribeNewsletter")
+                                Phone = reader.IsDBNull(reader.GetOrdinal("Mobile")) ? null : reader.GetString("Mobile"),
+                                SubscribeWarning = reader.GetBoolean("Warning"),
+                                SubscribeNewsletter = reader.GetBoolean("Newsletter")
                             };
                         }
                     }
@@ -77,7 +83,7 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "INSERT INTO users (Username, Password, Email, Phone, SubscribeWarning, SubscribeNewsletter) " +
+                string sql = "INSERT INTO user (Username, Password, Email, Mobile, Warning, Newsletter) " +
                              "VALUES (@Username, @Password, @Email, @Phone, @SubscribeWarning, @SubscribeNewsletter)";
 
                 using (var cmd = new MySqlCommand(sql, conn))
@@ -88,6 +94,7 @@ namespace authorization.Data
                     cmd.Parameters.AddWithValue("@Phone", user.Phone ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@SubscribeWarning", user.SubscribeWarning);
                     cmd.Parameters.AddWithValue("@SubscribeNewsletter", user.SubscribeNewsletter);
+
 
                     cmd.ExecuteNonQuery();
                 }
@@ -100,9 +107,9 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "UPDATE users SET Username = @Username, Email = @Email, Phone = @Phone, " +
-                             "SubscribeWarning = @SubscribeWarning, SubscribeNewsletter = @SubscribeNewsletter " +
-                             "WHERE Id = @UserId";
+                string sql = "UPDATE user SET Username = @Username, Email = @Email, Mobile = @Phone, " +
+                             "Warning = @SubscribeWarning, Newsletter = @SubscribeNewsletter " +
+                             "WHERE UserId = @UserId";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {
@@ -124,7 +131,7 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "UPDATE users SET SubscribeWarning = @SubscribeWarning, SubscribeNewsletter = @SubscribeNewsletter WHERE Id = @UserId";
+                string sql = "UPDATE user SET Warning = @SubscribeWarning, Newsletter = @SubscribeNewsletter WHERE UserId = @UserId";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {

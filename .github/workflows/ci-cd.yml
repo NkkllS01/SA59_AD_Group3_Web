@@ -64,6 +64,13 @@ jobs:
       - name: Clean Project Before Build
         run: dotnet clean SingNature/SingNature.sln --configuration Release
     
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: csharp
+          build-mode: manual
+          source-root: SingNature/SingNature
+          
       - name: Build Application
         run: dotnet build SingNature/SingNature.sln --configuration Release --no-restore -bl:build.binlog
 
@@ -73,12 +80,11 @@ jobs:
             name: build-log
             path: build.binlog
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: csharp
-          build-mode: manual
-          source-root: SingNature/SingNature
+      - name: Manually Extract C# Code for CodeQL
+        run: |
+            ls -al SingNature/SingNature/bin/Release/net8.0/
+            cp -r SingNature/SingNature/bin/Release/net8.0/* /home/runner/work/_temp/codeql_databases/csharp/
+        continue-on-error: true
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3

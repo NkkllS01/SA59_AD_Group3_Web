@@ -60,14 +60,25 @@ jobs:
     
       - name: Restore Dependencies
         run: dotnet restore SingNature/SingNature.sln
+
+      - name: Clean Project Before Build
+        run: dotnet clean SingNature/SingNature.sln --configuration Release
     
       - name: Build Application
-        run: dotnet build SingNature/SingNature.sln --configuration Release --no-restore
+        run: dotnet build SingNature/SingNature.sln --configuration Release --no-restore -bl:build.binlog
+
+      - name: Upload Build Log for Debugging
+        uses: actions/upload-artifact@v4
+        with:
+            name: build-log
+            path: build.binlog
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: csharp
+          build-mode: manual
+          source-root: SingNature/SingNature
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
@@ -78,12 +89,7 @@ jobs:
     needs: build_and_test
 
     steps:
-      - name: Install OWASP ZAP
-        run: |
-          sudo apt update
-          sudo apt install zaproxy -y
-
-      - name: Run DAST Scan
+      - name: Run OWASP ZAP Full Scan
         uses: zaproxy/action-full-scan@v0.4.0
         with:
             target: 'http://your-staging-url.com'

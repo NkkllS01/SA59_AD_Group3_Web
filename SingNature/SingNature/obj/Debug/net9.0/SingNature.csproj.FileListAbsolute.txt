@@ -251,3 +251,4 @@ E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\SingNature.pdb
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\SingNature.genruntimeconfig.cache
 E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\ref\SingNature.dll
+E:\NUS_Study\Sa_Learning\AD_Project\Web_Project\SingNature\SingNature\obj\Debug\net9.0\compressed\7yc6ubhpnq-qm2635avue.gz

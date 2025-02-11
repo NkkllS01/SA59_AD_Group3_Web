@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oS/pXGhEOxtCgpGUIOt+zCZZD7fqfosCIcj5Q332lnA=",
+  "Hash": "/QtuwM2bhYupPVpjNf1+FCP7UgCs7+Ro3XJ1ypumo5U=",
   "Source": "SingNature",
   "BasePath": "_content/SingNature",
   "Mode": "Default",
@@ -267,6 +267,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Identity": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\obj\\Debug\\net9.0\\compressed\\7yc6ubhpnq-qm2635avue.gz",
+      "SourceId": "SingNature",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/SingNature",
+      "RelativePath": "js/LoginPage#[.{fingerprint=qm2635avue}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\js\\LoginPage.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "mpjqqeysql",
+      "Integrity": "tqeQC2/CXkOJFYDbUSPWx4ScGMVu1cKkTMsd96Fehxs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\js\\LoginPage.js"
     },
     {
       "Identity": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\obj\\Debug\\net9.0\\compressed\\8unwsi3g4f-x0q3zqp4vz.gz",
@@ -1506,6 +1527,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\js\\LoginPage.js",
+      "SourceId": "SingNature",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\",
+      "BasePath": "_content/SingNature",
+      "RelativePath": "js/LoginPage#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "qm2635avue",
+      "Integrity": "0sk804WZF+tsQN/R1rZu0R3uyIXVDuO+iJEaGoBjXUc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\LoginPage.js"
     },
     {
       "Identity": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\js\\maps.js",
@@ -3702,6 +3744,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-+/824NtfTA0L7Mr42Fo+86YJP4R5cigdi9S7Fx5VVl4="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.js",
+      "AssetFile": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\obj\\Debug\\net9.0\\compressed\\7yc6ubhpnq-qm2635avue.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001706484642"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "585"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tqeQC2/CXkOJFYDbUSPWx4ScGMVu1cKkTMsd96Fehxs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 13:45:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"0sk804WZF+tsQN/R1rZu0R3uyIXVDuO+iJEaGoBjXUc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0sk804WZF+tsQN/R1rZu0R3uyIXVDuO+iJEaGoBjXUc="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.js",
+      "AssetFile": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\js\\LoginPage.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1626"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0sk804WZF+tsQN/R1rZu0R3uyIXVDuO+iJEaGoBjXUc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 13:45:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0sk804WZF+tsQN/R1rZu0R3uyIXVDuO+iJEaGoBjXUc="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.js.gz",
+      "AssetFile": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\obj\\Debug\\net9.0\\compressed\\7yc6ubhpnq-qm2635avue.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "585"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tqeQC2/CXkOJFYDbUSPWx4ScGMVu1cKkTMsd96Fehxs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 13:45:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-tqeQC2/CXkOJFYDbUSPWx4ScGMVu1cKkTMsd96Fehxs="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.qm2635avue.js",
+      "AssetFile": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\obj\\Debug\\net9.0\\compressed\\7yc6ubhpnq-qm2635avue.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001706484642"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "585"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tqeQC2/CXkOJFYDbUSPWx4ScGMVu1cKkTMsd96Fehxs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 13:45:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"0sk804WZF+tsQN/R1rZu0R3uyIXVDuO+iJEaGoBjXUc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "qm2635avue"
+        },
+        {
+          "Name": "label",
+          "Value": "js/LoginPage.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0sk804WZF+tsQN/R1rZu0R3uyIXVDuO+iJEaGoBjXUc="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.qm2635avue.js",
+      "AssetFile": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\js\\LoginPage.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1626"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0sk804WZF+tsQN/R1rZu0R3uyIXVDuO+iJEaGoBjXUc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 13:45:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "qm2635avue"
+        },
+        {
+          "Name": "label",
+          "Value": "js/LoginPage.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0sk804WZF+tsQN/R1rZu0R3uyIXVDuO+iJEaGoBjXUc="
+        }
+      ]
+    },
+    {
+      "Route": "js/LoginPage.qm2635avue.js.gz",
+      "AssetFile": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\obj\\Debug\\net9.0\\compressed\\7yc6ubhpnq-qm2635avue.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "585"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tqeQC2/CXkOJFYDbUSPWx4ScGMVu1cKkTMsd96Fehxs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 13:45:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "qm2635avue"
+        },
+        {
+          "Name": "label",
+          "Value": "js/LoginPage.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-tqeQC2/CXkOJFYDbUSPWx4ScGMVu1cKkTMsd96Fehxs="
         }
       ]
     },

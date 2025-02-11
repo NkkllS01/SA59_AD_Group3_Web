@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\js\\LoginPage.js",
+      "PackagePath": "staticwebassets\\js\\LoginPage.js"
+    },
+    {
       "Id": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\wwwroot\\js\\maps.js",
       "PackagePath": "staticwebassets\\js\\maps.js"
     },

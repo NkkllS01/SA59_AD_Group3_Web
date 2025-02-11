@@ -1,4 +1,7 @@
-﻿@model List<Category>
+﻿using SingNature.Models;
+
+@model SingNature.Models.HomeViewModel
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -32,8 +35,9 @@
     <br>
 
     <!-- Wildlife Information Section -->
-    @Html.Partial("_WildlifeInfo")
+    @Html.Partial("_WildlifeInfo",Model.Categories)
+
+    <!-- Park Information Section -->
+    @Html.Partial("_ParkInfo",Model.Parks)
 
 </body>
-
-    

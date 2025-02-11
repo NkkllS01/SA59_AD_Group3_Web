@@ -20,6 +20,7 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<UserDao>();
+builder.Services.AddScoped<ParkDAO>();
 
 var app = builder.Build();
 

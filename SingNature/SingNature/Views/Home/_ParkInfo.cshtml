@@ -1,0 +1,25 @@
+@model List<SingNature.Models.Park>
+
+<div class="css-info">
+    <h2>Nature Parks</h2>
+    <div class="underline"></div>
+
+    <div class="css-container">
+        <!-- Iterate through the list of parks -->
+        @foreach (var park in Model)
+        {
+            <div class="css-card">
+                <!-- Use dynamic park images, names, and IDs -->
+                <img src="~/images/@park.ParkName.ToLower().Replace(" ", "") .jpg" alt="@park.ParkName" />
+                <h3>@park.ParkName</h3>
+                <!-- Link to ParkDetails with parkId -->
+                <a href="@Url.Action("ParkDetail", "Park", new { parkId = park.ParkId })" class="details-link">SEE DETAILS →</a>
+            </div>
+        }
+    </div>
+
+    <div class="see-all-btn">
+        <!-- Link to see all parks -->
+        <a href="@Url.Action("ParkList", "Park")" class="btn">SEE ALL PARKS →</a>
+    </div>
+</div>

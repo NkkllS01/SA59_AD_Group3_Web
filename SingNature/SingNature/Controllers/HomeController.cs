@@ -19,7 +19,20 @@ namespace SingNature.Controllers
                 new Category { CategoryId = 3, CategoryName = "Monitor Lizards" }
             };
 
-            return View(categories);
+            var parks = new List<Park>
+            {
+                new Park { ParkId = 1, ParkName = "A" },
+                new Park { ParkId = 2, ParkName = "B"},
+                new Park { ParkId = 3, ParkName = "C" }
+            };
+
+            var model = new HomeViewModel
+            {
+                Categories = categories,
+                Parks = parks
+            };
+
+            return View(model);
         }
     }
 }

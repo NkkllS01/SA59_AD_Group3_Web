@@ -4,36 +4,80 @@
     ViewData["Title"] = "Search Results";
 }
 
-<h2>Search Results for "@Model.Keyword"</h2>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/result.css" asp-append-version="true" />
+</head>
 
-@if (Model.Sightings.Any())
-{
-    <h3>Matching Sightings</h3>
-    <ul>
-        @foreach (var sighting in Model.Sightings)
-        {
-            <li><strong>@sighting.SpecieName</strong> sighted by @sighting.UserName on @sighting.Date</li>
-        }
-    </ul>
-}
-else
-{
-    <p>No sightings found.</p>
-}
+<div class="search-result-banner">
+    <p class="search-text">Search Results for "@Model.Keyword"</p>
+</div>
+<br>
 
 @if (Model.Species.Any())
 {
-    <h3>Matching Species</h3>
-    <ul>
-        @foreach (var species in Model.Species)
-        {
-            <li><strong>@species.SpecieName</strong> - @species.Description</li>
-        }
-    </ul>
+    <div class="result-banner">
+        <p class="result-text">Related Species</p>
+    </div>
+    <table class="details-table">
+        <tbody>
+            @foreach (var species in Model.Species)
+            {
+                <tr>
+                    <!-- <td class="image-cell">
+                        <img src="@species" alt="@species.SpecieName" onerror="this.src='/images/placeholder.jpg';">
+                    </td> -->
+
+                    <td class="info-cell">
+                        <h4 class="name">@species.SpecieName</h4>
+                        <p class="category">@species.Category.CategoryName</p>
+                    </td>
+
+                    <td class="button-cell">
+                        <a href="/Species/SpeciesDetail/@species.SpecieId" class="btn">View Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 else
 {
     <p>No species found.</p>
 }
+<br>
+
+@if (Model.Sightings.Any())
+{
+    <div class="result-banner">
+        <p class="result-text">Related Sightings</p>
+    </div>
+    <table class="details-table">
+        <tbody>
+            @foreach (var sighting in Model.Sightings)
+            {
+                <tr>
+                    <!-- <td class="image-cell">
+                        <img src="@sighting.ImageUrl" alt="@sighting.SpecieName" onerror="this.src='/images/placeholder.jpg';">
+                    </td> -->
+
+                    <td class="info-cell">
+                        <h4 class="name">Specie Name: @sighting.SpecieName</h4>
+                        <p class="user">Reported by: @sighting.UserName</p>
+                    </td>
+
+                    <td class="button-cell">
+                        <a href="/Sightings/Details/@sighting.SightingId" class="btn">View Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No sightings found.</p>
+}
+<br>
+
 
 <a asp-controller="Home" asp-action="Index">Back to Home</a>

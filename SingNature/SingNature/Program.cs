@@ -5,6 +5,15 @@ using authorization.Data;
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 builder.WebHost.ConfigureKestrel(options =>
 {
     
@@ -22,6 +31,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<UserDao>();
 
 var app = builder.Build();
+
+app.UseCors("AllowAllOrigins");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

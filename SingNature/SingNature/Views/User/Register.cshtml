@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Wildlife Explorer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #FBE6D9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 20px;
+        }
+        .register-form {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        .illustration {
+            flex: 1;
+            background: #FBE6D9;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            color: #276749;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: #276749;
+        }
+        h1 {
+            color: #276749;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 32px;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        label {
+            display: block;
+            color: #276749;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #276749;
+            box-shadow: 0 0 0 2px rgba(39, 103, 73, 0.1);
+        }
+        .subscriptions {
+            margin-bottom: 24px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .btn-register {
+            background: #276749;
+            color: white;
+            margin-bottom: 16px;
+        }
+        .btn-register:hover {
+            background: #1a4731;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 24px;
+        }
+        .login-link a {
+            color: #276749;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .illustration {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="register-form">
+            <div class="logo">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                    <circle cx="18" cy="12" r="3" fill="currentColor"/>
+                    <circle cx="6" cy="12" r="3" fill="currentColor"/>
+                </svg>
+                <span class="logo-text">Group3</span>
+            </div>
+            <h1>Explore Wildlife with Intelligent Recommendations</h1>
+            <p class="subtitle">Create your account to start exploring</p>
+            <form>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" placeholder="Enter your username">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="Enter your phone number">
+                </div>
+                
+                <div class="subscriptions">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="warning">
+                        <label for="warning">Subscribe to Wildlife Warnings</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter">
+                        <label for="newsletter">Subscribe to Newsletter</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-register">Create Account</button>
+                
+                <div class="login-link">
+                    Already have an account? <a href="#">Login here</a>
+                </div>
+            </form>
+        </div>
+        <div class="illustration">
+            <svg viewBox="0 0 400 300" style="width: 100%; max-width: 400px;">
+                <!-- Sun -->
+                <circle cx="320" cy="60" r="30" fill="#FFD700"/>
+                <!-- Mountains -->
+                <path d="M0 180 L150 80 L300 180" fill="#276749"/>
+                <path d="M150 180 L280 100 L400 180" fill="#276749"/>
+                <!-- Lake/Ground -->
+                <path d="M0 180 C100 170, 300 170, 400 180 L400 300 L0 300 Z" fill="#4682B4"/>
+                <!-- Van -->
+                <rect x="100" y="150" width="120" height="60" fill="#276749"/>
+                <rect x="140" y="160" width="60" height="30" fill="#FFD700"/>
+                <circle cx="130" cy="210" r="15" fill="#4A5568"/>
+                <circle cx="190" cy="210" r="15" fill="#4A5568"/>
+                <!-- Tree -->
+                <path d="M350 180 L380 180 L365 120 Z" fill="#FFD700"/>
+                <!-- Clouds -->
+                <path d="M320 30 Q330 20 340 30 T360 30" fill="#276749"/>
+                <path d="M350 40 Q360 30 370 40 T390 40" fill="#276749"/>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>

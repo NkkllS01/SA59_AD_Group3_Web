@@ -22,7 +22,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0'
+          dotnet-version: '8.0'
 
       - name: Restore Dependencies
         run: dotnet restore SingNature/SingNature.sln
@@ -43,18 +43,34 @@ jobs:
     name: Static Security Analysis (SAST)
     runs-on: ubuntu-latest
     needs: build_and_test
+    permissions:
+        contents: read
+        security-events: write  # Required for CodeQL to upload security scan results
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+            fetch-depth: 0  # Ensures full commit history
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+            dotnet-version: '8.0'
+    
+      - name: Restore Dependencies
+        run: dotnet restore SingNature/SingNature.sln
+    
+      - name: Build Application
+        run: dotnet build SingNature/SingNature.sln --configuration Release --no-restore
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           languages: csharp
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
 
   dast_scan:
     name: Dynamic Security Analysis (DAST)
@@ -68,8 +84,9 @@ jobs:
           sudo apt install zaproxy -y
 
       - name: Run DAST Scan
-        run: |
-          zap-cli quick-scan --start-options '-config api.disablekey=true' http://your-staging-url.com
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+            target: 'http://your-staging-url.com'
 
 #   deploy:
 #     name: Deploy to DigitalOcean Droplet

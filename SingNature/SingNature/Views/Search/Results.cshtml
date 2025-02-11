@@ -1,0 +1,39 @@
+@model SingNature.Models.SearchResultsViewModel
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>Search Results for "@Model.Keyword"</h2>
+
+@if (Model.Sightings.Any())
+{
+    <h3>Matching Sightings</h3>
+    <ul>
+        @foreach (var sighting in Model.Sightings)
+        {
+            <li><strong>@sighting.SpecieName</strong> sighted by @sighting.UserName on @sighting.Date</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No sightings found.</p>
+}
+
+@if (Model.Species.Any())
+{
+    <h3>Matching Species</h3>
+    <ul>
+        @foreach (var species in Model.Species)
+        {
+            <li><strong>@species.SpecieName</strong> - @species.Description</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No species found.</p>
+}
+
+<a asp-controller="Home" asp-action="Index">Back to Home</a>

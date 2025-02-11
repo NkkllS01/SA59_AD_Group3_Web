@@ -1,0 +1,212 @@
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace SingNature.Data
+{
+  public class UserDAO 
+  {
+    private readonly string _connectionString = "YOUR_CONNECTION_STRING";
+    public async Task<List<Sightings>> GetUserSightings(int userId)
+    {
+      var sightings = new List<Sightings>();
+      using var conn = new MySqlConnection(_connectionString);
+      await conn.OpenAsync();
+
+      string sql = @"
+        SELECT s.sighting_id, s.species_id, s.latitude, s.longitude, s.sighting_description, s.weather_conditions 
+        FROM SightingsTable s
+        WHERE s.user_id = @userId";
+    
+      using var cmd = new MySqlCommand(sql, conn);
+      cmd.Parameters.AddWithValue("@userId", userId);
+
+    using var reader = await cmd.ExecuteReaderAsync();
+    while (await reader.ReadAsync())
+    {
+        sightings.Add(new Sightings
+        {
+            SightingId = reader.GetInt32("sighting_id"),
+            SpeciesId = reader.GetInt32("species_id"),
+            Latitude = reader.GetDouble("latitude"),
+            Longitude = reader.GetDouble("longitude"),
+            SightingDescription = reader.GetString("sighting_description"),
+            WeatherConditions = reader.GetString("weather_conditions")
+        });
+    }
+
+     return sightings;
+  }
+
+
+    // 用户验证
+    public async Task<User> ValidateUser(string username, string password)
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        await conn.OpenAsync();
+
+        string sql = @"
+            SELECT user_id, username, email, password_hash, role, created_at, is_active 
+            FROM UserTable 
+            WHERE username = @username"；
+
+
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@username", username);
+        
+        
+        using var reader = await cmd.ExecuteReaderAsync();
+         if (await reader.ReadAsync())
+         {
+            var storedUser = new User
+            {
+             UserId = reader.GetInt32("user_id"),
+             Username = reader.GetString("username"),
+             Email = reader.GetString("email"),
+             Role = reader.GetString("role"), 
+             CreatedAt = reader.GetDateTime("created_at"),
+             IsActive = reader.GetBoolean("is_active")
+            };
+
+            string storedPasswordHash = reader.GetString("password_hash");
+            
+            if (storedPasswordHash != HashPassword(password))
+            {
+               return null; 
+            }
+
+            string updateSql = "UPDATE UserTable SET last_login = CURRENT_TIMESTAMP WHERE user_id = @userId";
+            using var updateCmd = new MySqlCommand(updateSql, conn);
+            updateCmd.Parameters.AddWithValue("@userId", storedUser.UserId);
+            await updateCmd.ExecuteNonQueryAsync();
+
+            return storedUser;
+    }
+
+    return null; 
+}
+
+    // 创建用户
+    public async Task<User> CreateUser(User newUser)
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        await conn.OpenAsync();
+
+        string sql = @"
+            INSERT INTO UserTable 
+            (username, email, password_hash, role, created_at, is_active) 
+            VALUES 
+            (@Username, @Email, @Password, @Role, @CreatedAt, @IsActive);
+            SELECT LAST_INSERT_ID();";
+
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@Username", newUser.Username);
+        cmd.Parameters.AddWithValue("@Email", newUser.Email);
+        cmd.Parameters.AddWithValue("@Password", HashPassword(newUser.Password));
+        cmd.Parameters.AddWithValue("@Role", newUser.Role ?? "User"); 
+        cmd.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
+        cmd.Parameters.AddWithValue("@IsActive", true);
+
+        var newId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+        newUser.UserId = newId;
+        newUser.CreatedAt = DateTime.Now;
+        newUser.IsActive = true;
+
+        return newUser;
+    }
+
+    // 更新用户
+    public async Task<User> UpdateUser(User updatedUser)
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        await conn.OpenAsync();
+
+        string sql = @"
+            UPDATE UserTable 
+            SET Username = @Username, 
+                Email = @Email, 
+                IsActive = @IsActive,
+                Role = @Role
+            WHERE UserId = @UserId";
+
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@UserId", updatedUser.UserId);
+        cmd.Parameters.AddWithValue("@Username", updatedUser.Username);
+        cmd.Parameters.AddWithValue("@Email", updatedUser.Email);
+        cmd.Parameters.AddWithValue("@Role", updatedUser.Role);
+        cmd.Parameters.AddWithValue("@IsActive", updatedUser.IsActive);
+
+        var affectedRows = await cmd.ExecuteNonQueryAsync();
+        return affectedRows > 0 ? updatedUser : null;
+    }
+
+
+    // 获取所有用户方法
+    public async Task<List<User>> GetAllUsers()
+    {
+        var users = new List<User>();
+        using var conn = new MySqlConnection(_connectionString);
+        await conn.OpenAsync();
+
+        string sql = @"
+            SELECT UserId, Username, Email, Role, CreatedAt, IsActive 
+            FROM UserTable";
+
+        using var cmd = new MySqlCommand(sql, conn);
+        using var reader = await cmd.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync())
+        {
+            users.Add(new User 
+            {
+                UserId = reader.GetInt32("UserId"),
+                Username = reader.GetString("Username"),
+                Email = reader.GetString("Email"),
+                Role = reader.GetString("role"),
+                CreatedAt = reader.GetDateTime("CreatedAt"),
+                IsActive = reader.GetBoolean("IsActive")
+            });
+        }
+
+        return users;
+    }
+
+    // 删除用户方法
+    public async Task<bool> DeleteUser(int userId)
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        await conn.OpenAsync();
+
+        string sql = "DELETE FROM UserTable WHERE UserId = @UserId";
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@UserId", userId);
+
+        var affectedRows = await cmd.ExecuteNonQueryAsync();
+        return affectedRows > 0;
+    }
+
+    //更新last_login 时间
+    public async Task UpdateLastLogin(int userId)
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        await conn.OpenAsync();
+
+        string updateSql = "UPDATE UserTable SET last_login = CURRENT_TIMESTAMP WHERE user_id = @userId";
+        using var updateCmd = new MySqlCommand(updateSql, conn);
+        updateCmd.Parameters.AddWithValue("@userId", userId);
+
+        await updateCmd.ExecuteNonQueryAsync();
+    }
+
+    // 密码哈希方法（简单示例，生产中应使用更安全的方法）
+    private string HashPassword(string password)
+    {
+        // 实际应使用 BCrypt 或 Argon2 等安全哈希算法
+        using (var sha256 = System.Security.Cryptography.SHA256.Create())
+        {
+            var hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            return Convert.ToBase64String(hashedBytes);
+        }
+    }
+}

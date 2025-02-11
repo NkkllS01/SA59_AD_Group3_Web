@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/SingNature.csproj": {}
+    "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\SingNature.csproj": {}
   },
   "projects": {
-    "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/SingNature.csproj": {
+    "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\SingNature.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/SingNature.csproj",
+        "projectUniqueName": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\SingNature.csproj",
         "projectName": "SingNature",
-        "projectPath": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/SingNature.csproj",
-        "packagesPath": "/Users/freddiekuo/.nuget/packages/",
-        "outputPath": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/obj/",
+        "projectPath": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\SingNature.csproj",
+        "packagesPath": "C:\\Users\\Gao Zijie\\.nuget\\packages\\",
+        "outputPath": "E:\\NUS_Study\\Sa_Learning\\AD_Project\\Web_Project\\SingNature\\SingNature\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/freddiekuo/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Gao Zijie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

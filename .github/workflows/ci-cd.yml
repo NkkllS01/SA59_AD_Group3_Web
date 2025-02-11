@@ -103,10 +103,14 @@ jobs:
     needs: build_and_test
 
     steps:
+      - name: Check Docker Installation
+        run: docker --version
+
       - name: Run OWASP ZAP Full Scan
         uses: zaproxy/action-full-scan@v0.4.0
         with:
             target: 'http://your-staging-url.com'
+           
 
 #   deploy:
 #     name: Deploy to DigitalOcean Droplet

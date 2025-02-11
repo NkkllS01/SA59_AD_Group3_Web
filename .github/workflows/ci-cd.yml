@@ -45,6 +45,7 @@ jobs:
     needs: build_and_test
     permissions:
         contents: read
+        packages: read
         security-events: write  # Required for CodeQL to upload security scan results
 
     steps:
@@ -84,6 +85,7 @@ jobs:
         run: |
             ls -al SingNature/SingNature/bin/Release/net8.0/
             cp -r SingNature/SingNature/bin/Release/net8.0/* /home/runner/work/_temp/codeql_databases/csharp/
+            cp -r SingNature/SingNature/* /home/runner/work/_temp/codeql_databases/csharp/
         continue-on-error: true
 
       - name: Perform CodeQL Analysis and Generate SARIF Report
@@ -106,8 +108,11 @@ jobs:
       - name: Check Docker Installation
         run: docker --version
 
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "oauth" --password-stdin
+
       - name: Manually Pull OWASP ZAP Docker Image
-        run: docker pull owasp/zap2docker-weekly
+        run: docker pull ghcr.io/zaproxy/zaproxy:stable
 
       - name: Run OWASP ZAP Full Scan
         uses: zaproxy/action-full-scan@v0.4.0

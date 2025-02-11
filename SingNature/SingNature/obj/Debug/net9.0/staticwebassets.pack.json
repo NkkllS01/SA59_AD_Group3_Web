@@ -272,6 +272,10 @@
       "PackagePath": "staticwebassets/css/index.css"
     },
     {
+      "Id": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/result.css",
+      "PackagePath": "staticwebassets/css/result.css"
+    },
+    {
       "Id": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
@@ -280,8 +284,16 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/LoginPage.js",
+      "PackagePath": "staticwebassets/js/LoginPage.js"
+    },
+    {
       "Id": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/maps.js",
       "PackagePath": "staticwebassets/js/maps.js"
+    },
+    {
+      "Id": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/search.js",
+      "PackagePath": "staticwebassets/js/search.js"
     },
     {
       "Id": "/Users/freddiekuo/Documents/GitHub/SA59_AD_Group3_Web/SingNature/SingNature/wwwroot/js/site.js",

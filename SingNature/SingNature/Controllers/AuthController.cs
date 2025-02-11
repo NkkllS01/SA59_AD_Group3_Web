@@ -19,22 +19,22 @@ namespace authorization.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
-            var user = _userDao.GetUserByUsername(request.Username);
+            var user = _userDao.GetUserByUsername(request.UserName);
             if (user == null || user.Password != request.Password)
             {
                 return Unauthorized(new { message = "Invalid username or password" });
             }
-            HttpContext.Session.SetInt32("UserId", user.Id);
-            HttpContext.Session.SetString("Username", user.Username);
+            HttpContext.Session.SetInt32("UserId", user.UserId);
+            HttpContext.Session.SetString("Username", user.UserName);
             return Ok(new 
             { 
                 message = "Login successful",
-                userId = user.Id,
-                username = user.Username,
+                userId = user.UserId,
+                username = user.UserName,
                 email = user.Email,
-                phone = user.Phone,
-                subscribeWarning = user.SubscribeWarning,
-                subscribeNewsletter = user.SubscribeNewsletter
+                phone = user.Mobile,
+                subscribeWarning = user.Warning,
+                subscribeNewsletter = user.Newsletter
                 });
         }
 
@@ -49,7 +49,7 @@ namespace authorization.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterRequest request)
         {
-            var existingUser = _userDao.GetUserByUsername(request.Username);
+            var existingUser = _userDao.GetUserByUsername(request.UserName);
             if (existingUser != null)
             {
                 return Conflict(new { message = "Username already exists" });
@@ -57,12 +57,12 @@ namespace authorization.Controllers
 
             var newUser = new User
             {
-                Username = request.Username,
+                UserName = request.UserName,
                 Password = request.Password,
                 Email = request.Email,
-                Phone = request.Phone,
-                SubscribeWarning = request.SubscribeWarning,
-                SubscribeNewsletter = request.SubscribeNewsletter
+                Mobile = request.Mobile,
+                Warning = request.Warning,
+                Newsletter = request.Newsletter
             };
 
             _userDao.CreateUser(newUser);
@@ -86,10 +86,10 @@ namespace authorization.Controllers
 
             return Ok(new
             {
-                UserId = user.Id,
-                Username = user.Username,
+                UserId = user.UserId,
+                Username = user.UserName,
                 Email = user.Email,
-                Phone = user.Phone
+                Phone = user.Mobile
             });
         }
 
@@ -104,9 +104,9 @@ namespace authorization.Controllers
             }
                 
             user.Email = request.Email ?? user.Email;
-            user.Phone = request.Phone ?? user.Phone;
-            user.SubscribeWarning = request.SubscribeWarning;
-            user.SubscribeNewsletter = request.SubscribeNewsletter;
+            user.Mobile = request.Mobile ?? user.Mobile;
+            user.Warning = request.Warning;
+            user.Newsletter = request.Newsletter;
             _userDao.UpdateUser(user);
             return Ok(new { message = "Profile updated successfully" });
         }
@@ -122,7 +122,7 @@ namespace authorization.Controllers
                 return Unauthorized(new { message = "User not logged in" });
             }
 
-            _userDao.UpdateSubscription((int)userId, request.SubscribeWarning, request.SubscribeNewsletter);
+            _userDao.UpdateSubscription((int)userId, request.Warning, request.Newsletter);
             return Ok(new { message = "Subscription updated successfully" });
         }
 
@@ -143,8 +143,8 @@ namespace authorization.Controllers
 
             return Ok(new
             {
-                SubscribeWarning = user.SubscribeWarning,
-                SubscribeNewsletter = user.SubscribeNewsletter
+                Warning = user.Warning,
+                Newsletter = user.Newsletter
             });
         }
     }
@@ -152,35 +152,35 @@ namespace authorization.Controllers
 
     public class LoginRequest
     {
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
     }
 
 
     public class RegisterRequest
     {
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public string? Email { get; set; }
-        public string? Phone { get; set; }
-        public bool SubscribeWarning { get; set; } = false;
-        public bool SubscribeNewsletter { get; set; } = false;
+        public string? Mobile { get; set; }
+        public bool Warning { get; set; } = false;
+        public bool Newsletter { get; set; } = false;
     }
 
     public class UpdateProfileRequest
 {
     public int UserId { get; set; }
     public string? Email { get; set; }
-    public string? Phone { get; set; }
-    public bool SubscribeWarning { get; set; }
-    public bool SubscribeNewsletter { get; set; }
+    public string? Mobile { get; set; }
+    public bool Warning { get; set; }
+    public bool Newsletter { get; set; }
 }
 
 
 
         public class SubscriptionRequest
     {
-        public bool SubscribeWarning { get; set; }
-        public bool SubscribeNewsletter { get; set; }
+        public bool Warning { get; set; }
+        public bool Newsletter { get; set; }
     }
 }

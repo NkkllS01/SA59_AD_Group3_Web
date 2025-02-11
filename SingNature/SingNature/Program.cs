@@ -54,8 +54,8 @@ app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets(); 
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+    // .WithStaticAssets(); 
 
 Console.WriteLine("Application Running...");
 app.Run();

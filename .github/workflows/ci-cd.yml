@@ -86,8 +86,16 @@ jobs:
             cp -r SingNature/SingNature/bin/Release/net8.0/* /home/runner/work/_temp/codeql_databases/csharp/
         continue-on-error: true
 
-      - name: Perform CodeQL Analysis
+      - name: Perform CodeQL Analysis and Generate SARIF Report
         uses: github/codeql-action/analyze@v3
+        with:
+            output: results-sast.sarif
+
+      - name: Upload CodeQL SARIF Report as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: codeql-report
+            path: results-sast.sarif
 
   dast_scan:
     name: Dynamic Security Analysis (DAST)

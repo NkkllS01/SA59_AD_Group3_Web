@@ -15,7 +15,7 @@ public class SpeciesController : Controller
 
     public SpeciesController()
     {
-        _speciesDAO = new SpeciesDAO(); // Assume DAO handles data fetching
+        _speciesDAO = new SpeciesDAO(); 
     }
 
         [HttpGet("SpeciesList/{categoryId}")]

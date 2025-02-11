@@ -29,7 +29,7 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
-.wildlife-info {
+.css-info {
   text-align: center;
   padding: 20px;
 }
@@ -42,14 +42,14 @@ body {
   border-radius: 2px;
 }
 
-.wildlife-container {
+.css-container {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.wildlife-card {
+.css-card {
   width: 250px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   border-radius: 10px;
@@ -58,13 +58,13 @@ body {
   background: #fff;
 }
 
-.wildlife-card img {
+.css img {
   width: 100%;
   height: 150px;
   object-fit: cover;
 }
 
-.wildlife-card h3 {
+.css-card h3 {
   margin: 10px 0;
 }
 
@@ -75,7 +75,7 @@ body {
   margin-bottom: 15px;
 }
 
-.wildlife-card:hover {
+.css-card:hover {
   transform: translateY(-10px);
 }
 

@@ -1,36 +1,21 @@
-@* Views/Home/_WildlifeInfo.cshtml *@
-<div class="wildlife-info">
+@model List<SingNature.Models.Category>
+
+<div class="css-info">
     <h2>Wildlife Information</h2>
     <div class="underline"></div>
 
-    <div class="wildlife-container">
-        <!-- Bee -->
-        <div class="wildlife-card">
-            <img src="~/images/bee.jpg" alt="Bee" onerror="this.src='/images/image_placeholder.jpg';"/>
-            <h3>Bee</h3>
-            <!-- Link to SpeciesList with categoryId 1 (for example, Bees) -->
-            <a href="@Url.Action("SpeciesList", "Species", new { categoryId = 1 })" class="details-link">SEE LIST →</a>
-        </div>
-
-        <!-- Mushroom -->
-        <div class="wildlife-card">
-            <img src="~/images/mushroom.jpg" alt="Mushroom" onerror="this.src='/images/image_placeholder.jpg';"/>
-            <h3>Mushroom</h3>
-            <!-- Link to SpeciesList with categoryId 2 (for example, Mushrooms) -->
-            <a href="@Url.Action("SpeciesList", "Species", new { categoryId = 2 })" class="details-link">SEE LIST →</a>
-        </div>
-
-        <!-- Lizard -->
-        <div class="wildlife-card">
-            <img src="~/images/lizard.jpg" alt="Lizard" onerror="this.src='/images/image_placeholder.jpg';"/>
-            <h3>Lizard</h3>
-            <!-- Link to SpeciesList with categoryId 3 (for example, Lizards) -->
-            <a href="@Url.Action("SpeciesList", "Species", new { categoryId = 3 })" class="details-link">SEE LIST →</a>
-        </div>
+    <div class="css-container">
+        @foreach (var category in Model)
+        {
+            <div class="css-card">
+                <img src="~/images/@(category.CategoryName.ToLower()).jpg" alt="@category.CategoryName" />
+                <h3>@category.CategoryName</h3>
+                <a href="@Url.Action("SpeciesList", "Species", new { categoryId = category.CategoryId })" class="details-link">SEE LIST →</a>
+            </div>
+        }
     </div>
 
     <div class="see-all-btn">
-        <!-- Link to see all species categories -->
-        <a href="@Url.Action("SpeciesCategory","Species")" class="btn">SEE ALL →</a>
+        <a href="@Url.Action("SpeciesCategory", "Species")" class="btn">SEE ALL CATEGORIES→</a>
     </div>
 </div>

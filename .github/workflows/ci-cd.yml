@@ -101,7 +101,7 @@ jobs:
       - name: Upload CodeQL SARIF Report as Artifact
         uses: actions/upload-artifact@v4
         with:
-            name: codeql-report
+            name: SAST-report
             path: results-sast.sarif
 
   dast_scan:
@@ -120,10 +120,14 @@ jobs:
         run: docker pull ghcr.io/zaproxy/zaproxy:weekly
 
       - name: Run OWASP ZAP Full Scan
-        uses: zaproxy/action-full-scan@v0.4.0
+        run: |
+          docker run -v $(pwd):/zap/wrk -t ghcr.io/zaproxy/zaproxy:weekly zap-full-scan.py -t https://167.172.73.161 -r zap-report.html
+
+      - name: Upload ZAP Report as Artifact
+        uses: actions/upload-artifact@v4
         with:
-            target: 'https://167.172.73.161'
-           
+          name: DAST-report
+          path: zap_report.html
 
 #   deploy:
 #     name: Deploy to DigitalOcean Droplet

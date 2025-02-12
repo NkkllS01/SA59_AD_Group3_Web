@@ -152,6 +152,8 @@ jobs:
           IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/singnature-app
           IMAGE_NAME=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
 
+          cd SingNature/SingNature
+
           docker build -t $IMAGE_NAME:v1 .
           docker tag $IMAGE_NAME:v1 $IMAGE_NAME:${{ github.sha }}
 

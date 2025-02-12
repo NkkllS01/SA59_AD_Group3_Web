@@ -168,8 +168,10 @@ jobs:
             IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/singnature-app
             IMAGE_NAME=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
 
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
             docker system prune -af
             docker pull $IMAGE_NAME:v1
-            docker stop singnature-app || true
+            docker stop singnature-app || true && sleep 5
             docker rm singnature-app || true
             docker run -d -p 80:8080 --restart unless-stopped --name singnature-app $IMAGE_NAME:v1

@@ -5,7 +5,7 @@ using authorization.Data;
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
-// // Secure CORS Policy for Local & Cloud
+// // Secure CORS Policy for Local & Cloud (required for frontend APIs like React)
 // val allowedOrigins = builder.Environment.IsDevelopment()
 //     ? new[] { "http://localhost:3000", "http://localhost:5173" }
 //     : new[] { "https://yourdomain.com" };
@@ -24,15 +24,19 @@ builder.WebHost.ConfigureKestrel(options =>
 {
     if (builder.Environment.IsDevelopment())
     {
-        options.ListenAnyIP(5075); 
+        options.ListenAnyIP(5075);
         options.ListenAnyIP(5076, listenOptions => listenOptions.UseHttps());
     }
     else 
     {
         var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";    // Cloud port
-        options.ListenAnyIP(int.Parse(port), listenOptions => listenOptions.UseHttps());
+        options.ListenAnyIP(int.Parse(port));
     }
 });
+
+// Explicitly set URLs for Docker (Overrides Kestrel)
+var dockerPort = Environment.GetEnvironmentVariable("DOCKER_PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://+:{dockerPort}"); // Force HTTP only
 
 // Add services to the container.
 builder.Services.AddControllers();

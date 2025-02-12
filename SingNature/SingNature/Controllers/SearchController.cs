@@ -38,18 +38,18 @@ namespace SingNature.Controllers
             return View(viewModel);
         }
 
-        private async Task<List<Sightings>> FetchSightings(string keyword)
+        private async Task<List<Sighting>> FetchSightings(string keyword)
         {
             var apiUrl = $"https://localhost:5076/api/sightings/search/{keyword}";
             var response = await _httpClient.GetStringAsync(apiUrl);
-            return JsonConvert.DeserializeObject<List<Sightings>>(response) ?? new List<Sightings>();
+            return JsonConvert.DeserializeObject<List<Sighting>>(response) ?? new List<Sighting>();
         }
 
-        private async Task<List<Species>> FetchSpecies(string keyword)
+        private async Task<List<Specie>> FetchSpecies(string keyword)
         {
             var apiUrl = $"https://localhost:5076/api/species/search/{keyword}";
             var response = await _httpClient.GetStringAsync(apiUrl);
-            return JsonConvert.DeserializeObject<List<Species>>(response) ?? new List<Species>();
+            return JsonConvert.DeserializeObject<List<Specie>>(response) ?? new List<Specie>();
         }
     }
 }

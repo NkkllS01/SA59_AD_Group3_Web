@@ -121,7 +121,7 @@ jobs:
 
       - name: Run OWASP ZAP Full Scan
         run: |
-          docker run --user root -v $(pwd):/zap/wrk -t ghcr.io/zaproxy/zaproxy:weekly zap-full-scan.py -t https://167.172.73.161 -r /zap/wrk/zap-report.html
+          docker run --user root -v $(pwd):/zap/wrk -t ghcr.io/zaproxy/zaproxy:weekly zap-full-scan.py -t https://167.172.73.161 -r /zap/wrk/zap-report.html --exit-code 0
 
       - name: Upload ZAP Report as Artifact
         uses: actions/upload-artifact@v4

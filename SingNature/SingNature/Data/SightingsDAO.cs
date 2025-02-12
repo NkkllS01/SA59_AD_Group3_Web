@@ -17,9 +17,9 @@ namespace SingNature.Data
             _connectionString = jObject["ConnectionStrings"]["DefaultConnection"].ToString();
         }
 
-        public List<Sightings> GetAllSightings()
+        public List<Sighting> GetAllSightings()
         {
-            List<Sightings> sightings = new List<Sightings>();
+            List<Sighting> sightings = new List<Sighting>();
 
             try
             {
@@ -53,7 +53,7 @@ namespace SingNature.Data
                                 SightingStatus status = Enum.TryParse(reader["Status"].ToString(), out SightingStatus parsedStatus)
                                     ? parsedStatus : SightingStatus.Active;
 
-                                sightings.Add(new Sightings(
+                                sightings.Add(new Sighting(
                                     sightingId, userId, userName, date, specieId, specieName, details ?? "", imageUrl ?? "", latitude, longitude, status
                                 ));
                             } 
@@ -73,9 +73,9 @@ namespace SingNature.Data
             return sightings;
         }
 
-        public Sightings? GetSightingById(int id)
+        public Sighting? GetSightingById(int id)
         {
-            Sightings? sighting = null;
+            Sighting? sighting = null;
             
             try
             {
@@ -113,7 +113,7 @@ namespace SingNature.Data
                                     SightingStatus status = Enum.TryParse(reader["Status"].ToString(), out SightingStatus parsedStatus)
                                         ? parsedStatus : SightingStatus.Active;
 
-                                    sighting = new Sightings(
+                                    sighting = new Sighting(
                                         sightingId, userId, userName, date, specieId, specieName, details, imageUrl, latitude, longitude, status
                                     );
                                 }
@@ -134,9 +134,9 @@ namespace SingNature.Data
             return sighting;
         }
 
-        public List<Sightings> GetSightingsByKeyword(string keyword)
+        public List<Sighting> GetSightingsByKeyword(string keyword)
         {
-            List<Sightings> sightings = new List<Sightings>();
+            List<Sighting> sightings = new List<Sighting>();
 
             try
             {
@@ -174,7 +174,7 @@ namespace SingNature.Data
                                     SightingStatus status = Enum.TryParse(reader["Status"].ToString(), out SightingStatus parsedStatus)
                                         ? parsedStatus : SightingStatus.Active;
 
-                                    sightings.Add(new Sightings(
+                                    sightings.Add(new Sighting(
                                         sightingId, userId, userName, date, specieId, specieName, details ?? "", imageUrl ?? "", latitude, longitude, status
                                     ));
                                 } 

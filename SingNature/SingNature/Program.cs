@@ -5,20 +5,33 @@ using authorization.Data;
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAllOrigins",
-        builder => builder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
-});
+// // Secure CORS Policy for Local & Cloud
+// val allowedOrigins = builder.Environment.IsDevelopment()
+//     ? new[] { "http://localhost:3000", "http://localhost:5173" }
+//     : new[] { "https://yourdomain.com" };
 
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowSpecificOrigins",
+//         builder => builder
+//             .WithOrigins(allowedOrigins)    // Uses different origins for local vs cloud
+//             .AllowAnyMethod()
+//             .AllowAnyHeader());
+// });
+
+// Configure Kestrel for Local & Cloud Deployment
 builder.WebHost.ConfigureKestrel(options =>
 {
-    
-    options.ListenAnyIP(5075); 
-    options.ListenAnyIP(5076, listenOptions => listenOptions.UseHttps());
+    if (builder.Environment.IsDevelopment())
+    {
+        options.ListenAnyIP(5075); 
+        options.ListenAnyIP(5076, listenOptions => listenOptions.UseHttps());
+    }
+    else 
+    {
+        var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";    // Cloud port
+        options.ListenAnyIP(int.Parse(port), listenOptions => listenOptions.UseHttps());
+    }
 });
 
 // Add services to the container.
@@ -32,7 +45,9 @@ builder.Services.AddScoped<UserDao>();
 
 var app = builder.Build();
 
-app.UseCors("AllowAllOrigins");
+// app.UseCors("AllowSpecificOrigins");
+
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -48,8 +63,6 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthorization();
 
-app.UseStaticFiles();
-
 app.MapControllers();
 
 app.MapControllerRoute(
@@ -57,5 +70,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
     // .WithStaticAssets(); 
 
-Console.WriteLine("Application Running...");
+Console.WriteLine($"Application Running in {app.Environment.EnvironmentName} mode...");
 app.Run();

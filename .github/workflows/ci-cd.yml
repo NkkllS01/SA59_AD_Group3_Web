@@ -112,7 +112,6 @@ jobs:
     name: Dynamic Security Analysis (DAST)
     runs-on: ubuntu-latest
     needs: build_and_test
-    if: github.event_name == 'push'
 
     steps:
       - name: Check Docker Installation
@@ -139,6 +138,7 @@ jobs:
     name: Deploy to DigitalOcean Droplet
     runs-on: ubuntu-latest
     needs: [build_and_test, security_scan, dast_scan]
+    if: github.event_name == 'push'
     
     steps:
       - name: Checkout Code

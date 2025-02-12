@@ -32,9 +32,9 @@ namespace authorization.Controllers
                 userId = user.UserId,
                 username = user.UserName,
                 email = user.Email,
-                phone = user.Mobile,
-                subscribeWarning = user.Warning,
-                subscribeNewsletter = user.Newsletter
+                mobile = user.Mobile,
+                warning = user.Warning,
+                newsletter = user.Newsletter
                 });
         }
 
@@ -89,7 +89,7 @@ namespace authorization.Controllers
                 UserId = user.UserId,
                 Username = user.UserName,
                 Email = user.Email,
-                Phone = user.Mobile
+                Mobile = user.Mobile
             });
         }
 

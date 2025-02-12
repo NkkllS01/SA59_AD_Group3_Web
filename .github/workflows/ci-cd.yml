@@ -114,10 +114,10 @@ jobs:
         run: docker --version
 
       - name: Login to GitHub Container Registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "oauth" --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "github" --password-stdin
 
       - name: Manually Pull OWASP ZAP Docker Image
-        run: docker pull ghcr.io/zaproxy/zaproxy:stable
+        run: docker pull ghcr.io/zaproxy/zaproxy:weekly
 
       - name: Run OWASP ZAP Full Scan
         uses: zaproxy/action-full-scan@v0.4.0

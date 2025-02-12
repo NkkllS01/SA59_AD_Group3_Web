@@ -25,9 +25,12 @@ jobs:
           dotnet-version: '8.0.x'
           cache: true
 
+      - name: Clear NuGet Cache
+        run: dotnet nuget locals all --clear
+
       - name: Restore Dependencies
-        run: dotnet restore --no lock
-        
+        run: dotnet restore SingNature/SingNature.sln
+
       - name: Build Application
         run: dotnet build SingNature/SingNature.sln --configuration Release --no-restore
 

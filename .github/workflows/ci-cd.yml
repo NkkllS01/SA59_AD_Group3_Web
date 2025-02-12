@@ -26,8 +26,8 @@ jobs:
           cache: true
 
       - name: Restore Dependencies
-        run: dotnet restore SingNature/SingNature.sln
-
+        run: dotnet restore --no lock
+        
       - name: Build Application
         run: dotnet build SingNature/SingNature.sln --configuration Release --no-restore
 

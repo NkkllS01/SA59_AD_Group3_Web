@@ -15,7 +15,7 @@
     {
         <div class="wildlife-card">
             <!-- Display image for category -->
-            <img src="~/images/@category.CategoryName.ToLower().Replace(" ", "_")_category.jpg" alt="@category.CategoryName" class="category-image" />
+            <img src="~/images/@category.CategoryName.ToLower().Replace(" ", "_")_category.jpg" alt="@category.CategoryName" class="category-image" onerror="this.src='/images/image_placeholder.jpg';"/>
             <h3>@category.CategoryName</h3>
             <a href="@Url.Action("SpeciesList", "Species", new { CategoryId = category.CategoryId })" class="btn">View Species →</a>
         </div>

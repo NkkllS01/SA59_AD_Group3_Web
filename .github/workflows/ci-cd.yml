@@ -22,7 +22,8 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0'
+          dotnet-version: '8.0.x'
+          cache: true
 
       - name: Restore Dependencies
         run: dotnet restore SingNature/SingNature.sln
@@ -57,7 +58,8 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-            dotnet-version: '8.0'
+            dotnet-version: '8.0.x'
+            cache: true
     
       - name: Restore Dependencies
         run: dotnet restore SingNature/SingNature.sln

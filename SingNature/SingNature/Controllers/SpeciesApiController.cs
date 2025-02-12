@@ -16,7 +16,7 @@ namespace SingNature.Controllers
         }
 
         [HttpGet("search/{keyword}")]
-         public ActionResult<List<Species>> GetSpeciesByKeyword(string keyword)
+         public ActionResult<List<Specie>> GetSpeciesByKeyword(string keyword)
         {
             var species = _speciesDAO.GetSpeciesByKeyword(keyword);
             if (species == null || species.Count == 0) 
@@ -27,7 +27,7 @@ namespace SingNature.Controllers
         }
 
         [HttpGet("{specieId}")]
-        public ActionResult<Species> GetSpeciesById(int specieId)
+        public ActionResult<Specie> GetSpeciesById(int specieId)
         {
          if (specieId <= 0)
          {
@@ -44,7 +44,7 @@ namespace SingNature.Controllers
         }
 
         [HttpGet("category/{categoryId}")]
-        public ActionResult<List<Species>> GetSpeciesByCategory(int categoryId)
+        public ActionResult<List<Specie>> GetSpeciesByCategory(int categoryId)
         {
             var species = _speciesDAO.GetSpeciesByCategoryId(categoryId);
             if (species == null || species.Count == 0)

@@ -3,13 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SingNature.Models
 {
-    public class Species
+    public class Specie
     {
         [Key]
         public int SpecieId {get; set;}
         
         [Required]
         public string SpecieName {get; set;}
+
+        [Required]
+        public string ImageUrl {get; set;}
         
         [Required]
         public string Description {get; set;}
@@ -21,25 +24,27 @@ namespace SingNature.Models
 
         public int CategoryId { get; set; }
 
-        public Species() { }
+        public Specie() { }
 
-        public Species(int specieId, string specieName, string description, string highlights, int categoryId)
+        public Specie(int specieId, string specieName, string imageUrl, string description, string highlights, int categoryId)
         {
             SpecieId = specieId;
             SpecieName = specieName;
+            ImageUrl = imageUrl;
             Description = description;
             Highlights = highlights;
             CategoryId = categoryId;
         }
 
-        public Species(int specieId, string specieName, string description, string highlights, Category category)
+        public Specie(int specieId, string specieName, string imageUrl, string description, string highlights, Category category)
         {
             SpecieId = specieId;
             SpecieName = specieName;
+            ImageUrl = imageUrl;
             Description = description;
             Highlights = highlights;
             Category = category;
-            CategoryId = category?.CategoryId ?? 0;  // This ensures CategoryId is correctly assigned if Category is provided
+            CategoryId = category?.CategoryId ?? 0;
         }
     }
 }

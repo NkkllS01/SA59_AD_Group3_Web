@@ -16,7 +16,7 @@ namespace SingNature.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Sightings>> GetAllSightings()
+        public ActionResult<List<Sighting>> GetAllSightings()
         {
             var sightings = _sightingsDAO.GetAllSightings();
             if (sightings == null || sightings.Count == 0)
@@ -27,7 +27,7 @@ namespace SingNature.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Sightings> GetSightingById(int id)
+        public ActionResult<Sighting> GetSightingById(int id)
         {
             var sighting = _sightingsDAO.GetSightingById(id);
             if (sighting == null) 
@@ -38,7 +38,7 @@ namespace SingNature.Controllers
         }
 
         [HttpGet("search/{keyword}")]
-         public ActionResult<List<Sightings>> GetSightingsByKeyword(string keyword)
+         public ActionResult<List<Sighting>> GetSightingsByKeyword(string keyword)
         {
             var sightings = _sightingsDAO.GetSightingsByKeyword(keyword);
             if (sightings == null || sightings.Count == 0) 

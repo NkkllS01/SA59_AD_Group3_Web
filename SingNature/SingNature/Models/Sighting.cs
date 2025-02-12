@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SingNature.Models
 {
-    public class Sightings
+    public class Sighting
     {
         [Key]
         public int SightingId {get; set;}
@@ -29,9 +29,9 @@ namespace SingNature.Models
         [Required]
         public SightingStatus Status {get; set;} 
 
-        public Sightings() { }
+        public Sighting() { }
 
-        public Sightings(int sightingId, int userId, string userName, DateTime date, int specieId, string specieName, string? details, string? imageUrl, decimal latitude, decimal longitude, SightingStatus status)
+        public Sighting(int sightingId, int userId, string userName, DateTime date, int specieId, string specieName, string? details, string? imageUrl, decimal latitude, decimal longitude, SightingStatus status)
         {
             SightingId = sightingId;
             UserId = userId;

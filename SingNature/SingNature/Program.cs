@@ -45,6 +45,7 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<UserDao>();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

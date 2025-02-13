@@ -19,7 +19,7 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "SELECT * FROM user WHERE UserName = @Username";
+                string sql = "SELECT * FROM User WHERE UserName = @Username";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {
@@ -51,7 +51,7 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "SELECT * FROM user WHERE UserId = @UserId";
+                string sql = "SELECT * FROM User WHERE UserId = @UserId";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {
@@ -83,7 +83,7 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "INSERT INTO user (UserName, Password, Email, Mobile, Warning, Newsletter) " +
+                string sql = "INSERT INTO User (UserName, Password, Email, Mobile, Warning, Newsletter) " +
                              "VALUES (@UserName, @Password, @Email, @Mobile, @Warning, @Newsletter)";
 
                 using (var cmd = new MySqlCommand(sql, conn))
@@ -107,7 +107,7 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "UPDATE user SET UserName = @UserName, Email = @Email, Mobile = @Mobile, " +
+                string sql = "UPDATE User SET UserName = @UserName, Email = @Email, Mobile = @Mobile, " +
                              "Warning = @Warning, Newsletter = @Newsletter " +
                              "WHERE UserId = @UserId";
 
@@ -131,7 +131,7 @@ namespace authorization.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "UPDATE user SET Warning = @Warning, Newsletter = @Newsletter WHERE UserId = @UserId";
+                string sql = "UPDATE User SET Warning = @Warning, Newsletter = @Newsletter WHERE UserId = @UserId";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {

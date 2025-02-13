@@ -26,12 +26,12 @@ namespace SingNature.Models
         public decimal Latitude {get; set;}
         [Required]
         public decimal Longitude {get; set;}
-        [Required]
-        public SightingStatus Status {get; set;} 
+        // [Required]
+        // public SightingStatus Status {get; set;} 
 
         public Sighting() { }
 
-        public Sighting(int sightingId, int userId, string userName, DateTime date, int specieId, string specieName, string? details, string? imageUrl, decimal latitude, decimal longitude, SightingStatus status)
+        public Sighting(int sightingId, int userId, string userName, DateTime date, int specieId, string specieName, string? details, string? imageUrl, decimal latitude, decimal longitude)
         {
             SightingId = sightingId;
             UserId = userId;
@@ -43,14 +43,13 @@ namespace SingNature.Models
             ImageUrl = imageUrl ?? string.Empty;
             Latitude = latitude;
             Longitude = longitude;
-            Status = status;
         }
     }
 
-    public enum SightingStatus
-    {
-        Active,
-        Inactive
-    }
+    // public enum SightingStatus
+    // {
+    //     Active,
+    //     Inactive
+    // }
 
 }

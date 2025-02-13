@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <style>
-        /* Previous styles remain the same */
         * {
             margin: 0;
             padding: 0;
@@ -86,11 +85,6 @@
             margin-bottom: 1rem;
         }
 
-        .checkbox-group input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-        }
-
         .readonly-field {
             background-color: #f5f5f5;
             padding: 0.75rem;
@@ -154,7 +148,7 @@
             <!-- Username (Read-only) -->
             <div class="form-group">
                 <label>Username</label>
-                <div class="readonly-field">johndoe</div>
+                <div class="readonly-field" id="username" data-userid="">Loading...</div>
             </div>
 
             <!-- Password (Read-only) -->
@@ -172,24 +166,24 @@
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" class="form-control" value="john.doe@example.com">
+                <input type="email" id="email" class="form-control">
             </div>
 
             <!-- Phone -->
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" class="form-control" value="12345678">
+                <input type="tel" id="phone" class="form-control">
             </div>
 
             <!-- Subscribe Newsletter -->
             <div class="checkbox-group">
-                <input type="checkbox" id="subscribeNewsletter" checked>
+                <input type="checkbox" id="subscribeNewsletter">
                 <label for="subscribeNewsletter">Subscribe to Newsletter</label>
             </div>
 
             <!-- Subscribe Warning -->
             <div class="checkbox-group">
-                <input type="checkbox" id="subscribeWarning" checked>
+                <input type="checkbox" id="subscribeWarning">
                 <label for="subscribeWarning">Subscribe to Warning Notifications</label>
             </div>
 
@@ -199,5 +193,65 @@
             </div>
         </form>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            try {
+                const response = await axios.get("https://localhost:5076/api/auth/profile");
+                if (response.status === 200) {
+                    const user = response.data;
+                    document.getElementById("username").textContent = user.username;
+                    document.getElementById("username").setAttribute("data-userid", user.userId);
+                    document.getElementById("email").value = user.email || "";
+                    document.getElementById("phone").value = user.mobile || "";
+                    document.getElementById("subscribeNewsletter").checked = user.newsletter;
+                    document.getElementById("subscribeWarning").checked = user.warning;
+                }
+            } catch (error) {
+                console.error("Error loading profile:", error);
+                alert("Failed to load profile.");
+            }
+        });
+
+        document.querySelector(".save-btn").addEventListener("click", async function(event) {
+            event.preventDefault();
+
+            const userId = document.getElementById("username").getAttribute("data-userid");
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const warning = document.getElementById("subscribeWarning").checked;
+            const newsletter = document.getElementById("subscribeNewsletter").checked;
+
+            try {
+                const response = await axios.put("https://localhost:5076/api/auth/update-profile", {
+                    UserId: userId,
+                    Email: email,
+                    Mobile: phone,
+                    Warning: warning,
+                    Newsletter: newsletter
+                });
+
+                if (response.status === 200) {
+                    alert("Profile updated successfully!");
+                }
+            } catch (error) {
+                console.error("Error updating profile:", error);
+                alert("Failed to update profile.");
+            }
+        });
+
+        document.querySelector(".logout-btn").addEventListener("click", function() {
+            axios.post("https://localhost:5076/api/auth/logout")
+                .then(() => {
+                    alert("Logged out successfully.");
+                    window.location.href = "/user/login";
+                })
+                .catch(error => {
+                    console.error("Logout failed:", error);
+                    alert("Logout failed.");
+                });
+        });
+    </script>
 </body>
 </html>

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 reader.onload = function (e) {
                     imagePreview.src = e.target.result;
                     imagePreviewContainer.style.display = "block";
-                    searchByImageBtn.disabled = false; // Enable "Search by Image" button
+                    searchByImageBtn.disabled = false;
                 };
                 reader.readAsDataURL(file);
             }

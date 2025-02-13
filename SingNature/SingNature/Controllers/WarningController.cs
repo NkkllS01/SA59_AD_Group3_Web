@@ -43,10 +43,7 @@ namespace SingNature.Controllers
                     Source = w.Source.ToString(), 
                     w.SightingId,
                     w.Cluster,
-                    w.AlertLevel,
-                    w.Date,
-                    w.Description,
-                    w.Specie
+                    w.AlertLevel
                 })
                 .ToList();
 

@@ -1,7 +1,7 @@
 # Use official ASP.NET runtime as the base image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 8000
+EXPOSE 8080
 
 # Use .NET SDK to build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -23,6 +23,6 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 # Disable HTTPS inside Docker
-ENV ASPNETCORE_URLS=http://+:8000
+ENV ASPNETCORE_URLS=http://+:8080
 
 ENTRYPOINT ["dotnet", "SingNature.dll"]

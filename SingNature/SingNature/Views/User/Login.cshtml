@@ -204,8 +204,8 @@
 
             try {
                 const response = await axios.post("https://localhost:5076/api/auth/login", {
-                    userName: username,
-                    password: password
+                    UserName: username,
+                    Password: password
                 });
 
                 if (response.status === 200) {
@@ -218,7 +218,7 @@
         });
 
         function redirectToRegister() {
-            window.location.href = "/register";
+            window.location.href = "/user/register";
         }
     </script>
 </body>

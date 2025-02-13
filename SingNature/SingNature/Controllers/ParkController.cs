@@ -11,9 +11,9 @@ namespace SingNature.Controllers
     {
         private readonly ParkDAO _parkDAO;
 
-        public ParkController(ParkDAO parkDAO)
+        public ParkController()
         {
-            _parkDAO = parkDAO;
+            _parkDAO = new ParkDAO();
         }
 
         [HttpGet("ParkList")]

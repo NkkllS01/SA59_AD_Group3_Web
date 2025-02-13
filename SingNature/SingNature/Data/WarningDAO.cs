@@ -31,7 +31,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT WarningId, Source, SightingId, Cluster, AlertLevel, Date, Description, Specie
+                    SELECT WarningId, Source, SightingId, Cluster, AlertLevel
                     FROM warning;"; 
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
@@ -46,10 +46,8 @@ namespace SingNature.Data
                                     Source = Enum.TryParse<WarningSource>(reader.GetString("Source"), true, out var source) ? source : WarningSource.SIGHTING,
                                     SightingId = reader.IsDBNull(reader.GetOrdinal("SightingId")) ? null : reader.GetInt32("SightingId"),
                                     Cluster = reader.IsDBNull(reader.GetOrdinal("Cluster")) ? null : reader.GetString("Cluster"),
-                                    AlertLevel = reader.IsDBNull(reader.GetOrdinal("AlertLevel")) ? null : reader.GetString("AlertLevel"),
-                                    Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? null : reader.GetDateTime("Date").ToString("yyyy-MM-dd"),
-                                    Description = reader.GetString("Description"),
-                                    Specie = reader.IsDBNull(reader.GetOrdinal("Specie")) ? null : reader.GetString("Specie")
+                                    AlertLevel = reader.IsDBNull(reader.GetOrdinal("AlertLevel")) ? null : reader.GetString("AlertLevel")
+        
                                 });
                             }
                         }
@@ -75,7 +73,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT WarningId, Source, SightingId, Cluster, AlertLevel, Date, Description, Specie
+                    SELECT WarningId, Source, SightingId, Cluster, AlertLevel
                     FROM warning
                     WHERE WarningId = @WarningId;";
 
@@ -93,10 +91,7 @@ namespace SingNature.Data
                                     Source = Enum.TryParse<WarningSource>(reader.GetString("Source"), true, out var source) ? source : WarningSource.DENGUE,
                                     SightingId = reader.IsDBNull(reader.GetOrdinal("SightingId")) ? null : reader.GetInt32("SightingId"),
                                     Cluster = reader.IsDBNull(reader.GetOrdinal("Cluster")) ? null : reader.GetString("Cluster"),
-                                    AlertLevel = reader.IsDBNull(reader.GetOrdinal("AlertLevel")) ? null : reader.GetString("AlertLevel"),
-                                    Date = reader.IsDBNull(reader.GetOrdinal("Date")) ? null : reader.GetDateTime("Date").ToString("yyyy-MM-dd"),
-                                    Description = reader.GetString("Description"),
-                                    Specie = reader.IsDBNull(reader.GetOrdinal("Specie")) ? null : reader.GetString("Specie")
+                                    AlertLevel = reader.IsDBNull(reader.GetOrdinal("AlertLevel")) ? null : reader.GetString("AlertLevel")
                                 };
                             }
                             else

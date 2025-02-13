@@ -27,7 +27,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude, s.status
+                    SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude
                     FROM Sighting s
                     JOIN Specie sp ON s.specieId = sp.specieId
                     JOIN User u ON s.userId = u.userId
@@ -50,11 +50,9 @@ namespace SingNature.Data
                                 string imageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? "" : reader.GetString("ImageUrl");
                                 decimal latitude = reader.GetDecimal("Latitude");
                                 decimal longitude = reader.GetDecimal("Longitude");
-                                SightingStatus status = Enum.TryParse(reader["Status"].ToString(), out SightingStatus parsedStatus)
-                                    ? parsedStatus : SightingStatus.Active;
 
                                 sightings.Add(new Sighting(
-                                    sightingId, userId, userName, date, specieId, specieName, details ?? "", imageUrl ?? "", latitude, longitude, status
+                                    sightingId, userId, userName, date, specieId, specieName, details ?? "", imageUrl ?? "", latitude, longitude
                                 ));
                             } 
                             else 
@@ -83,7 +81,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude, s.status
+                    SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude
                     FROM Sighting s
                     JOIN Specie sp ON s.specieId = sp.specieId
                     JOIN User u ON s.userId = u.userId
@@ -110,11 +108,9 @@ namespace SingNature.Data
                                     string imageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? "" : reader.GetString("ImageUrl");
                                     decimal latitude = reader.GetDecimal("Latitude");
                                     decimal longitude = reader.GetDecimal("Longitude");
-                                    SightingStatus status = Enum.TryParse(reader["Status"].ToString(), out SightingStatus parsedStatus)
-                                        ? parsedStatus : SightingStatus.Active;
 
                                     sighting = new Sighting(
-                                        sightingId, userId, userName, date, specieId, specieName, details, imageUrl, latitude, longitude, status
+                                        sightingId, userId, userName, date, specieId, specieName, details, imageUrl, latitude, longitude
                                     );
                                 }
                                 else
@@ -144,7 +140,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude, s.status
+                    SELECT s.sightingId, s.userId, u.userName, s.date, s.specieId, sp.specieName, s.details, s.imageUrl, s.latitude, s.longitude
                     FROM Sighting s
                     JOIN Specie sp ON s.specieId = sp.specieId
                     JOIN User u ON s.userId = u.userId
@@ -171,11 +167,9 @@ namespace SingNature.Data
                                     string imageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? "" : reader.GetString("ImageUrl");
                                     decimal latitude = reader.GetDecimal("Latitude");
                                     decimal longitude = reader.GetDecimal("Longitude");
-                                    SightingStatus status = Enum.TryParse(reader["Status"].ToString(), out SightingStatus parsedStatus)
-                                        ? parsedStatus : SightingStatus.Active;
 
                                     sightings.Add(new Sighting(
-                                        sightingId, userId, userName, date, specieId, specieName, details ?? "", imageUrl ?? "", latitude, longitude, status
+                                        sightingId, userId, userName, date, specieId, specieName, details ?? "", imageUrl ?? "", latitude, longitude
                                     ));
                                 } 
                                 else 
@@ -194,6 +188,45 @@ namespace SingNature.Data
 
             return sightings;
         }
+        
+        public Sighting? CreateSighting(Sighting? sighting)
+        {
+            if (sighting.SpecieId <= 0)
+            {
+                throw new ArgumentException("Invalid SpecieId provided.");
+            }
+            
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string sql = @"
+                    INSERT INTO Sighting (UserId, Date, SpecieId, Details, ImageUrl, Latitude, Longitude) 
+                    VALUES (@UserId, @Date, @SpecieId, @Details, @ImageUrl, @Latitude, @Longitude);
+                    SELECT LAST_INSERT_ID();";
 
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", sighting.UserId);
+                        cmd.Parameters.AddWithValue("@Date", sighting.Date);
+                        cmd.Parameters.AddWithValue("@SpecieId", sighting.SpecieId);
+                        cmd.Parameters.AddWithValue("@Details", sighting.Details);
+                        cmd.Parameters.AddWithValue("@ImageUrl", sighting.ImageUrl);
+                        cmd.Parameters.AddWithValue("@Latitude", sighting.Latitude);
+                        cmd.Parameters.AddWithValue("@Longitude", sighting.Longitude);
+
+                        sighting.SightingId = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error creating sighting: " + ex.Message);
+                return null;
+            }
+
+            return sighting;
+        }
     }
 }

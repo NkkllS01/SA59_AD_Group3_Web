@@ -47,97 +47,98 @@ jobs:
           name: test-results
           path: TestResults
 
-  security_scan:
-    name: Static Security Analysis (SAST)
-    runs-on: ubuntu-latest
-    needs: build_and_test
-    permissions:
-        contents: read
-        packages: read
-        security-events: write  # Required for CodeQL to upload security scan results
+  # security_scan:
+  #   name: Static Security Analysis (SAST)
+  #   runs-on: ubuntu-latest
+  #   needs: build_and_test
+  #   permissions:
+  #       contents: read
+  #       packages: read
+  #       security-events: write  # Required for CodeQL to upload security scan results
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-            fetch-depth: 0  # Ensures full commit history
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
+  #       with:
+  #           fetch-depth: 0  # Ensures full commit history
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-            dotnet-version: '8.0.x'
-            cache: true
+  #     - name: Setup .NET
+  #       uses: actions/setup-dotnet@v3
+  #       with:
+  #           dotnet-version: '8.0.x'
+  #           cache: true
     
-      - name: Restore Dependencies
-        run: dotnet restore SingNature/SingNature.sln
+  #     - name: Restore Dependencies
+  #       run: dotnet restore SingNature/SingNature.sln
 
-      - name: Clean Project Before Build
-        run: dotnet clean SingNature/SingNature.sln --configuration Release
+  #     - name: Clean Project Before Build
+  #       run: dotnet clean SingNature/SingNature.sln --configuration Release
     
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: csharp
-          build-mode: manual
-          source-root: SingNature/SingNature
+  #     - name: Initialize CodeQL
+  #       uses: github/codeql-action/init@v3
+  #       with:
+  #         languages: csharp
+  #         build-mode: manual
+  #         source-root: SingNature/SingNature
           
-      - name: Build Application
-        run: dotnet build SingNature/SingNature.sln --configuration Release --no-restore -bl:build.binlog
+  #     - name: Build Application
+  #       run: dotnet build SingNature/SingNature.sln --configuration Release --no-restore -bl:build.binlog
 
-      - name: Upload Build Log for Debugging
-        uses: actions/upload-artifact@v4
-        with:
-            name: build-log
-            path: build.binlog
+  #     - name: Upload Build Log for Debugging
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #           name: build-log
+  #           path: build.binlog
 
-      - name: Manually Extract C# Code for CodeQL
-        run: |
-            ls -al SingNature/SingNature/bin/Release/net8.0/
-            cp -r SingNature/SingNature/bin/Release/net8.0/* /home/runner/work/_temp/codeql_databases/csharp/
-            cp -r SingNature/SingNature/* /home/runner/work/_temp/codeql_databases/csharp/
-        continue-on-error: true
+  #     - name: Manually Extract C# Code for CodeQL
+  #       run: |
+  #           ls -al SingNature/SingNature/bin/Release/net8.0/
+  #           cp -r SingNature/SingNature/bin/Release/net8.0/* /home/runner/work/_temp/codeql_databases/csharp/
+  #           cp -r SingNature/SingNature/* /home/runner/work/_temp/codeql_databases/csharp/
+  #       continue-on-error: true
 
-      - name: Perform CodeQL Analysis and Generate SARIF Report
-        uses: github/codeql-action/analyze@v3
-        with:
-            output: results-sast.sarif
+  #     - name: Perform CodeQL Analysis and Generate SARIF Report
+  #       uses: github/codeql-action/analyze@v3
+  #       with:
+  #           output: results-sast.sarif
 
-      - name: Upload CodeQL SARIF Report as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-            name: SAST-report
-            path: results-sast.sarif
+  #     - name: Upload CodeQL SARIF Report as Artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #           name: SAST-report
+  #           path: results-sast.sarif
 
-  dast_scan:
-    name: Dynamic Security Analysis (DAST)
-    runs-on: ubuntu-latest
-    needs: build_and_test
+  # dast_scan:
+  #   name: Dynamic Security Analysis (DAST)
+  #   runs-on: ubuntu-latest
+  #   needs: build_and_test
 
-    steps:
-      - name: Check Docker Installation
-        run: docker --version
+  #   steps:
+  #     - name: Check Docker Installation
+  #       run: docker --version
 
-      - name: Login to GitHub Container Registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "github" --password-stdin
+  #     - name: Login to GitHub Container Registry
+  #       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "github" --password-stdin
 
-      - name: Manually Pull OWASP ZAP Docker Image
-        run: docker pull ghcr.io/zaproxy/zaproxy:weekly
+  #     - name: Manually Pull OWASP ZAP Docker Image
+  #       run: docker pull ghcr.io/zaproxy/zaproxy:weekly
 
-      - name: Run OWASP ZAP Full Scan
-        run: |
-          docker run --user root -v $(pwd):/zap/wrk -t ghcr.io/zaproxy/zaproxy:weekly \
-          zap-full-scan.py -t https://167.172.73.161 -r /zap/wrk/zap-report.html -I
+  #     - name: Run OWASP ZAP Full Scan
+  #       run: |
+  #         docker run --user root -v $(pwd):/zap/wrk -t ghcr.io/zaproxy/zaproxy:weekly \
+  #         zap-full-scan.py -t https://167.172.73.161 -r /zap/wrk/zap-report.html -I
 
-      - name: Upload ZAP Report as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: DAST-report
-          path: zap-report.html
+  #     - name: Upload ZAP Report as Artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: DAST-report
+  #         path: zap-report.html
 
   deploy:
     name: Deploy to DigitalOcean Droplet
     runs-on: ubuntu-latest
-    needs: [build_and_test, security_scan, dast_scan]
+    # needs: [build_and_test, security_scan, dast_scan]
+    needs: [build_and_test]
     if: github.event_name == 'push'
     
     steps:

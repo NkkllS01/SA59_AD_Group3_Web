@@ -35,8 +35,11 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
     </script>
 
-    <div class="see-all-btn">
-        <a href="@Url.Action("SpeciesCategory", "Species")" class="btn">SEE ALL SIGHTINGS→</a>
+    <div class="css-info">
+        <div class="see-all-btn">
+            <a href="@Url.Content("~/Views/Sightings/SightingList.cshtml")" class="btn">SEE ALL SIGHTINGS →</a>
+            <a href="@Url.Action("Report", "Sightings")" class="btn-report">REPORT NEW SIGHTING →</a>
+        </div>
     </div>
     <br>
 

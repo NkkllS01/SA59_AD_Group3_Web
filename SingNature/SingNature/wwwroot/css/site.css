@@ -12,13 +12,16 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-body {
-  margin-bottom: 60px;
+.container {
+  flex: 1;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -47,6 +50,7 @@ body {
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .css-card {
@@ -113,4 +117,51 @@ body {
   background-color: #3E7B27;
   color: #fff;
   border: 2px solid #3E7B27;
+}
+
+.auth-container {
+  display:flex;
+  top: 20px;
+  right: 30px;
+  align-items: center;
+  gap: 15px;
+  justify-content:flex-end;
+}
+
+.auth-container a, .auth-container button {
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.login-btn {
+  color: white;
+}
+
+.signup-btn {
+  color: white;
+}
+
+.logout-btn {
+  color: white;
+}
+
+.auth-container button:hover,
+.auth-container a:hover {
+  opacity: 0.8;
+}
+
+.welcome-text {
+  font-size: 16px;
+  color: #333;
+  margin-right: 10px;
+}
+
+footer {
+  flex: 0 0 60px;
+  background-color: #f8f9fa;
+  line-height: 60px;
 }

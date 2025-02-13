@@ -1,3 +1,5 @@
+@{ Layout = null; }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: #FBE6D9;
+            background: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,7 +21,7 @@
             display: flex;
             max-width: 1200px;
             width: 100%;
-            background: white;
+            background: #ffffff;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -144,39 +146,28 @@
             </div>
             <h1>Explore Wildlife with Intelligent Recommendations</h1>
             <p class="subtitle">Create your account to start exploring</p>
-            <form>
+                <form id="register-form">
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" placeholder="Enter your username">
+                    <input type="text" id="username" placeholder="Enter your username" required>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" placeholder="Enter your email">
+                    <input type="email" id="email" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" placeholder="Create a password">
+                    <input type="password" id="password" placeholder="Create a password" required>
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input type="tel" placeholder="Enter your phone number">
+                    <input type="tel" id="mobile" placeholder="Enter your phone number">
                 </div>
                 
-                <div class="subscriptions">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="warning">
-                        <label for="warning">Subscribe to Wildlife Warnings</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="newsletter">
-                        <label for="newsletter">Subscribe to Newsletter</label>
-                    </div>
-                </div>
-
                 <button type="submit" class="btn btn-register">Create Account</button>
-                
+
                 <div class="login-link">
-                    Already have an account? <a href="#">Login here</a>
+                    Already have an account? <a href="/user/login">Login here</a>
                 </div>
             </form>
         </div>
@@ -202,5 +193,32 @@
             </svg>
         </div>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById("register-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const mobile = document.getElementById("mobile").value;
+
+            try {
+                const response = await axios.post("https://localhost:5076/api/auth/register", {
+                    UserName: username,
+                    Email: email,
+                    Password: password,
+                    Mobile:mobile
+                });
+
+                if (response.status === 201 || response.status === 200) {
+                    alert("Registration successful!.");
+                    window.location.href = "/user/profile";
+                }
+            } catch (error) {
+                alert("Registration failed. Please try again.");
+            }
+        });
+    </script>
 </body>
 </html>

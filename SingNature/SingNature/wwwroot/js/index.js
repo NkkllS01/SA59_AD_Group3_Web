@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 reader.onload = function (e) {
                     imagePreview.src = e.target.result;
                     imagePreviewContainer.style.display = "block";
-                    searchByImageBtn.disabled = false; // Enable "Search by Image" button
+                    searchByImageBtn.disabled = false;
                 };
                 reader.readAsDataURL(file);
             }
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     processingMessage.style.display = "none"; // Hide processing message
                     if (data.species && data.species.length > 0) {
                         const speciesString = data.species.join(",");
-                        window.location.href = `/Search/Results?species=${encodeURIComponent(speciesString)}`;
+                        window.location.href = `/Search/Results?keyword=${encodeURIComponent(speciesString)}`;
                     } else {
                         alert("No species detected.");
                     }

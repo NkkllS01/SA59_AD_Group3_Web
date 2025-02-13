@@ -5,10 +5,13 @@ using authorization.Models;
 
 namespace authorization.Controllers
 {
+
+    
     [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
+
         private readonly UserDao _userDao;
 
         public AuthController(UserDao userDao)
@@ -16,6 +19,42 @@ namespace authorization.Controllers
             _userDao = userDao;
         }
 
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] RegisterRequest request)
+        {
+            var existingUser = _userDao.GetUserByUsername(request.UserName);
+            if (existingUser != null)
+            {
+                return Conflict(new { message = "Username already exists" });
+            }
+            var newUser = new User
+            {
+                UserName = request.UserName,
+                Password = request.Password,
+                Email = request.Email,
+                Mobile = request.Mobile,
+                Warning = request.Warning,
+                Newsletter = request.Newsletter
+            };
+            _userDao.CreateUser(newUser);
+            var createdUser = _userDao.GetUserByUsername(request.UserName);
+                if (createdUser == null)
+                {
+                    return StatusCode(500, new { message = "User registration failed." });
+                }
+                HttpContext.Session.SetInt32("UserId", createdUser.UserId);
+                HttpContext.Session.SetString("Username", createdUser.UserName);
+                return Ok(new
+                {
+                message = "User registered successfully",
+                userId = createdUser.UserId,
+                username = createdUser.UserName,
+                email = createdUser.Email,
+                mobile = createdUser.Mobile,
+                warning = createdUser.Warning,
+                newsletter = createdUser.Newsletter
+                });
+        }
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
@@ -46,28 +85,7 @@ namespace authorization.Controllers
         }
 
  
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterRequest request)
-        {
-            var existingUser = _userDao.GetUserByUsername(request.UserName);
-            if (existingUser != null)
-            {
-                return Conflict(new { message = "Username already exists" });
-            }
 
-            var newUser = new User
-            {
-                UserName = request.UserName,
-                Password = request.Password,
-                Email = request.Email,
-                Mobile = request.Mobile,
-                Warning = request.Warning,
-                Newsletter = request.Newsletter
-            };
-
-            _userDao.CreateUser(newUser);
-            return Ok(new { message = "User registered successfully" });
-        }
 
         [HttpGet("me")]
         public IActionResult GetCurrentUser()
@@ -90,6 +108,29 @@ namespace authorization.Controllers
                 Username = user.UserName,
                 Email = user.Email,
                 Mobile = user.Mobile
+            });
+        }
+        [HttpGet("profile")]
+        public IActionResult GetProfile()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                 return Unauthorized(new { message = "User not logged in" });
+            }
+            var user = _userDao.GetUserById(userId.Value);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+                return Ok(new
+            {
+                userId = user.UserId,
+                username = user.UserName,
+                email = user.Email,
+                mobile = user.Mobile,
+                warning = user.Warning,
+                newsletter = user.Newsletter
             });
         }
 

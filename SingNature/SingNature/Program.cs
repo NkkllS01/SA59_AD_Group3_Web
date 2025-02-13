@@ -5,6 +5,24 @@ using authorization.Data;
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpClient();
+var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") 
+                       ?? builder.Configuration.GetConnectionString("DefaultConnection");
+
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new Exception("Database connection string is missing! Check environment variables or appsettings.json.");
+}
+
+// Print connection string for debugging (REMOVE in production)
+Console.WriteLine($"Using Database Connection: {connectionString}");
+
+	builder.Services.AddScoped<UserDao>();
+	builder.Services.AddScoped<SightingsDAO>();
+	builder.Services.AddScoped<SpeciesDAO>();
+	builder.Services.AddScoped<ParkDAO>();
+	builder.Services.AddScoped<WarningDAO>();
 
 builder.Services.AddCors(options =>
 {
@@ -20,10 +38,21 @@ builder.Services.AddCors(options =>
 
 builder.WebHost.ConfigureKestrel(options =>
 {
-    
-    options.ListenAnyIP(5075); 
-    options.ListenAnyIP(5076, listenOptions => listenOptions.UseHttps());
+    if (builder.Environment.IsDevelopment())
+    {
+        options.ListenAnyIP(5075);
+        options.ListenAnyIP(5076, listenOptions => listenOptions.UseHttps());
+    }
+    else 
+    {
+        var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";    // Cloud port
+        options.ListenAnyIP(int.Parse(port));
+    }
 });
+
+// Explicitly set URLs for Docker (Overrides Kestrel)
+var dockerPort = Environment.GetEnvironmentVariable("DOCKER_PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://0.0.0.0:{dockerPort}"); // Force HTTP only
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -32,12 +61,16 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
+
+// Register DAO as a service (IMPORTANT)
 builder.Services.AddScoped<UserDao>();
-builder.Services.AddSingleton<WarningDAO>();
 builder.Services.AddTransient<WarningService>();
+builder.Services.AddScoped<SightingsDAO>();
+builder.Services.AddScoped<SpeciesDAO>();
+builder.Services.AddScoped<ParkDAO>();
+builder.Services.AddScoped<WarningDAO>();
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -48,7 +81,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 Console.WriteLine("Configuring Middleware...");
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 app.UseRouting();
 app.UseCors("AllowFrontend");
 app.UseSession();

@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     processingMessage.style.display = "none"; // Hide processing message
                     if (data.species && data.species.length > 0) {
                         const speciesString = data.species.join(",");
-                        window.location.href = `/Search/Results?species=${encodeURIComponent(speciesString)}`;
+                        window.location.href = `/Search/Results?keyword=${encodeURIComponent(speciesString)}`;
                     } else {
                         alert("No species detected.");
                     }

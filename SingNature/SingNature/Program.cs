@@ -1,5 +1,5 @@
 using SingNature.Data;
-using authorization.Data; 
+using authorization.Data;
 
 
 Console.WriteLine("Application Starting...");
@@ -33,6 +33,8 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<UserDao>();
+builder.Services.AddSingleton<WarningDAO>();
+builder.Services.AddTransient<WarningService>();
 
 var app = builder.Build();
 

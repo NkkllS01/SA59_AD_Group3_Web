@@ -186,7 +186,7 @@ namespace SingNature.Data
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT CategoryId, CategoryName FROM Category";
+                    string sql = "SELECT CategoryId, CategoryName, ImageUrl FROM Category";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
@@ -197,7 +197,8 @@ namespace SingNature.Data
                                 categories.Add(new Category
                                 {
                                     CategoryId = reader.GetInt32("CategoryId"),
-                                    CategoryName = reader.GetString("CategoryName")
+                                    CategoryName = reader.GetString("CategoryName"),
+                                    ImageUrl = reader.GetString("ImageUrl")
                                  });
                             }
                         }

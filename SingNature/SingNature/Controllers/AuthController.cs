@@ -12,6 +12,13 @@ namespace authorization.Controllers
     public class AuthController : ControllerBase
     {
 
+        private readonly UserDao _userDao;
+
+        public AuthController(UserDao userDao)
+        {
+            _userDao = userDao;
+        }
+
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterRequest request)
         {
@@ -20,7 +27,6 @@ namespace authorization.Controllers
             {
                 return Conflict(new { message = "Username already exists" });
             }
-
             var newUser = new User
             {
                 UserName = request.UserName,
@@ -30,17 +36,19 @@ namespace authorization.Controllers
                 Warning = request.Warning,
                 Newsletter = request.Newsletter
             };
-
             _userDao.CreateUser(newUser);
-            return Ok(new { message = "User registered successfully" });
+            var createdUser = _userDao.GetUserByUsername(request.UserName);
+            return Ok(new
+            {
+                message = "User registered successfully",
+                userId = createdUser.UserId,
+                username = createdUser.UserName,
+                email = createdUser.Email,
+                mobile = createdUser.Mobile,
+                warning = createdUser.Warning,
+                newsletter = createdUser.Newsletter
+                });
         }
-        private readonly UserDao _userDao;
-
-        public AuthController(UserDao userDao)
-        {
-            _userDao = userDao;
-        }
-
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {

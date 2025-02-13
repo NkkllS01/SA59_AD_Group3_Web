@@ -5,6 +5,17 @@ using authorization.Data;
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
+// Read connection string from environment variable
+var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") 
+                       ?? builder.Configuration.GetConnectionString("DefaultConnection");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new Exception("Database connection string is missing! Check environment variables or appsettings.json.");
+}
+
+// Print connection string for debugging (REMOVE in production)
+Console.WriteLine($"Using Database Connection: {connectionString}");
 
 builder.Services.AddCors(options =>
 {
@@ -43,10 +54,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
+
+// Register DAO as a service (IMPORTANT)
 builder.Services.AddScoped<UserDao>();
+builder.Services.AddScoped<SightingsDAO>();
+builder.Services.AddScoped<SpeciesDAO>();
+builder.Services.AddScoped<ParkDAO>();
+builder.Services.AddScoped<WarningDAO>();
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

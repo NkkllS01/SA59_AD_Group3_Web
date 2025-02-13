@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using SingNature.Data;
 using SingNature.Models;
@@ -46,6 +47,34 @@ namespace SingNature.Controllers
                 return NotFound("No sightings found.");
             }
             return Ok(sightings);
+        }
+
+        [HttpPost]
+        public IActionResult CreateSighting([FromBody] Sighting? sighting)
+        {
+            Console.WriteLine($"Received sighting: {JsonSerializer.Serialize(sighting)}");
+            if (sighting == null)
+            {
+                return BadRequest("Sighting object is null.");
+            }
+            if (sighting.SpecieId <= 0)
+            {
+                    return BadRequest("Invalid SpecieId or SpecieName provided.");
+            }
+            try
+            {
+                var createdSighting = _sightingsDAO.CreateSighting(sighting);
+                if (createdSighting != null)
+                {
+                    return CreatedAtAction(nameof(GetSightingById), new { id = createdSighting.SightingId }, createdSighting);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating sighting: {ex.Message}");
+                return StatusCode(500, "Error creating sighting.");
+            }
+            return NoContent();
         }
     }
 }

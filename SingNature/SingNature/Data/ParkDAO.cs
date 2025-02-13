@@ -15,7 +15,7 @@ namespace SingNature.Data
         {
             var json = File.ReadAllText("appsettings.json");
             var jObject = JObject.Parse(json);
-            _connectionString = jObject["ConnectionStrings"]["DefaultConnection"].ToString();
+            _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
         }
 
         // Fetch all parks

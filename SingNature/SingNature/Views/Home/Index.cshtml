@@ -12,11 +12,30 @@
     <div class="search-info-banner">
         <p class="search-text">Looking for something?</p>
         <form asp-controller="Search" asp-action="Results" method="get" class="searchSpecie">
-            <input type="text" name="keyword" id="searchSpecie" placeholder="Search for a species..." required />
-            <button type="submit">Search</button>
+            <div class="search-row">
+                <input type="text" name="keyword" id="searchSpecie" placeholder="Search for a species..." required />
+                <button type="submit">Search</button>
+            </div>
+
+            <!-- Second Row: Image Upload and Search by Image Button -->
+            <div class="search-row">
+                <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;" />
+                <button type="button" id="uploadImageBtn">Upload Image</button>
+                <button type="button" id="searchByImageBtn" disabled>Search by Image</button>
+            </div>
         </form>
         <script src="~/js/search.js"></script>
     </div>
+
+    <!-- Image Preview Section (Placed Outside the Banner) -->
+    <div id="imagePreviewContainer" style="display: none; text-align: center; margin-top: 20px;">
+        <p>Image uploaded successfully!</p>
+        <img id="imagePreview" src="" alt="Uploaded Image" style="max-width: 300px; max-height: 300px; border-radius: 5px;"/>
+    </div>
+
+    <!-- Processing Message -->
+    <p id="processingMessage" style="display: none; text-align: center; color: green;">Processing image...</p>
+
     <br>
     <br>
 
@@ -29,6 +48,7 @@
         <script src="https://unpkg.com/%40googlemaps/markerclusterer/dist/index.min.js"></script>
     </div>
 
+    <script src="~/js/index.js"></script>
     <script src="~/js/maps.js"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">

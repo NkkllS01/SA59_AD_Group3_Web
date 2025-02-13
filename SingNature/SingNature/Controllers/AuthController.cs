@@ -104,6 +104,29 @@ namespace authorization.Controllers
                 Mobile = user.Mobile
             });
         }
+        [HttpGet("profile")]
+        public IActionResult GetProfile()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                 return Unauthorized(new { message = "User not logged in" });
+            }
+            var user = _userDao.GetUserById(userId.Value);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+                return Ok(new
+            {
+                userId = user.UserId,
+                username = user.UserName,
+                email = user.Email,
+                mobile = user.Mobile,
+                warning = user.Warning,
+                newsletter = user.Newsletter
+            });
+        }
 
         [HttpPut("update-profile")]
         public IActionResult UpdateProfile([FromBody] UpdateProfileRequest request)

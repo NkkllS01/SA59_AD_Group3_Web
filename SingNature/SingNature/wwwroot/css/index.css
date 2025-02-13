@@ -126,18 +126,45 @@
 
 .searchSpecie {
   display: flex;
-  gap: 10px;
-  flex: 1;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
   max-width: 700px;
+}
+
+.search-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.searchSpecie div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .searchSpecie input {
     padding: 8px;
     font-size: 16px;
-    width: 100%;
+    width: auto;
     border: 1px solid #ccc;
     border-radius: 4px;
     flex: 1;
+}
+
+/* Ensures text search input does not stretch */
+.searchSpecie input[type="text"] {
+  padding: 8px;
+  font-size: 16px;
+  width: auto; /* Prevents stretching */
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .searchSpecie button {
@@ -153,4 +180,11 @@
 .searchSpecie button:hover {
     background-color: #555;
     color: white;
+}
+
+/* Ensure preview appears below everything */
+#imagePreviewContainer {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
 }

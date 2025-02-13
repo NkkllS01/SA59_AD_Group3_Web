@@ -29,14 +29,14 @@ builder.WebHost.ConfigureKestrel(options =>
     }
     else 
     {
-        var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";    // Cloud port
+        var port = Environment.GetEnvironmentVariable("PORT") ?? "8000";    // Cloud port
         options.ListenAnyIP(int.Parse(port));
     }
 });
 
 // Explicitly set URLs for Docker (Overrides Kestrel)
-var dockerPort = Environment.GetEnvironmentVariable("DOCKER_PORT") ?? "8080";
-builder.WebHost.UseUrls($"http://+:{dockerPort}"); // Force HTTP only
+var dockerPort = Environment.GetEnvironmentVariable("DOCKER_PORT") ?? "8000";
+builder.WebHost.UseUrls($"http://0.0.0.0:{dockerPort}"); // Force HTTP only
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -62,7 +62,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 Console.WriteLine("Configuring Middleware...");
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 app.UseRouting();
 app.UseSession();
 app.UseAuthorization();

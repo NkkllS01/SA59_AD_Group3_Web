@@ -5,10 +5,35 @@ using authorization.Models;
 
 namespace authorization.Controllers
 {
+
+    
     [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
+
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] RegisterRequest request)
+        {
+            var existingUser = _userDao.GetUserByUsername(request.UserName);
+            if (existingUser != null)
+            {
+                return Conflict(new { message = "Username already exists" });
+            }
+
+            var newUser = new User
+            {
+                UserName = request.UserName,
+                Password = request.Password,
+                Email = request.Email,
+                Mobile = request.Mobile,
+                Warning = request.Warning,
+                Newsletter = request.Newsletter
+            };
+
+            _userDao.CreateUser(newUser);
+            return Ok(new { message = "User registered successfully" });
+        }
         private readonly UserDao _userDao;
 
         public AuthController(UserDao userDao)
@@ -46,28 +71,7 @@ namespace authorization.Controllers
         }
 
  
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterRequest request)
-        {
-            var existingUser = _userDao.GetUserByUsername(request.UserName);
-            if (existingUser != null)
-            {
-                return Conflict(new { message = "Username already exists" });
-            }
 
-            var newUser = new User
-            {
-                UserName = request.UserName,
-                Password = request.Password,
-                Email = request.Email,
-                Mobile = request.Mobile,
-                Warning = request.Warning,
-                Newsletter = request.Newsletter
-            };
-
-            _userDao.CreateUser(newUser);
-            return Ok(new { message = "User registered successfully" });
-        }
 
         [HttpGet("me")]
         public IActionResult GetCurrentUser()

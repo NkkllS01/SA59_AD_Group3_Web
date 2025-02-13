@@ -20,20 +20,20 @@
     </div>
     <table class="details-table">
         <tbody>
-            @foreach (var species in Model.Species)
+            @foreach (var specie in Model.Species)
             {
                 <tr>
-                    <!-- <td class="image-cell">
-                        <img src="@species" alt="@species.SpecieName" onerror="this.src='/images/placeholder.jpg';">
-                    </td> -->
+                    <td class="image-cell">
+                        <img src="@specie.ImageUrl" alt="@specie.SpecieName" onerror="this.src='/images/image_placeholder.jpg';">
+                    </td>
 
                     <td class="info-cell">
-                        <h4 class="name">@species.SpecieName</h4>
-                        <p class="category">@species.Category.CategoryName</p>
+                        <h4 class="name">@specie.SpecieName</h4>
+                        <p class="category">@specie.Category.CategoryName</p>
                     </td>
 
                     <td class="button-cell">
-                        <a href="/Species/SpeciesDetail/@species.SpecieId" class="btn">View Details</a>
+                        <a href="/Species/SpeciesDetail/@specie.SpecieId" class="btn">View Details</a>
                     </td>
                 </tr>
             }
@@ -56,9 +56,9 @@ else
             @foreach (var sighting in Model.Sightings)
             {
                 <tr>
-                    <!-- <td class="image-cell">
-                        <img src="@sighting.ImageUrl" alt="@sighting.SpecieName" onerror="this.src='/images/placeholder.jpg';">
-                    </td> -->
+                    <td class="image-cell">
+                        <img src="@sighting.ImageUrl" alt="@sighting.SpecieName" onerror="this.src='/images/image_placeholder.jpg';">
+                    </td>
 
                     <td class="info-cell">
                         <h4 class="name">Specie Name: @sighting.SpecieName</h4>

@@ -115,7 +115,7 @@ namespace authorization.Data
                 {
                     cmd.Parameters.AddWithValue("@UserName", user.UserName);
                     cmd.Parameters.AddWithValue("@Email", user.Email ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Phone", user.Mobile ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Mobile", user.Mobile ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@Warning", user.Warning);
                     cmd.Parameters.AddWithValue("@Newsletter", user.Newsletter);
                     cmd.Parameters.AddWithValue("@UserId", user.UserId);

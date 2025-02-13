@@ -18,9 +18,9 @@ namespace SingNature.Data
             _connectionString = jObject["ConnectionStrings"]["DefaultConnection"].ToString();
         }
 
-        public List<Species> GetSpeciesByKeyword(string keyword)
+        public List<Specie> GetSpeciesByKeyword(string keyword)
         {
-            List<Species> species = new List<Species>();
+            List<Specie> species = new List<Specie>();
 
             try
             {
@@ -28,7 +28,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT s.specieId, s.specieName, s.description, s.highlights, c.categoryId, c.categoryName
+                    SELECT s.specieId, s.specieName, s.imageUrl, s.description, s.highlights, c.categoryId, c.categoryName
                     FROM Specie s
                     JOIN Category c ON s.categoryId = c.categoryId
                     WHERE LOWER(s.specieName) LIKE LOWER(@keyword)
@@ -46,6 +46,7 @@ namespace SingNature.Data
                                 {
                                     int specieId = reader.GetInt32("SpecieId");
                                     string specieName = reader.GetString("SpecieName");
+                                    string imageUrl = reader.GetString("ImageUrl");
                                     string description = reader.GetString("Description");
                                     string highlights = reader.GetString("Highlights");
                                     int categoryId = reader.GetInt32("CategoryId");
@@ -57,8 +58,8 @@ namespace SingNature.Data
                                         CategoryName = categoryName
                                     };
 
-                                    species.Add(new Species(
-                                        specieId, specieName, description, highlights,category
+                                    species.Add(new Specie(
+                                        specieId, specieName, imageUrl, description, highlights,category
                                     ));
                                 } 
                                 else 
@@ -77,9 +78,9 @@ namespace SingNature.Data
 
             return species;
         }
-        public List<Species> GetSpeciesByCategoryId(int categoryId)
+        public List<Specie> GetSpeciesByCategoryId(int categoryId)
         {
-            List<Species> species = new List<Species>();
+            List<Specie> species = new List<Specie>();
 
             try
             {
@@ -87,7 +88,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT SpecieId, SpecieName, Description, Highlights, CategoryId
+                    SELECT SpecieId, SpecieName, ImageUrl, Description, Highlights, CategoryId
                     FROM Specie
                     WHERE CategoryId = @categoryId";
 
@@ -103,11 +104,12 @@ namespace SingNature.Data
                             {
                                 int specieId = reader.GetInt32("SpecieId");
                                 string specieName = reader.GetString("SpecieName");
+                                string imageUrl = reader.GetString("ImageUrl");
                                 string description = reader.GetString("Description");
                                 string highlights = reader.GetString("Highlights");
                                 int catId = reader.GetInt32("CategoryId");
 
-                                species.Add(new Species(specieId, specieName, description, highlights, catId));
+                                species.Add(new Specie(specieId, specieName, imageUrl, description, highlights, catId));
                             }
                         }
                     }
@@ -122,9 +124,9 @@ namespace SingNature.Data
         return species;
         }
 
-        public Species GetSpeciesById(int specieId)
+        public Specie GetSpeciesById(int specieId)
         {
-            Species species = null;
+            Specie specie = null;
 
             try
             {
@@ -132,7 +134,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT s.specieId, s.specieName, s.description, s.highlights, s.categoryId, c.categoryName
+                    SELECT s.specieId, s.specieName, s.imageUrl, s.description, s.highlights, s.categoryId, c.categoryName
                     FROM Specie s
                     INNER JOIN Category c ON s.categoryId = c.categoryId
                     WHERE s.specieId = @specieId
@@ -155,9 +157,10 @@ namespace SingNature.Data
                                     CategoryName = categoryName
                                 };
 
-                                species = new Species(
+                                specie = new Specie(
                                     reader.GetInt32("SpecieId"),
                                     reader.GetString("SpecieName"),
+                                    reader.GetString("ImageUrl"),
                                     reader.GetString("Description"),
                                     reader.GetString("Highlights"),
                                     category
@@ -169,10 +172,10 @@ namespace SingNature.Data
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error fetching species by id: " + ex.Message);
+                Console.WriteLine("Error fetching specie by id: " + ex.Message);
             }
 
-            return species;
+            return specie;
         }
         public List<Category> GetSpeciesCategory()
         {
@@ -212,5 +215,7 @@ namespace SingNature.Data
     }
 }
 
+                    
+            
                     
             

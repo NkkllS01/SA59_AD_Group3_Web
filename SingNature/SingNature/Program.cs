@@ -5,23 +5,22 @@ using authorization.Data;
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
-// // Secure CORS Policy for Local & Cloud (required for frontend APIs like React)
-// val allowedOrigins = builder.Environment.IsDevelopment()
-//     ? new[] { "http://localhost:3000", "http://localhost:5173" }
-//     : new[] { "https://yourdomain.com" };
 
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy("AllowSpecificOrigins",
-//         builder => builder
-//             .WithOrigins(allowedOrigins)    // Uses different origins for local vs cloud
-//             .AllowAnyMethod()
-//             .AllowAnyHeader());
-// });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5056")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials();
+        });
+});
 
-// Configure Kestrel for Local & Cloud Deployment
 builder.WebHost.ConfigureKestrel(options =>
 {
+
     if (builder.Environment.IsDevelopment())
     {
         options.ListenAnyIP(5075);
@@ -49,9 +48,6 @@ builder.Services.AddScoped<UserDao>();
 
 var app = builder.Build();
 
-// app.UseCors("AllowSpecificOrigins");
-
-app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -67,8 +63,11 @@ if (app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 app.UseRouting();
+app.UseCors("AllowFrontend");
 app.UseSession();
 app.UseAuthorization();
+
+app.UseStaticFiles();
 
 app.MapControllers();
 
@@ -77,5 +76,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
     // .WithStaticAssets(); 
 
-Console.WriteLine($"Application Running in {app.Environment.EnvironmentName} mode...");
+Console.WriteLine("Application Running...");
 app.Run();

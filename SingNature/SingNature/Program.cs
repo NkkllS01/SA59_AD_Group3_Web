@@ -4,7 +4,15 @@ using authorization.Data;
 
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") 
+                       ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
+
+	builder.Services.AddScoped<UserDao>();
+	builder.Services.AddScoped<SightingsDAO>();
+	builder.Services.AddScoped<SpeciesDAO>();
+	builder.Services.AddScoped<ParkDAO>();
+	builder.Services.AddScoped<WarningDAO>();
 
 builder.Services.AddCors(options =>
 {

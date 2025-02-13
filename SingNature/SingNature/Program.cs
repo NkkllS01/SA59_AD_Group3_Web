@@ -5,9 +5,10 @@ using authorization.Data;
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
-// Read connection string from environment variable
+builder.Services.AddHttpClient();
 var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") 
                        ?? builder.Configuration.GetConnectionString("DefaultConnection");
+
 
 if (string.IsNullOrEmpty(connectionString))
 {

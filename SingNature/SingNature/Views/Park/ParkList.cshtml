@@ -1,0 +1,21 @@
+@model List<SingNature.Models.Park>
+
+@{
+    ViewData["Title"] = "Park List";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/index.css" asp-append-version="true" />
+</head>
+
+<h2>Park List</h2>
+
+<div class="park-container">
+    @foreach (var park in Model)
+    {
+        <div class="css-card">
+            <h3>@park.ParkName</h3>
+            <a href="@Url.Action("ParkDetail","Park", new {parkId = park.ParkId})" class="btn">View Details</a>
+        </div>
+    }
+</div>

@@ -13,7 +13,7 @@
 <div class="species-container">
     @foreach (var species in Model)
     {
-        <div class="wildlife-card">
+        <div class="css-card">
             <h3>@species.SpecieName</h3>
             <a href="@Url.Action("SpeciesDetail", "Species", new { specieId = species.SpecieId })" class="btn">View Details</a>
         </div>

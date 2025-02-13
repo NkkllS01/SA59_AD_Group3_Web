@@ -1,0 +1,17 @@
+@model SingNature.Models.Park
+
+@{ 
+    ViewData["Title"] = "Park Details";
+}
+
+<h2>@Model.ParkName</h2>
+
+@*To add:
+<img src="@ViewData["ImageUrl"]" alt="@Model.ParkName" class="species-image" />
+*@
+
+<p><strong>Description</strong></p> @Model.ParkDescription</p>
+
+<div>
+    <a href="@Url.Action("ParkList","Park", new {parkId = Model.ParkId})" class = "btn">Back to List</a>
+</div>

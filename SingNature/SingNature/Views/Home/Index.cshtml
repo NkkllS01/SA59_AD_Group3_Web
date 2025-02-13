@@ -1,4 +1,4 @@
-@model SingNature.Models.HomeViewModel
+﻿@model SingNature.Models.HomeViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -34,6 +34,13 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
     </script>
+
+    <div class="css-info">
+        <div class="see-all-btn">
+            <a href="@Url.Content("~/Views/Sightings/SightingList.cshtml")" class="btn">SEE ALL SIGHTINGS →</a>
+            <a href="@Url.Action("Report", "Sightings")" class="btn-report">REPORT NEW SIGHTING →</a>
+        </div>
+    </div>
     <br>
 
     <!-- Wildlife Information Section -->

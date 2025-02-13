@@ -91,6 +91,7 @@ body {
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
   border-radius: 5px;
+  margin-right: 60px;
 }
 
 .see-all-btn .btn:hover {
@@ -98,3 +99,18 @@ body {
   color: #fff;
 }
 
+.btn-report {
+  padding: 10px 20px;
+  background-color: #123524;
+  color: #fff;
+  border: 2px solid #123524;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
+}
+
+.see-all-btn .btn-report:hover {
+  background-color: #3E7B27;
+  color: #fff;
+  border: 2px solid #3E7B27;
+}

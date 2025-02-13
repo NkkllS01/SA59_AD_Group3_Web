@@ -29,7 +29,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT parkId, parkName, parkType, parkRegion, parkDescription, latitude, longitude
+                    SELECT parkId, parkName, imageUrl, parkRegion, parkDescription, openingHours latitude, longitude
                     FROM Park;";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
@@ -42,9 +42,10 @@ namespace SingNature.Data
                                 {   
                                     ParkId = reader.GetInt32("ParkId"),
                                     ParkName = reader.GetString("ParkName"),
-                                    ParkType = reader.GetString("ParkType"),
+                                    ImageUrl = reader.GetString("ImageUrl"),
                                     ParkRegion = reader.GetString("ParkRegion"),
                                     ParkDescription = reader.GetString("ParkDescription"),
+                                    OpeningHours = reader.GetString("OpeningHours"),
                                     Longitude = reader.GetDouble("Longitude"),
                                     Latitude = reader.GetDouble("Latitude")
                                 });
@@ -72,7 +73,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT parkId, parkName, parkDescription
+                    SELECT parkId, parkName, openingHours, parkDescription
                     FROM Park
                     WHERE parkId = @parkId;";
 
@@ -88,6 +89,7 @@ namespace SingNature.Data
                                 {
                                     ParkId = reader.GetInt32("parkId"),
                                     ParkName = reader.GetString("parkName"),
+                                    OpeningHours = reader.GetString("openingHours"),
                                     ParkDescription = reader.GetString("parkDescription")
                                 };
                             }

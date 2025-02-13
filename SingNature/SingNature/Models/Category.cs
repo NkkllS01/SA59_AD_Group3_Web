@@ -11,6 +11,8 @@ namespace SingNature.Models
         [Required]
         public string CategoryName { get; set; }
 
+        //public string ImageUrl { get; set; }
+
         public List<Specie> Species { get; set; } // Navigation property for species in this category
     }
 }

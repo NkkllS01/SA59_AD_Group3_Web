@@ -4,8 +4,6 @@ using authorization.Data;
 
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") 
-                       ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Read connection string from environment variable
 var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") 

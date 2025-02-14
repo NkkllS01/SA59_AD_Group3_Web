@@ -50,9 +50,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                     <li><a class="dropdown-item" asp-controller="User" asp-action="Profile">Profile</a></li>
                                     <li>
-                                        <form asp-controller="Auth" asp-action="Logout" method="post" class="d-inline">
-                                            <button type="submit" class="dropdown-item btn btn-link w-100 text-start">Logout</button>
-                                        </form>
+                                        <button id="logoutBtn" class="dropdown-item btn btn-link w-100 text-start">Logout</button>
                                     </li>
                                 </ul>
                             </li>
@@ -85,9 +83,42 @@
         &copy; 2025 - SingNature - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>
 </footer>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker"></script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("logoutBtn")?.addEventListener("click", async function () {
+        try {
+            const response = await fetch("/api/auth/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            });
+
+            if (response.ok) {
+                alert("Logged out successfully.");
+                window.location.href = "/home";
+            } else {
+                const errorData = await response.json();
+                alert("Logout failed: " + (errorData.message || "Unknown error"));
+            }
+        } catch (error) {
+            console.error("Logout error:", error);
+            alert("Logout failed.");
+        }
+    });
+});
+</script>
+
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

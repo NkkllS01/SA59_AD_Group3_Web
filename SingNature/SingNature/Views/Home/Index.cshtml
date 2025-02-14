@@ -13,17 +13,7 @@
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 
-<div class="auth-container">
-    @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId") != null)
-    {
-        <span class="welcome-text">Welcome, @HttpContextAccessor.HttpContext.Session.GetString("Username")!</span>
-        <button type="button" id="logoutBtn" class="logout-btn">Logout</button>
-    }
-    else
-    {
-        <a href="/user/login" class="login-btn">Login</a>
-        <a href="/user/register" class="signup-btn">Sign Up</a>
-    }
+
 </div>
     <div class="search-info-banner">
         <p class="search-text">Looking for something?</p>
@@ -78,24 +68,7 @@
 
     <script src="~/js/index.js"></script>
     <script src="~/js/maps.js"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
-    document.getElementById("logoutBtn")?.addEventListener("click", async function () {
-        try {
-            const response = await fetch("/api/auth/logout", { method: "POST" });
 
-            if (response.ok) {
-                alert("Logged out successfully.");
-                window.location.href = "/home";
-            } else {
-                alert("Logout failed.");
-            }
-        } catch (error) {
-            console.error("Logout error:", error);
-            alert("Logout failed.");
-        }
-    });
-    </script>
 
     <div class="css-info">
         <div class="see-all-btn">

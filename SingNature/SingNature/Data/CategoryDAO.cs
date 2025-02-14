@@ -25,7 +25,7 @@ namespace SingNature.Data
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "SELECT CategoryId, CategoryName, ImageUrl FROM Category";
+                string sql = "SELECT CategoryId, CategoryName, ImageUrl FROM Category ORDER BY CategoryName";
 
                 using (var cmd = new MySqlCommand(sql, conn))
                 {

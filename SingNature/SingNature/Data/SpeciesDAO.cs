@@ -90,7 +90,8 @@ namespace SingNature.Data
                     string sql = @"
                     SELECT SpecieId, SpecieName, ImageUrl, Description, Highlights, CategoryId
                     FROM Specie
-                    WHERE CategoryId = @categoryId";
+                    WHERE CategoryId = @categoryId
+                    ORDER BY SpecieName";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
@@ -186,7 +187,7 @@ namespace SingNature.Data
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT CategoryId, CategoryName, ImageUrl FROM Category";
+                    string sql = "SELECT CategoryId, CategoryName, ImageUrl FROM Category ORDER BY CategoryName";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {

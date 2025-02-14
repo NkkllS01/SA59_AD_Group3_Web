@@ -1,0 +1,22 @@
+@model SingNature.Models.Warning
+@if (Model != null)
+{
+    <div class="alert-banner">
+        @if (Model.Source == SingNature.Models.Warning.WarningSource.DENGUE)
+        {
+            <span class="alert-text">
+                <strong>Dengue Alert!</strong>
+                There are dengue cases at @Model.Cluster. Please take precautions.
+            </span>
+        }
+        else if (Model.Source == SingNature.Models.Warning.WarningSource.SIGHTING)
+        {
+            <span class="alert-text">
+                <strong>New Sighting!</strong>
+                Specie: @Model.SightingId. Check for more details.
+            </span>
+        }
+
+        <a href="@Url.Action("WarningList", "Warning")" class="view-all-warnings" style="color: white;">See All Warnings</a>
+    </div>
+}

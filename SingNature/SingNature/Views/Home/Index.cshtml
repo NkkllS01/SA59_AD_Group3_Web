@@ -9,6 +9,12 @@
 </head>
 
 <body>
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+</div>
     <div class="search-info-banner">
         <p class="search-text">Looking for something?</p>
 
@@ -39,6 +45,15 @@
 
     <br>
     <br>
+    
+    @if (Model.LatestWarning != null)
+    {
+        @Html.Partial("_AlertBanner", Model.LatestWarning)
+    }
+    else
+    {
+     <p>No active warning.</p >
+    }
 
     <div class="text-center"> 
         <h2>Wildlife Sightings</h2>
@@ -51,9 +66,7 @@
 
     <script src="~/js/index.js"></script>
     <script src="~/js/maps.js"></script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
-    </script>
+
 
     <div class="css-info">
         <div class="see-all-btn">

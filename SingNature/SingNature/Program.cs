@@ -1,5 +1,5 @@
 using SingNature.Data;
-using authorization.Data; 
+using authorization.Data;
 
 
 Console.WriteLine("Application Starting...");
@@ -60,15 +60,16 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 
 // Register DAO as a service (IMPORTANT)
 builder.Services.AddScoped<UserDao>();
+builder.Services.AddTransient<WarningService>();
 builder.Services.AddScoped<SightingsDAO>();
 builder.Services.AddScoped<SpeciesDAO>();
 builder.Services.AddScoped<ParkDAO>();
 builder.Services.AddScoped<WarningDAO>();
-
 
 var app = builder.Build();
 

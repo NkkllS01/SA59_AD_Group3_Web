@@ -119,6 +119,21 @@ html, body {
   border: 2px solid #3E7B27;
 }
 
+.alert-banner {
+  background-color: #3E7B27; 
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.alert-text {
+  font-style: italic;
+  color: white;
+}
+
 .auth-container {
   display:flex;
   top: 20px;

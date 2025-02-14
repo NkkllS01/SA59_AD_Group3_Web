@@ -10,37 +10,62 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
-<body class="d-flex flex-column min-vh-100">
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SingNature</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
-                <div class="auth-container">
-                    @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId") != null)
-                    {
-                        <form action="/user/logout" method="post" class="logout-form">
-                            <span class="welcome-text">Welcome, @HttpContextAccessor.HttpContext.Session.GetString("Username")!</span>
-                            <button type="submit" class="logout-btn">Logout</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <a href="/user/login" class="login-btn nav-link text-dark">Login</a>
-                        <a href="/register" class="signup-btn nav-link text-dark">Sign Up</a>
-                    }
+<body>
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor
+    @{
+        var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+        var username = HttpContextAccessor.HttpContext.Session.GetString("Username");
+    }
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SingNature</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Species" asp-action="SpeciesCategory">Wildlife</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Parks" asp-action="ParkList">Parks</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right-aligned Login/Logout  -->
+                    <ul class="navbar-nav ms-auto">
+                        @if (userId != null)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Welcome, @username!
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" asp-controller="User" asp-action="Profile">Profile</a></li>
+                                    <li>
+                                        <button id="logoutBtn" class="dropdown-item btn btn-link w-100 text-start">Logout</button>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary me-2" asp-controller="User" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary" asp-controller="User" asp-action="Register">Sign Up</a>
+                            </li>
+                        }
+                    </ul>
+
                 </div>
             </div>
         </div>
@@ -58,9 +83,42 @@
         &copy; 2025 - SingNature - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>
 </footer>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker"></script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("logoutBtn")?.addEventListener("click", async function () {
+        try {
+            const response = await fetch("/api/auth/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            });
+
+            if (response.ok) {
+                alert("Logged out successfully.");
+                window.location.href = "/home";
+            } else {
+                const errorData = await response.json();
+                alert("Logout failed: " + (errorData.message || "Unknown error"));
+            }
+        } catch (error) {
+            console.error("Logout error:", error);
+            alert("Logout failed.");
+        }
+    });
+});
+</script>
+
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

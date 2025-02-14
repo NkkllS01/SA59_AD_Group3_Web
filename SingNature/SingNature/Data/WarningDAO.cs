@@ -32,7 +32,7 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT WarningId, Source, SightingId, Cluster, AlertLevel
-                    FROM warning;"; 
+                    FROM Warning;"; 
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
@@ -40,7 +40,7 @@ namespace SingNature.Data
                         {
                             while (reader.Read())
                             {
-                                warnings.Add(new Warning
+                                var warning = new Warning
                                 {   
                                     WarningId = reader.GetInt32("WarningId"),
                                     Source = Enum.TryParse<WarningSource>(reader.GetString("Source"), true, out var source) ? source : WarningSource.SIGHTING,
@@ -48,19 +48,22 @@ namespace SingNature.Data
                                     Cluster = reader.IsDBNull(reader.GetOrdinal("Cluster")) ? null : reader.GetString("Cluster"),
                                     AlertLevel = reader.IsDBNull(reader.GetOrdinal("AlertLevel")) ? null : reader.GetString("AlertLevel")
         
-                                });
-                            }
-                        }
+                                };
+                            warnings.Add(warning);
+                        Console.WriteLine($"Fetched Warning: ID = {warning.WarningId}, Source = {warning.Source}");
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error fetching warnings: " + ex.Message);
-            }
-
-            return warnings;
         }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Error fetching warnings: " + ex.Message);
+    }
+
+    Console.WriteLine($"Total warnings fetched: {warnings.Count}");
+    return warnings;
+}
 
         // Get warning by id
         public Warning GetWarningById(int warningId)
@@ -74,7 +77,7 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT WarningId, Source, SightingId, Cluster, AlertLevel
-                    FROM warning
+                    FROM Warning
                     WHERE WarningId = @WarningId;";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
@@ -106,9 +109,13 @@ namespace SingNature.Data
             {
                 Console.WriteLine("Error fetching warning details: " + ex.Message);
             }
+             return warning;
+        }
 
-            return warning;
+        public Warning GetLatestWarning()
+        {
+            var warnings = GetAllWarnings();
+            return warnings.OrderByDescending(w => w.WarningId).FirstOrDefault();
         }
     }
 }
-

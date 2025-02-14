@@ -16,10 +16,8 @@
 <div class="auth-container">
     @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId") != null)
     {
-        <form action="/user/logout" method="post" class="logout-form">
-            <span class="welcome-text">Welcome, @HttpContextAccessor.HttpContext.Session.GetString("Username")!</span>
-            <button type="submit" class="logout-btn">Logout</button>
-        </form>
+        <span class="welcome-text">Welcome, @HttpContextAccessor.HttpContext.Session.GetString("Username")!</span>
+        <button type="button" id="logoutBtn" class="logout-btn">Logout</button>
     }
     else
     {
@@ -72,7 +70,22 @@
     <script src="~/js/index.js"></script>
     <script src="~/js/maps.js"></script>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
+    document.getElementById("logoutBtn")?.addEventListener("click", async function () {
+        try {
+            const response = await fetch("/api/auth/logout", { method: "POST" });
+
+            if (response.ok) {
+                alert("Logged out successfully.");
+                window.location.href = "/home";
+            } else {
+                alert("Logout failed.");
+            }
+        } catch (error) {
+            console.error("Logout error:", error);
+            alert("Logout failed.");
+        }
+    });
     </script>
 
     <div class="css-info">

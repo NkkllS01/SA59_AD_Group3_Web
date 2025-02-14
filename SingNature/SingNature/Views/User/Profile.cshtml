@@ -245,7 +245,7 @@
             axios.post("https://localhost:5076/api/auth/logout")
                 .then(() => {
                     alert("Logged out successfully.");
-                    window.location.href = "/user/login";
+                    window.location.href = "/home";
                 })
                 .catch(error => {
                     console.error("Logout failed:", error);

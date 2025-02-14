@@ -15,15 +15,13 @@ public class UserController : Controller
     {
         _httpClient = httpClient;
     }
-
-    public IActionResult login()
-    {
-        return View("login");
-    }
-
     public IActionResult register()
     {
         return View("register");
+    }
+    public IActionResult login()
+    {
+        return View("login");
     }
 
     public IActionResult profile()

@@ -23,6 +23,8 @@ Console.WriteLine($"Using Database Connection: {connectionString}");
 	builder.Services.AddScoped<SpeciesDAO>();
 	builder.Services.AddScoped<ParkDAO>();
 	builder.Services.AddScoped<WarningDAO>();
+    builder.Services.AddScoped<CategoryDAO>();
+
 
 builder.Services.AddCors(options =>
 {
@@ -70,6 +72,7 @@ builder.Services.AddScoped<SightingsDAO>();
 builder.Services.AddScoped<SpeciesDAO>();
 builder.Services.AddScoped<ParkDAO>();
 builder.Services.AddScoped<WarningDAO>();
+builder.Services.AddScoped<CategoryDAO>();
 
 var app = builder.Build();
 

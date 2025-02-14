@@ -15,6 +15,7 @@
     {
         <div class="css-card">
             <h3>@park.ParkName</h3>
+            <img src=@park.ImageUrl alt="@park.ParkName"/>
             <a href="@Url.Action("ParkDetail","Park", new {parkId = park.ParkId})" class="btn">View Details</a>
         </div>
     }

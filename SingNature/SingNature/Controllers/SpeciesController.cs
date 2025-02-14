@@ -41,12 +41,6 @@ public class SpeciesController : Controller
                 return NotFound("Species not found.");
             }
 
-    /* Add image from Digital Ocean later
-    var baseImageUrl = "https://my-bucket-name.nyc3.digitaloceanspaces.com/species/";
-    var imageUrl = baseImageUrl + species.SpecieName.ToLower().Replace(" ", "_") + ".jpg";
-    ViewData["ImageUrl"] = imageUrl;
-    */
-
             return View(species);
         }
 

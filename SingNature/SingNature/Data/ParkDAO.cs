@@ -18,7 +18,6 @@ namespace SingNature.Data
             _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
         }
 
-        // Fetch all parks
         public List<Park> GetAllParks()
         {
             List<Park> parks = new List<Park>();

@@ -1,0 +1,17 @@
+@model SingNature.Models.Sighting
+
+@{
+    ViewData["Title"] = "Sighting Details";
+}
+
+<h2>@Model.Date</h2>
+
+<h2>@Model.SpecieName</h2>
+
+<img src="@Model.ImageUrl" alt="@Model.SpecieName" class="species-image" onerror="this.src='/images/image_placeholder.jpg';"/>
+
+<p><strong>Reported By: @Model.UserName</p>
+
+<p><strong>Details:</strong> @Model.Details</p>
+
+}

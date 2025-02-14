@@ -15,37 +15,7 @@
 
 
 </div>
-    <div class="search-info-banner">
-        <p class="search-text">Looking for something?</p>
 
-        <div class="search-container">
-            <form asp-controller="Search" asp-action="Results" method="get" class="searchSpecie">
-                <div class="search-row">
-                    <input type="text" name="keyword" id="searchSpecie" placeholder="Search for a species..." required />
-                    <button type="submit">Search</button>
-
-                    <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;" />
-                    <button type="button" id="searchByImageBtn" disabled>Search by Image</button>
-
-                    <button type="button" id="uploadImageBtn">Upload Image</button>
-                </div>
-            </form>
-        </div>
-        <script src="~/js/search.js"></script>
-    </div>
-
-    <!-- Image Preview Section (Placed Outside the Banner) -->
-    <div id="imagePreviewContainer" style="display: none; text-align: center; margin-top: 20px;">
-        <p>Image uploaded successfully!</p>
-        <img id="imagePreview" src="" alt="Uploaded Image" style="max-width: 300px; max-height: 300px; border-radius: 5px;"/>
-    </div>
-
-    <!-- Processing Message -->
-    <p id="processingMessage" style="display: none; text-align: center; color: green;">Processing image...</p>
-
-    <br>
-    <br>
-    
     @if (Model.LatestWarning != null)
     {
         @Html.Partial("_AlertBanner", Model.LatestWarning)
@@ -54,6 +24,47 @@
     {
      <p>No active warning.</p >
     }
+
+    <div class="search-info-banner">
+        <div class="container text-center">
+            <h3 class="fw-bold">Looking for something?</h3>
+
+            <!-- Search Input  -->
+            <form asp-controller="Search" asp-action="Results" method="get" class="row justify-content-center mt-3">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" name="keyword" id="searchSpecie" class="form-control" placeholder="Search for a species..." required />
+                        <button type="submit" class="btn btn-warning">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <p class="mt-3 opacity-75">Upload an image first, then click "Search by Image"</p>
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <input type="file" id="imageUpload" name="image" accept="image/*" class="d-none">
+                    <button type="button" id="uploadImageBtn" class="btn btn-primary">Upload Image</button>
+                </div>
+                <div class="col-auto">
+                    <button type="button" id="searchByImageBtn" class="btn btn-outline-light disabled" disabled>Search by Image</button>
+                </div>
+            </div>
+        </div>
+        <script src="~/js/search.js"></script>
+    </div>
+
+    <!-- Image Preview Section (Placed Outside the Banner) -->
+    <div id="imagePreviewContainer" class="text-center mt-3 d-none">
+        <p class="text-success fw-bold">Image uploaded successfully!</p>
+        <img id="imagePreview" src="" alt="Uploaded Image" class="img-fluid rounded shadow-sm" style="max-width:150px;"/>
+    </div>
+
+    <!-- Processing Message -->
+    <p id="processingMessage" style="display: none; text-align: center; color: green;">Processing image...</p>
+
+    <br>
+    <br>
 
     <div class="text-center"> 
         <h2>Wildlife Sightings</h2>

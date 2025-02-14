@@ -15,7 +15,8 @@
         <div class="search-container">
             <form asp-controller="Search" asp-action="Results" method="get" class="searchSpecie">
                 <div class="search-row">
-                    <input type="text" name="keyword" id="searchSpecie" placeholder="Search for a species..." required />
+                    <input type="text" name="keyword" id="searchSpecie" placeholder="Search for a species..."
+                        required />
                     <button type="submit">Search</button>
                 </div>
 
@@ -33,7 +34,8 @@
     <!-- Image Preview Section (Placed Outside the Banner) -->
     <div id="imagePreviewContainer" style="display: none; text-align: center; margin-top: 20px;">
         <p>Image uploaded successfully!</p>
-        <img id="imagePreview" src="" alt="Uploaded Image" style="max-width: 300px; max-height: 300px; border-radius: 5px;"/>
+        <img id="imagePreview" src="" alt="Uploaded Image"
+            style="max-width: 300px; max-height: 300px; border-radius: 5px;" />
     </div>
 
     <!-- Processing Message -->
@@ -41,8 +43,6 @@
 
     <br>
     <br>
-
-    </div>
 
    @if (Model.LatestWarning != null)
     {
@@ -66,7 +66,7 @@
     <script src="~/js/maps.js"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
-    </script>
+        </script>
 
     <div class="css-info">
         <div class="see-all-btn">
@@ -77,9 +77,9 @@
     <br>
 
     <!-- Wildlife Information Section -->
-    @Html.Partial("_WildlifeInfo",Model.Categories)
+    @Html.Partial("_WildlifeInfo", Model.Categories)
 
     <!-- Park Information Section -->
-    @Html.Partial("_ParkInfo",Model.Parks)
+    @Html.Partial("_ParkInfo", Model.Parks)
 
 </body>

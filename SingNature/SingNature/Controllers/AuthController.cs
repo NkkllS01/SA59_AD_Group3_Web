@@ -78,9 +78,6 @@ namespace authorization.Controllers
             return Ok(new { message = "Logged out successfully" });
         }
 
- 
-
-
         [HttpGet("me")]
         public IActionResult GetCurrentUser()
         {

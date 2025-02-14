@@ -13,7 +13,7 @@
 </div>
 <br>
 
-@if (Model.Species.Any())
+@if (Model.Species != null && Model.Species.Any())
 {
     <div class="result-banner">
         <p class="result-text">Related Species</p>
@@ -46,7 +46,7 @@ else
 }
 <br>
 
-@if (Model.Sightings.Any())
+@if (Model.Sightings != null && Model.Sightings.Any())
 {
     <div class="result-banner">
         <p class="result-text">Related Sightings</p>

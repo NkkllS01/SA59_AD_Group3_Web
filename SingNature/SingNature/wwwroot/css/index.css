@@ -121,6 +121,10 @@ h2 {
   padding: 20px;
   text-align: center;
   width: 250px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: transform 0.3s, box-shadow 0.3s;
   margin: 20px;
 }
@@ -148,4 +152,11 @@ h2 {
 .css-card .btn:hover {
   background-color: #3E7B27;
   color: #fff;
+}
+
+.css-card img {
+  width: 100%; /* Ensures image takes full width of the card */
+  height: 180px; /* Fixed height to make all images uniform */
+  object-fit: cover; /* Ensures the image is cropped to fit without distortion */
+  border-radius: 8px; /* Soft rounded corners for a polished look */
 }

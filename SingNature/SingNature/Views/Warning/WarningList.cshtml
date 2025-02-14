@@ -11,12 +11,8 @@
                 @if (warning.Source == SingNature.Models.Warning.WarningSource.DENGUE)
                 {
         
-            <div class="alert alert-danger d-flex align-items-center">
-                <i class="fas fa-exclamation-triangle me-2"></i>
-                <strong>Dengue Alert!</strong> 
-                Dengue cases detected at <b>@warning.Cluster</b> 
-                (<span class="text-uppercase">@warning.AlertLevel</span> Zone). 
-                <span class="fw-bold text-decoration-underline">Take precautions!</span>
+            <div class="alert alert-danger">
+                <strong>Dengue Alert!</strong> Dengue cases detected at <b>@warning.Cluster</b> (<span class="text-uppercase">@warning.AlertLevel</span> Zone). Take precautions!
             </div>
                 }
                 else if (warning.Source == SingNature.Models.Warning.WarningSource.SIGHTING)

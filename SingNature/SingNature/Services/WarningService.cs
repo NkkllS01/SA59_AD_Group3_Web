@@ -7,6 +7,10 @@ public class WarningService
 {
     private readonly WarningDAO _warningDAO;
 
+    public WarningService()
+    {
+    }
+
     public WarningService(WarningDAO warningDAO)
     {
         _warningDAO = warningDAO;

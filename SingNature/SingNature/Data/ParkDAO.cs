@@ -29,7 +29,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT parkId, parkName, parkType, parkRegion, parkDescription, openingHours, latitude, longitude
+                    SELECT parkId, parkName, parkType, parkRegion, parkDescription, openingHours, latitude, longitude, ImageUrl
                     FROM Park;";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
@@ -47,7 +47,8 @@ namespace SingNature.Data
                                     ParkDescription = reader.GetString("ParkDescription"),
                                     OpeningHours = reader.GetString("OpeningHours"),
                                     Longitude = reader.GetDouble("Longitude"),
-                                    Latitude = reader.GetDouble("Latitude")
+                                    Latitude = reader.GetDouble("Latitude"),
+                                    ImageUrl = reader.GetString("ImageUrl")
                                 });
                             }
                         }
@@ -73,7 +74,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT parkId, parkName, ImageUrl,parkDescription, openingHours
+                    SELECT parkId, parkName,ImageUrl, parkDescription, openingHours
                     FROM Park
                     WHERE parkId = @parkId;";
 
@@ -91,6 +92,7 @@ namespace SingNature.Data
                                     ParkName = reader.GetString("parkName"),
                                     ImageUrl = reader.GetString("ImageUrl"),
                                     ParkDescription = reader.GetString("parkDescription"),
+                                    ImageUrl = reader.GetString("ImageUrl"),
                                     OpeningHours = reader.GetString("OpeningHours")
                                 };
                             }

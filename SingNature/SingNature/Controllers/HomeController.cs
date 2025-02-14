@@ -10,7 +10,6 @@ namespace SingNature.Controllers
         private readonly SpeciesDAO _speciesDAO;
         private readonly ParkDAO _parkDAO;
 
-        // Use only this constructor for dependency injection
         public HomeController(WarningService warningService, SpeciesDAO speciesDAO, ParkDAO parkDAO)
         {
             _warningService = warningService;

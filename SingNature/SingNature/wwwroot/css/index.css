@@ -109,8 +109,6 @@
 .search-info-banner {
   width: 100%;
   height: 150px; 
-  background-color: #123524;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -199,4 +197,54 @@
   text-align: center;
   margin-top: 20px;
   width: 100%;
+}
+
+/* Species List */
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.species-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.css-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 250px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 20px;
+}
+
+.css-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.css-card h3 {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.css-card .btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #fff;
+  color: #3E7B27;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.css-card .btn:hover {
+  background-color: #3E7B27;
+  color: #fff;
 }

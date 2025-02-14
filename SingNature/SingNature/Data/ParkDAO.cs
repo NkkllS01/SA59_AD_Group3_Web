@@ -90,6 +90,7 @@ namespace SingNature.Data
                                 {
                                     ParkId = reader.GetInt32("parkId"),
                                     ParkName = reader.GetString("parkName"),
+                                    ImageUrl = reader.GetString("ImageUrl"),
                                     ParkDescription = reader.GetString("parkDescription"),
                                     ImageUrl = reader.GetString("ImageUrl"),
                                     OpeningHours = reader.GetString("OpeningHours")

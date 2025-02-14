@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using authorization.Data;
 using authorization.Models;
+using BCrypt.Net;
 
 namespace authorization.Controllers
 {
@@ -27,10 +28,11 @@ namespace authorization.Controllers
             {
                 return Conflict(new { message = "Username already exists" });
             }
+
             var newUser = new User
             {
                 UserName = request.UserName,
-                Password = request.Password,
+                Password = BCrypt.Net.BCrypt.HashPassword(request.Password),               
                 Email = request.Email,
                 Mobile = request.Mobile,
                 Warning = request.Warning,
@@ -59,7 +61,7 @@ namespace authorization.Controllers
         public IActionResult Login([FromBody] LoginRequest request)
         {
             var user = _userDao.GetUserByUsername(request.UserName);
-            if (user == null || user.Password != request.Password)
+            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.Password))           
             {
                 return Unauthorized(new { message = "Invalid username or password" });
             }
@@ -76,14 +78,19 @@ namespace authorization.Controllers
                 newsletter = user.Newsletter
                 });
         }
-
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            HttpContext.Session.Clear();
-            return Ok(new { message = "Logged out successfully" });
+            if (HttpContext.Session.GetInt32("UserId") == null)
+            {
+                return Unauthorized(new { message = "User is not logged in" });
+            }
+                HttpContext.Session.Clear();
+                return Ok(new { message = "Logged out successfully" });
         }
 
+
+ 
         [HttpGet("me")]
         public IActionResult GetCurrentUser()
         {

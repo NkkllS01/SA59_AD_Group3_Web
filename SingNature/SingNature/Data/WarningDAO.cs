@@ -32,7 +32,7 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT WarningId, Source, SightingId, Cluster, AlertLevel
-                    FROM warning;"; 
+                    FROM Warning;"; 
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
@@ -77,7 +77,7 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT WarningId, Source, SightingId, Cluster, AlertLevel
-                    FROM warning
+                    FROM Warning
                     WHERE WarningId = @WarningId;";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))

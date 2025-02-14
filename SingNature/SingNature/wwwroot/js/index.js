@@ -7,28 +7,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const processingMessage = document.getElementById("processingMessage");
 
     if (uploadImageBtn && imageUpload) {
-        // Click "Upload Image" button to open file picker
+        // Open file picker
         uploadImageBtn.addEventListener("click", function () {
             imageUpload.click();
         });
 
-        // When an image is selected
+        // Handle image upload
         imageUpload.addEventListener("change", function () {
             if (this.files.length > 0) {
                 const file = this.files[0];
 
-                // Show the image preview
+                // Show image preview
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     imagePreview.src = e.target.result;
-                    imagePreviewContainer.style.display = "block";
-                    searchByImageBtn.disabled = false;
+                    imagePreviewContainer.classList.remove("d-none");
                 };
                 reader.readAsDataURL(file);
+
+                // Enable "Search By Image" button
+                searchByImageBtn.disabled = false;
+                searchByImageBtn.classList.remove("btn-outline-light", "disabled");
+                searchByImageBtn.classList.add("btn-success");
+                searchByImageBtn.style.cursor = "pointer"; 
+                searchByImageBtn.setAttribute("aria-disabled", "false"); 
             }
         });
 
-        // When "Search by Image" button is clicked
+        // Handle "Search By Image" button click
         searchByImageBtn.addEventListener("click", function () {
             if (imageUpload.files.length > 0) {
                 const file = imageUpload.files[0];
@@ -49,16 +55,27 @@ document.addEventListener("DOMContentLoaded", function () {
                         const speciesString = data.species.join(",");
                         window.location.href = `/Search/Results?keyword=${encodeURIComponent(speciesString)}`;
                     } else {
-                        alert("No species detected.");
+                        alert("No species detected. Try uploading another image.", "warning");
                     }
                 })
                 .catch(error => {
                     processingMessage.style.display = "none"; // Hide processing message
                     console.error("Error:", error);
-                    alert("Error processing the image.");
+                    alert("Error processing the image. Please try again later.", "warning");
                 });
+            } else {
+                showAlert("Please upload an image before searching.", "warning");
             }
         });
+    }
+
+    function showAlert(message, type) {
+        const alertBox = document.createElement("div");
+        alertBox.className = `alert alert-${type} alert-dismissible fade show`;
+        alertBox.role = "alert";
+        alertBox.innerHTML = `${message} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
+        document.body.prepend(alertBox);
+        setTimeout(() => alertBox.remove(), 5000);
     }
 });
 

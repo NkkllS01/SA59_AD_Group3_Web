@@ -179,6 +179,57 @@ html, body {
   background-color: #3E7B27 !important;
 }
 
+/* Ensure all text in the navbar is white */
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .nav-link:visited,
+.navbar .dropdown-toggle {
+    color: white !important;
+}
+
+/* Change hover color for navbar links */
+.navbar .nav-link:hover {
+    color: #f8d210 !important; /* Light yellow for visibility */
+}
+
+/* Improve dropdown menu styling */
+.navbar .dropdown-menu {
+  background-color: #123524; /* Matches navbar background */
+  border: none;
+}
+
+.navbar .dropdown-menu .dropdown-item {
+  color: white !important;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #1f4b34 !important; /* Darker green */
+}
+
+/* Enhance Login and Sign Up buttons */
+.navbar .btn-primary {
+    background-color: #f8d210 !important; /* Brighter yellow */
+    border: none;
+    color: black !important;
+    font-weight: bold;
+}
+
+.navbar .btn-outline-primary {
+    color: white !important;
+    border-color: white !important;
+}
+
+.navbar .btn-outline-primary:hover {
+    background-color: white !important;
+    color: #123524 !important;
+}
+
+/* Adjust navbar brand text size */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 footer {
   flex: 0 0 60px;
   background-color: #f8f9fa;

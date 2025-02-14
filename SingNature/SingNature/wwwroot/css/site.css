@@ -160,6 +160,10 @@ html, body {
   margin-right: 10px;
 }
 
+.navbar {
+  background-color: #3E7B27 !important;
+}
+
 footer {
   flex: 0 0 60px;
   background-color: #f8f9fa;

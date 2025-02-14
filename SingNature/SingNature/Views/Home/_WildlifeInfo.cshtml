@@ -1,10 +1,16 @@
 @model List<SingNature.Models.Category>
 
 <div class="css-info">
-    <h2>Wildlife Information</h2>
-    <div class="underline"></div>
+    <div class="text-center">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="fw-bold">Wildlife Information</h2>
+            <div>
+                <a href="@Url.Action("SpeciesCategory", "Species")" class="btn btn-outline-dark me-2">View All Categories →</a>
+            </div>
+        </div>
+        <div class="underline"></div>
 
-    <div class="css-container">
+        <div class="css-container">
         @foreach (var category in Model)
         {
             <div class="css-card">
@@ -13,9 +19,6 @@
                 <a href="@Url.Action("SpeciesList", "Species", new { categoryId = category.CategoryId })" class="details-link">SEE LIST →</a>
             </div>
         }
-    </div>
-
-    <div class="see-all-btn">
-        <a href="@Url.Action("SpeciesCategory", "Species")" class="btn">SEE ALL CATEGORIES→</a>
+        </div>
     </div>
 </div>

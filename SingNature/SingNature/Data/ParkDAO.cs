@@ -29,7 +29,7 @@ namespace SingNature.Data
                     conn.Open();
                     string sql = @"
                     SELECT parkId, parkName, parkType, parkRegion, parkDescription, openingHours, latitude, longitude, ImageUrl
-                    FROM Park;";
+                    FROM Park ORDER BY parkName;";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {

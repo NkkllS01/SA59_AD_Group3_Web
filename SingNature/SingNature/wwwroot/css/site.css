@@ -38,7 +38,7 @@ html, body {
 }
 
 .underline {
-  width: 60px;
+  width: 100%;
   height: 4px;
   background-color: #3E7B27;
   margin: 0 auto 20px;
@@ -54,7 +54,7 @@ html, body {
 }
 
 .css-card {
-  width: 250px;
+  width: 300px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   border-radius: 10px;
   overflow: hidden;

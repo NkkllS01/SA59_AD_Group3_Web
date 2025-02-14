@@ -9,23 +9,21 @@
 </head>
 
 <body>
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor
 
-@using Microsoft.AspNetCore.Http
-@inject IHttpContextAccessor HttpContextAccessor
-
-
-</div>
-
+    </div>
+    <!-- Alert Section  -->
     @if (Model.LatestWarning != null)
     {
         @Html.Partial("_AlertBanner", Model.LatestWarning)
     }
     else
     {
-     <p>No active warning.</p >
+        <p>No active warning.</p>
     }
 
-    <div class="search-info-banner">
+    <div class="search-info-banner py-4">
         <div class="container text-center">
             <h3 class="fw-bold">Looking for something?</h3>
 
@@ -33,7 +31,8 @@
             <form asp-controller="Search" asp-action="Results" method="get" class="row justify-content-center mt-3">
                 <div class="col-md-6">
                     <div class="input-group">
-                        <input type="text" name="keyword" id="searchSpecie" class="form-control" placeholder="Search for a species..." required />
+                        <input type="text" name="keyword" id="searchSpecie" class="form-control"
+                            placeholder="Search for a species..." required />
                         <button type="submit" class="btn btn-warning">Search</button>
                     </div>
                 </div>
@@ -47,50 +46,54 @@
                     <button type="button" id="uploadImageBtn" class="btn btn-primary">Upload Image</button>
                 </div>
                 <div class="col-auto">
-                    <button type="button" id="searchByImageBtn" class="btn btn-outline-light disabled" disabled>Search by Image</button>
+                    <button type="button" id="searchByImageBtn" class="btn btn-outline-light disabled" disabled>Search
+                        by Image</button>
                 </div>
             </div>
         </div>
-        <script src="~/js/search.js"></script>
     </div>
 
     <!-- Image Preview Section (Placed Outside the Banner) -->
     <div id="imagePreviewContainer" class="text-center mt-3 d-none">
         <p class="text-success fw-bold">Image uploaded successfully!</p>
-        <img id="imagePreview" src="" alt="Uploaded Image" class="img-fluid rounded shadow-sm" style="max-width:150px;"/>
+        <img id="imagePreview" src="" alt="Uploaded Image" class="img-fluid rounded shadow-sm"
+            style="max-width:150px;" />
     </div>
 
     <!-- Processing Message -->
     <p id="processingMessage" style="display: none; text-align: center; color: green;">Processing image...</p>
 
     <br>
-    <br>
-
-    <div class="text-center"> 
-        <h2>Wildlife Sightings</h2>
-        <div class="underline"></div>
-        <input id="searchBox" placeholder="Search for a place..." type="text" />
-        <div id="map"></div>
-
-        <script src="https://unpkg.com/%40googlemaps/markerclusterer/dist/index.min.js"></script>
-    </div>
-
-    <script src="~/js/index.js"></script>
-    <script src="~/js/maps.js"></script>
-
-
+    <hr>
+    <!-- Sightings Section -->
     <div class="css-info">
-        <div class="see-all-btn">
-            <a href="@Url.Action("List", "Sightings")" class="btn">SEE ALL SIGHTINGS →</a>
-            <a href="@Url.Action("Create", "Sightings")" class="btn-report">REPORT NEW SIGHTING →</a>
+        <div class="text-center">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="fw-bold">Wildlife Sightings</h2>
+                <div>
+                    <a href="@Url.Action("List", "Sightings")" class="btn btn-outline-dark me-2">View All Sightings →</a>
+                    <a href="@Url.Action("Create", "Sightings")" class="btn btn-dark me-2">Report New Sighting →</a>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <input id="searchBox" placeholder="Search for a place..." type="text" class="form-control mt-3 w-50 mx-auto" />
+            <div id="map" class="mt-3"></div>
+
+            <script src="https://unpkg.com/%40googlemaps/markerclusterer/dist/index.min.js"></script>
         </div>
     </div>
     <br>
-
+    <hr>
     <!-- Wildlife Information Section -->
-    @Html.Partial("_WildlifeInfo",Model.Categories)
-
+    @Html.Partial("_WildlifeInfo", Model.Categories)
+    <br>
+    <hr>
     <!-- Park Information Section -->
-    @Html.Partial("_ParkInfo",Model.Parks)
+    @Html.Partial("_ParkInfo", Model.Parks)
 
+    <!-- Scripts  -->
+    <script src="~/js/search.js"></script>
+    <script src="~/js/index.js"></script>
+    <script src="~/js/maps.js"></script>
 </body>
+

@@ -1,10 +1,16 @@
 @model List<SingNature.Models.Park>
 
 <div class="css-info">
-    <h2>Nature Parks</h2>
-    <div class="underline"></div>
+    <div class="text-center">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="fw-bold">Nature Parks</h2>
+            <div>
+                <a href="@Url.Action("ParkList", "Park")" class="btn btn-outline-dark me-2">View All Parks →</a>
+            </div>
+        </div>
+        <div class="underline"></div>
 
-    <div class="css-container">
+        <div class="css-container">
         <!-- Iterate through the list of parks -->
         @foreach (var park in Model)
         {
@@ -16,9 +22,6 @@
                 <a href="@Url.Action("ParkDetail", "Park", new { parkId = park.ParkId })" class="details-link">SEE DETAILS →</a>
             </div>
         }
-    </div>
-
-    <div class="see-all-btn">
-        <a href="@Url.Action("ParkList", "Park")" class="btn">SEE ALL PARKS →</a>
+        </div>
     </div>
 </div>

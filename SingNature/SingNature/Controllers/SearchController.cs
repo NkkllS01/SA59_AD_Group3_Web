@@ -41,15 +41,32 @@ namespace SingNature.Controllers
         private async Task<List<Sighting>> FetchSightings(string keyword)
         {
             var apiUrl = $"https://localhost:5076/api/sightings/search/{keyword}";
-            var response = await _httpClient.GetStringAsync(apiUrl);
-            return JsonConvert.DeserializeObject<List<Sighting>>(response) ?? new List<Sighting>();
+            try 
+            {
+                var response = await _httpClient.GetStringAsync(apiUrl);
+                return JsonConvert.DeserializeObject<List<Sighting>>(response) ?? new List<Sighting>();
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"Error fetching sightings: {ex.Message}");
+                return new List<Sighting>(); // Ensure an empty list is returned
+            }
+            
         }
 
         private async Task<List<Specie>> FetchSpecies(string keyword)
         {
             var apiUrl = $"https://localhost:5076/api/species/search/{keyword}";
-            var response = await _httpClient.GetStringAsync(apiUrl);
-            return JsonConvert.DeserializeObject<List<Specie>>(response) ?? new List<Specie>();
+            try
+            {
+                var response = await _httpClient.GetStringAsync(apiUrl);
+                return JsonConvert.DeserializeObject<List<Specie>>(response) ?? new List<Specie>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching species: {ex.Message}");
+                return new List<Specie>(); // Ensure an empty list is returned
+            }
         }
     }
 }

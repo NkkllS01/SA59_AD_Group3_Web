@@ -20,7 +20,6 @@ namespace SingNature.Data
             _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
         }
 
-        // Get all warnings
         public List<Warning> GetAllWarnings()
         {
             List<Warning> warnings = new List<Warning>();

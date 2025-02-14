@@ -1,9 +1,32 @@
+using Amazon.Runtime;
+using Amazon.S3;
 using SingNature.Data;
 using authorization.Data;
+using SingNature.Services;
 
 
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
+
+var config = builder.Configuration.GetSection("DigitalOcean");
+var accessKey = config["AccessKey"];
+var secretKey = config["SecretKey"];
+var region = config["Region"];
+var endpointUrl = config["EndpointUrl"];
+
+var s3Config = new AmazonS3Config
+{
+    ServiceURL = endpointUrl, // DigitalOcean Spaces API 地址
+    ForcePathStyle = true     // 必须启用，否则 DigitalOcean 不能正确解析
+};
+
+var s3Client = new AmazonS3Client(new BasicAWSCredentials(accessKey, secretKey), s3Config);
+builder.Services.AddSingleton<IAmazonS3>(s3Client);
+
+if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey) || string.IsNullOrEmpty(endpointUrl))
+{
+    throw new Exception("DigitalOcean Spaces Config error：AccessKey, SecretKey or EndpointUrl is missing!");
+}
 
 builder.Services.AddHttpClient();
 var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") 
@@ -18,7 +41,9 @@ if (string.IsNullOrEmpty(connectionString))
 // Print connection string for debugging (REMOVE in production)
 Console.WriteLine($"Using Database Connection: {connectionString}");
 
-	builder.Services.AddScoped<UserDao>();
+	builder.Services.AddSingleton<IAmazonS3, AmazonS3Client>();
+    builder.Services.AddSingleton<S3Service>();
+    builder.Services.AddScoped<UserDao>();
 	builder.Services.AddScoped<SightingsDAO>();
 	builder.Services.AddScoped<SpeciesDAO>();
 	builder.Services.AddScoped<ParkDAO>();

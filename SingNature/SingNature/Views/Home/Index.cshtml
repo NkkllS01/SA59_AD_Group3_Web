@@ -9,41 +9,24 @@
 </head>
 
 <body>
-
-@using Microsoft.AspNetCore.Http
-@inject IHttpContextAccessor HttpContextAccessor
-
-<div class="auth-container">
-    @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId") != null)
-    {
-        <form action="/user/logout" method="post" class="logout-form">
-            <span class="welcome-text">Welcome, @HttpContextAccessor.HttpContext.Session.GetString("Username")!</span>
-            <button type="submit" class="logout-btn">Logout</button>
-        </form>
-    }
-    else
-    {
-        <a href="/user/login" class="login-btn">Login</a>
-        <a href="/register" class="signup-btn">Sign Up</a>
-    }
-</div>
     <div class="search-info-banner">
         <p class="search-text">Looking for something?</p>
 
         <div class="search-container">
-        <form asp-controller="Search" asp-action="Results" method="get" class="searchSpecie">
-            <div class="search-row">
-                <input type="text" name="keyword" id="searchSpecie" placeholder="Search for a species..." required />
-                <button type="submit">Search</button>
-            </div>
+            <form asp-controller="Search" asp-action="Results" method="get" class="searchSpecie">
+                <div class="search-row">
+                    <input type="text" name="keyword" id="searchSpecie" placeholder="Search for a species..."
+                        required />
+                    <button type="submit">Search</button>
+                </div>
 
-            <!-- Second Row: Image Upload and Search by Image Button -->
-            <div class="search-row">
-                <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;" />
-                <button type="button" id="uploadImageBtn">Upload Image</button>
-                <button type="button" id="searchByImageBtn" disabled>Search by Image</button>
-            </div>
-        </form>
+                <!-- Second Row: Image Upload and Search by Image Button -->
+                <div class="search-row">
+                    <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;" />
+                    <button type="button" id="uploadImageBtn">Upload Image</button>
+                    <button type="button" id="searchByImageBtn" disabled>Search by Image</button>
+                </div>
+            </form>
         </div>
         <script src="~/js/search.js"></script>
     </div>
@@ -51,7 +34,8 @@
     <!-- Image Preview Section (Placed Outside the Banner) -->
     <div id="imagePreviewContainer" style="display: none; text-align: center; margin-top: 20px;">
         <p>Image uploaded successfully!</p>
-        <img id="imagePreview" src="" alt="Uploaded Image" style="max-width: 300px; max-height: 300px; border-radius: 5px;"/>
+        <img id="imagePreview" src="" alt="Uploaded Image"
+            style="max-width: 300px; max-height: 300px; border-radius: 5px;" />
     </div>
 
     <!-- Processing Message -->
@@ -60,7 +44,7 @@
     <br>
     <br>
 
-    <div class="text-center"> 
+    <div class="text-center">
         <h2>Wildlife Sightings</h2>
         <div class="underline"></div>
         <input id="searchBox" placeholder="Search for a place..." type="text" />
@@ -73,7 +57,7 @@
     <script src="~/js/maps.js"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap&libraries=places,marker">
-    </script>
+        </script>
 
     <div class="css-info">
         <div class="see-all-btn">
@@ -84,9 +68,9 @@
     <br>
 
     <!-- Wildlife Information Section -->
-    @Html.Partial("_WildlifeInfo",Model.Categories)
+    @Html.Partial("_WildlifeInfo", Model.Categories)
 
     <!-- Park Information Section -->
-    @Html.Partial("_ParkInfo",Model.Parks)
+    @Html.Partial("_ParkInfo", Model.Parks)
 
 </body>

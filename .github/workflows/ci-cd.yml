@@ -175,4 +175,6 @@ jobs:
             docker pull $IMAGE_NAME:v1
             docker stop singnature-app || true && sleep 5
             docker rm singnature-app || true
-            docker run -d -p 8080:8080 --restart unless-stopped --name singnature-app $IMAGE_NAME:v1
+            docker run -d -p 8080:8080 --restart unless-stopped --name singnature-app \
+            -e "ConnectionStrings__DefaultConnection=${{ secrets.DB_CONNECTION_STRING }}" \
+            $IMAGE_NAME:v1

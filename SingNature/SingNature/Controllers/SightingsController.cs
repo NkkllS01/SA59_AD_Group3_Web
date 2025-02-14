@@ -20,16 +20,18 @@ namespace SingNature.Controllers
             var viewModel = new SightingListViewModel { Sightings = sightings };
             return View("SightingList", viewModel);
         }
-
+        [Route("Sightings/Details/{id}")]
         public IActionResult Details(int id)
         {
             var sighting = _sightingsDAO.GetSightingById(id);
+
             if (sighting == null)
             {
                 return NotFound("Sighting not found.");
             }
-            return View(sighting);
+            return View("SightingDetail",sighting);
         }
+
 
         public IActionResult Create()
         {

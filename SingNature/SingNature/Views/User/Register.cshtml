@@ -196,29 +196,38 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         document.getElementById("register-form").addEventListener("submit", async function(event) {
-            event.preventDefault();
+    event.preventDefault();
 
-            const username = document.getElementById("username").value;
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            const mobile = document.getElementById("mobile").value;
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const mobile = document.getElementById("mobile").value;
 
-            try {
-                const response = await axios.post("https://localhost:5076/api/auth/register", {
-                    UserName: username,
-                    Email: email,
-                    Password: password,
-                    Mobile:mobile
-                });
-
-                if (response.status === 201 || response.status === 200) {
-                    alert("Registration successful!.");
-                    window.location.href = "/user/profile";
-                }
-            } catch (error) {
-                alert("Registration failed. Please try again.");
-            }
+    try {
+        const response = await axios.post("https://localhost:5076/api/auth/register", {
+            UserName: username,
+            Email: email,
+            Password: password,
+            Mobile: mobile
         });
+
+        console.log("✅ Registration response:", response.data); // 输出成功信息
+
+        if (response.status === 201 || response.status === 200) {
+            alert("Registration successful!");
+            window.location.href = "/user/profile";
+        }
+    } catch (error) {
+        console.error("❌ Registration failed:", error.response?.data || error.message);
+
+        if (error.response) {
+            alert("Registration failed: " + (error.response.data.message || "Unknown error"));
+        } else {
+            alert("Registration request failed. Check your network.");
+        }
+    }
+});
+
     </script>
 </body>
 </html>

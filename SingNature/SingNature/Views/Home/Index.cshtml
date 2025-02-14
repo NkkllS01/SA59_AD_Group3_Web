@@ -57,6 +57,15 @@
 
     <br>
     <br>
+    
+    @if (Model.LatestWarning != null)
+    {
+        @Html.Partial("_AlertBanner", Model.LatestWarning)
+    }
+    else
+    {
+     <p>No active warning.</p >
+    }
 
     <div class="text-center"> 
         <h2>Wildlife Sightings</h2>

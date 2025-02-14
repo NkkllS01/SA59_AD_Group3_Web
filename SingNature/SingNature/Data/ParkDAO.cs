@@ -73,7 +73,7 @@ namespace SingNature.Data
                 {
                     conn.Open();
                     string sql = @"
-                    SELECT parkId, parkName, parkDescription, openingHours
+                    SELECT parkId, parkName, ImageUrl,parkDescription, openingHours
                     FROM Park
                     WHERE parkId = @parkId;";
 
@@ -89,6 +89,7 @@ namespace SingNature.Data
                                 {
                                     ParkId = reader.GetInt32("parkId"),
                                     ParkName = reader.GetString("parkName"),
+                                    ImageUrl = reader.GetString("ImageUrl"),
                                     ParkDescription = reader.GetString("parkDescription"),
                                     OpeningHours = reader.GetString("OpeningHours")
                                 };

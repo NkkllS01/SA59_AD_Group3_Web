@@ -1,13 +1,11 @@
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using SingNature.Data;
 using SingNature.Models;
+using System.Collections.Generic;
 
 namespace SingNature.Controllers
 {
-    [Route("api/sightings")]
-    [ApiController]
-    public class SightingsController : ControllerBase
+    public class SightingsController : Controller
     {
         private readonly SightingsDAO _sightingsDAO;
 
@@ -16,65 +14,45 @@ namespace SingNature.Controllers
             _sightingsDAO = new SightingsDAO();
         }
 
-        [HttpGet]
-        public ActionResult<List<Sighting>> GetAllSightings()
+        public IActionResult List()
         {
             var sightings = _sightingsDAO.GetAllSightings();
-            if (sightings == null || sightings.Count == 0)
-            {
-                return NotFound("No sightings found.");
-            }
-            return Ok(sightings);
+            var viewModel = new SightingListViewModel { Sightings = sightings };
+            return View("SightingList", viewModel);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<Sighting> GetSightingById(int id)
+        public IActionResult Details(int id)
         {
             var sighting = _sightingsDAO.GetSightingById(id);
-            if (sighting == null) 
+            if (sighting == null)
             {
                 return NotFound("Sighting not found.");
             }
-            return Ok(sighting);
+            return View(sighting);
         }
 
-        [HttpGet("search/{keyword}")]
-         public ActionResult<List<Sighting>> GetSightingsByKeyword(string keyword)
+        public IActionResult Create()
         {
-            var sightings = _sightingsDAO.GetSightingsByKeyword(keyword);
-            if (sightings == null || sightings.Count == 0) 
-            {
-                return NotFound("No sightings found.");
-            }
-            return Ok(sightings);
+            return View();
         }
 
         [HttpPost]
-        public IActionResult CreateSighting([FromBody] Sighting? sighting)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Sighting sighting)
         {
-            Console.WriteLine($"Received sighting: {JsonSerializer.Serialize(sighting)}");
-            if (sighting == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Sighting object is null.");
+                return View(sighting);
             }
-            if (sighting.SpecieId <= 0)
+
+            var createdSighting = _sightingsDAO.CreateSighting(sighting);
+            if (createdSighting == null)
             {
-                    return BadRequest("Invalid SpecieId or SpecieName provided.");
+                ModelState.AddModelError("", "Error creating sighting.");
+                return View(sighting);
             }
-            try
-            {
-                var createdSighting = _sightingsDAO.CreateSighting(sighting);
-                if (createdSighting != null)
-                {
-                    return CreatedAtAction(nameof(GetSightingById), new { id = createdSighting.SightingId }, createdSighting);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error creating sighting: {ex.Message}");
-                return StatusCode(500, "Error creating sighting.");
-            }
-            return NoContent();
+
+            return RedirectToAction("List");
         }
     }
 }

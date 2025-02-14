@@ -6,7 +6,6 @@ namespace SingNature.Models
     {
         public List<Category> Categories { get; set; }
         public List<Park> Parks { get; set; }
-
         public Warning LatestWarning { get; set; }
     }
 }

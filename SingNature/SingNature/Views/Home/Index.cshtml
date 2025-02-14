@@ -44,7 +44,16 @@
     <br>
     <br>
 
-    <div class="text-center">
+   @if (Model.LatestWarning != null)
+    {
+        @Html.Partial("_AlertBanner", Model.LatestWarning)
+    }
+    else
+    {
+     <p>No active warning.</p>
+    }
+
+    <div class="text-center"> 
         <h2>Wildlife Sightings</h2>
         <div class="underline"></div>
         <input id="searchBox" placeholder="Search for a place..." type="text" />

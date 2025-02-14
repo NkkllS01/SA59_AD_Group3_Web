@@ -38,8 +38,14 @@ namespace authorization.Controllers
             };
             _userDao.CreateUser(newUser);
             var createdUser = _userDao.GetUserByUsername(request.UserName);
-            return Ok(new
-            {
+                if (createdUser == null)
+                {
+                    return StatusCode(500, new { message = "User registration failed." });
+                }
+                HttpContext.Session.SetInt32("UserId", createdUser.UserId);
+                HttpContext.Session.SetString("Username", createdUser.UserName);
+                return Ok(new
+                {
                 message = "User registered successfully",
                 userId = createdUser.UserId,
                 username = createdUser.UserName,

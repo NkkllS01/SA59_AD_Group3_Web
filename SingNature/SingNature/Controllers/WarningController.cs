@@ -1,58 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
-using SingNature.Data;
 using SingNature.Models;
-
+using SingNature.Data;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 namespace SingNature.Controllers
 {
-    [Route("api/warnings")]
-    [ApiController]
-    public class WarningController : ControllerBase
+[Route("Warning")]
+public class WarningController : Controller
+{
+    private readonly WarningDAO _warningDAO;
+    private readonly SightingsDAO _sightingDAO;
+
+    public WarningController()
     {
-        private readonly WarningDAO _warningDAO;
-
-        public WarningController()
-        {
-            _warningDAO = new WarningDAO();
-        }
-
-        [HttpGet("{warningId}")]
-        public ActionResult<Warning> GetWarningById(int warningId)
-        {
-            if (warningId <= 0)
-            {
-                return BadRequest("Invalid warning ID.");
-            }
-
-            var warning = _warningDAO.GetWarningById(warningId);
-
-            if (warning == null)
-            {
-                return NotFound("Warning not found.");
-            }
-
-            return Ok(warning);
-        }
-
-        [HttpGet]
-        public ActionResult<List<Warning>> GetAllWarnings()
-        {
-            var warnings = _warningDAO.GetAllWarnings()
-                .Select(w => new
-                {
-                    w.WarningId,
-                    Source = w.Source.ToString(), 
-                    w.SightingId,
-                    w.Cluster,
-                    w.AlertLevel
-                })
-                .ToList();
-
-            if (warnings == null || warnings.Count == 0)
-            {
-                return NotFound("No warnings found");
-            }
-            return Ok(warnings);
-        }
-
+        _warningDAO = new WarningDAO();
+        _sightingDAO = new SightingsDAO(); // Assuming you have this DAO for Sightings
     }
+
+    public IActionResult WarningList()
+    {
+        var warnings = _warningDAO.GetAllWarnings().ToList();
+
+        // Fetch and add the specieName dynamically for each warning
+        foreach (var warning in warnings)
+        {
+            if (warning.Source == SingNature.Models.Warning.WarningSource.SIGHTING)
+            {
+                // Check if SightingId has a value
+                if (warning.SightingId.HasValue)
+                {
+                    var sighting = _sightingDAO.GetSightingById(warning.SightingId.Value);
+                    if (sighting != null)
+                    {
+                        warning.SpecieName = sighting.SpecieName; // Dynamically adding specieName to the warning object
+                    }
+                }
+            }
+        }
+
+        return View(warnings);
+    }
+}
 }

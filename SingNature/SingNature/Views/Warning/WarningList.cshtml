@@ -1,0 +1,33 @@
+@model List<SingNature.Models.Warning>
+
+<h2>Warning List</h2>
+
+@if (Model.Any())
+{
+    <div class="warning-list">
+        @foreach (var warning in Model)
+        {
+            <div class="warning-item">
+                @if (warning.Source == SingNature.Models.Warning.WarningSource.DENGUE)
+                {
+                    <div class="alert alert-danger">
+                        <strong>Dengue Alert!</strong> Dengue cases at <b>@warning.Cluster</b>. Take precautions.
+                    </div>
+                }
+                else if (warning.Source == SingNature.Models.Warning.WarningSource.SIGHTING)
+                {
+                    <div class="alert" style="background-color:#86b086; color: rgb(22, 67, 36);">
+                        <strong>New Sighting!</strong> Specie: <b>@warning.SpecieName</b>. 
+                        <a href="@Url.Action("SightingDetail", "Sightings", new { id = warning.SightingId })">
+                        Check for more details.
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No warnings available.</p>
+}

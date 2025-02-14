@@ -1,13 +1,14 @@
 using SingNature.Data;
-using authorization.Data; 
+using authorization.Data;
 
 
 Console.WriteLine("Application Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
-// Read connection string from environment variable
+builder.Services.AddHttpClient();
 var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") 
                        ?? builder.Configuration.GetConnectionString("DefaultConnection");
+
 
 if (string.IsNullOrEmpty(connectionString))
 {
@@ -16,6 +17,12 @@ if (string.IsNullOrEmpty(connectionString))
 
 // Print connection string for debugging (REMOVE in production)
 Console.WriteLine($"Using Database Connection: {connectionString}");
+
+	builder.Services.AddScoped<UserDao>();
+	builder.Services.AddScoped<SightingsDAO>();
+	builder.Services.AddScoped<SpeciesDAO>();
+	builder.Services.AddScoped<ParkDAO>();
+	builder.Services.AddScoped<WarningDAO>();
 
 builder.Services.AddCors(options =>
 {
@@ -58,11 +65,11 @@ builder.Services.AddHttpContextAccessor();
 
 // Register DAO as a service (IMPORTANT)
 builder.Services.AddScoped<UserDao>();
+builder.Services.AddTransient<WarningService>();
 builder.Services.AddScoped<SightingsDAO>();
 builder.Services.AddScoped<SpeciesDAO>();
 builder.Services.AddScoped<ParkDAO>();
 builder.Services.AddScoped<WarningDAO>();
-
 
 var app = builder.Build();
 

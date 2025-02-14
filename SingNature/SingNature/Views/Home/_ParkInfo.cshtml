@@ -10,7 +10,7 @@
         {
             <div class="css-card">
                 <!-- Use dynamic park images, names, and IDs -->
-                <img src="~/images/@park.ParkName.ToLower().Replace(" ", "") .jpg" alt="@park.ParkName" />
+                <img src=@park.ImageUrl alt="@park.ParkName" />
                 <h3>@park.ParkName</h3>
                 <!-- Link to ParkDetails with parkId -->
                 <a href="@Url.Action("ParkDetail", "Park", new { parkId = park.ParkId })" class="details-link">SEE DETAILS →</a>

@@ -1,0 +1,189 @@
+@{}
+<style>
+    :root {
+    --primary-color: #2E7D32;
+    --secondary-color: #4CAF50;
+    --accent-color: #81C784;
+    --background-color: #F1F8E9;
+    --text-color: #1B5E20;
+    --border-color: #A5D6A7;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+.details-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.details-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.details-label {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.2);
+}
+
+.sighting-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+.no-image {
+    text-align: center;
+    padding: 40px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    color: var(--text-color);
+}
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+}
+
+.location-map {
+    width: 100%;
+    height: 300px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+</style>
+<div class="container">
+    <h2>Report Sighting</h2>
+
+    <div class="details-card">
+        <form id="sightingForm" class="details-grid">
+            
+
+            <div class="details-item">
+                <label for="species" class="details-label">
+                    <i class="fas fa-paw"></i> Select Species:
+                </label>
+                <select id="species" name="species" required class="form-input">
+                    <option value="">Select Species Name</option>
+                    <option value="1">Asian Hornet</option>
+                    <option value="2">Basket Stinkhorn</option>
+                    <option value="3">Bracket Fungi</option>
+                    <option value="4">Komodo Monitor Lizard</option>
+                    <option value="5">Digger Bee</option>
+                    <option value="6">Dumeril's Monitor Lizard</option>
+                    <option value="7">Giant Honey Bee</option>
+                    <option value="8">Geastrum Triplex</option>
+                    <option value="9">Malaysian Water Monitor Lizard</option>
+                </select>
+            </div>
+
+            <div class="details-item">
+                <label for="description" class="details-label">
+                    <i class="fas fa-info-circle"></i> Description:
+                </label>
+                <input type="text" id="description" name="description" class="form-input" required />
+            </div>
+
+            <div class="details-item">
+                <label for="image" class="details-label">
+                    <i class="fas fa-camera"></i> Upload Image:
+                </label>
+                <input type="file" id="image" name="image" accept="image/*" class="form-input" required />
+                <img id="imagePreview" src="#" alt="Image Preview" class="sighting-image" style="display: none;" />
+            </div>
+
+            <div class="details-item" style="grid-column: span 2;">
+                <label class="details-label">
+                    <i class="fas fa-map-marker-alt"></i> Click on Map to Select Location:
+                </label>
+                <div id="map" class="location-map"></div>
+                <input type="hidden" id="latitude" name="latitude" />
+                <input type="hidden" id="longitude" name="longitude" />
+                <input type="hidden" id="timestamp" name="timestamp" />
+            </div>
+
+            <div class="details-item" style="grid-column: span 2; text-align: center;">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="fas fa-paper-plane"></i> Submit
+                </button>
+            </div>
+        </form>
+
+        <p class="error" id="error-message"></p>
+        <p class="success" id="success-message" style="display: none;">Upload successful!</p>
+    </div>
+</div>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap"></script>
+    <script src="~/js/report.js"></script>

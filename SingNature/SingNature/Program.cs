@@ -77,7 +77,7 @@ builder.WebHost.ConfigureKestrel(options =>
     if (builder.Environment.IsDevelopment())
     {
         options.ListenAnyIP(5075);
-        options.ListenAnyIP(5076, listenOptions => listenOptions.UseHttps());
+        options.ListenAnyIP(8080, listenOptions => listenOptions.UseHttps());
     }
     else 
     {

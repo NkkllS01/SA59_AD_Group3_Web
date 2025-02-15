@@ -4,151 +4,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Illustration</title>
+    <title>Nature Learning Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #2D5A27;
+            --secondary-color: #8BC34A;
+            --accent-color: #FFA000;
+            --background-color: #F5F9F1;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: #FBE6D9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-color);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
+
         .container {
             display: flex;
             max-width: 1200px;
-            width: 100%;
+            width: 90%;
+            height: 600px;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
+
         .login-form {
             flex: 1;
             padding: 40px;
-        }
-        .illustration {
-            flex: 1;
-            background: #FBE6D9;
-            padding: 40px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
         }
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             margin-bottom: 32px;
         }
-        .logo svg {
-            width: 32px;
-            height: 32px;
-            color: #276749;
+
+        .logo-icon {
+            font-size: 32px;
+            color: var(--primary-color);
         }
+
         .logo-text {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 600;
-            color: #276749;
+            color: var(--primary-color);
         }
+
         h1 {
-            color: #276749;
-            font-size: 24px;
-            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 16px;
+            line-height: 1.3;
         }
+
         .subtitle {
             color: #666;
             margin-bottom: 32px;
+            font-size: 16px;
+            position: relative;
+            padding-left: 24px;
         }
+
+        .subtitle:before {
+            content: '🌱';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
         .form-group {
             margin-bottom: 24px;
         }
+
         label {
             display: block;
-            color: #276749;
+            color: var(--primary-color);
             margin-bottom: 8px;
-            font-size: 14px;
+            font-weight: 500;
         }
+
         input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             box-sizing: border-box;
+            transition: all 0.3s ease;
         }
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
+
+        input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.2);
         }
-        .remember {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .forgot {
-            color: #276749;
-            text-decoration: none;
-        }
+
         .buttons {
             display: flex;
             flex-direction: column;
             gap: 16px;
+            align-items: center;
         }
+
         .btn {
-            padding: 12px;
-            border-radius: 6px;
+            width:80%;
+            padding: 14px;
+            border-radius: 10px;
             border: none;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             text-align: center;
+            transition: all 0.3s ease;
+            font-size: 16px;
         }
+
         .btn-login {
-            background: #276749;
+            background: var(--primary-color);
             color: white;
         }
+
+        .btn-login:hover {
+            background: #1e401a;
+        }
+
         .btn-signup {
             background: white;
-            color: #276749;
-            border: 1px solid #276749;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
         }
-        .social-login {
-            margin-top: 32px;
-            text-align: center;
+
+        .btn-signup:hover {
+            background: #f5f5f5;
         }
-        .social-buttons {
+
+        .illustration {
+            flex: 1;
+            background: var(--background-color);
+            padding: 20px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 16px;
-            margin-top: 16px;
+            position: relative;
+            overflow: hidden;
         }
-        .social-btn {
-            color: #666;
-            text-decoration: none;
+
+        .illustration-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
+
+        .nature-decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .nature-decorations i {
+            position: absolute;
+            color: var(--secondary-color);
+            opacity: 0.2;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="login-form">
             <div class="logo">
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="3" fill="currentColor"/>
-                    <circle cx="18" cy="12" r="3" fill="currentColor"/>
-                    <circle cx="6" cy="12" r="3" fill="currentColor"/>
-                </svg>
-                <span class="logo-text">Group3</span>
+                <i class="fas fa-leaf logo-icon"></i>
+                <span class="logo-text">SingNature</span>
             </div>
-            <h1>Explore Wildlife with Intelligent Recommendations</h1>
-            <p class="subtitle">Welcome Back, Please login to your account</p>
-            
-
+            <h1>Discover the Wonders of Nature Through Learning</h1>
+            <p class="subtitle">Welcome to your SingNature</p>      
             <form id="login-form">
                 <div class="form-group">
-                    <label for="username">UserName</label>
+                    <label for="username">Username</label>
                     <input type="text" id="username" placeholder="Enter your username" required>
                 </div>
                 <div class="form-group">
@@ -156,43 +201,21 @@
                     <input type="password" id="password" placeholder="Enter your password" required>
                 </div>
                 <div class="buttons">
-                    <button type="submit" class="btn btn-login">Login</button>
-                    <button type="button" class="btn btn-signup" onclick="redirectToRegister()">Sign Up</button>
+                    <button type="submit" class="btn btn-login">Start Learning</button>
+                    <button type="button" class="btn btn-signup" onclick="redirectToRegister()">Create Account</button>
                 </div>
             </form>
-
-            <div class="social-login">
-                <p>Or, login with</p>
-                <div class="social-buttons">
-                    <a href="#" class="social-btn">Facebook</a>
-                    <a href="#" class="social-btn">LinkedIn</a>
-                    <a href="#" class="social-btn">Google</a>
-                </div>
+        </div>
+        <div class="illustration">
+     
+            <img src="/images/nature-login.jpg" alt="Nature Education" class="illustration-img">
+            <div class="nature-decorations">
+                <i class="fas fa-leaf" style="top: 10%; left: 10%;"></i>
+                <i class="fas fa-tree" style="top: 20%; right: 15%;"></i>
+                <i class="fas fa-seedling" style="bottom: 15%; left: 20%;"></i>
             </div>
         </div>
-                <div class="illustration">
-            <svg viewBox="0 0 400 300" style="width: 100%; max-width: 400px;">
-                <!-- Sun -->
-                <circle cx="320" cy="60" r="30" fill="#FFD700"/>
-                <!-- Mountains -->
-                <path d="M0 180 L150 80 L300 180" fill="#276749"/>
-                <path d="M150 180 L280 100 L400 180" fill="#276749"/>
-                <!-- Lake/Ground -->
-                <path d="M0 180 C100 170, 300 170, 400 180 L400 300 L0 300 Z" fill="#4682B4"/>
-                <!-- Van -->
-                <rect x="100" y="150" width="120" height="60" fill="#276749"/>
-                <rect x="140" y="160" width="60" height="30" fill="#FFD700"/>
-                <circle cx="130" cy="210" r="15" fill="#4A5568"/>
-                <circle cx="190" cy="210" r="15" fill="#4A5568"/>
-                <!-- Tree -->
-                <path d="M350 180 L380 180 L365 120 Z" fill="#FFD700"/>
-                <!-- Clouds -->
-                <path d="M320 30 Q330 20 340 30 T360 30" fill="#276749"/>
-                <path d="M350 40 Q360 30 370 40 T390 40" fill="#276749"/>
-            </svg>
-        </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
@@ -209,16 +232,16 @@
                 });
 
                 if (response.status === 200) {
-                    alert("Login successful!");
+                    alert("Login successful! Welcome to NatureLearning");
                     window.location.href = "/home";
                 }
             } catch (error) {
-                alert("Invalid username or password.webbbbb");
+                alert("Invalid username or password. Please try again.");
             }
         });
 
         function redirectToRegister() {
-            window.location.href = "/user/register";
+            window.location.href = "/register";
         }
     </script>
 </body>

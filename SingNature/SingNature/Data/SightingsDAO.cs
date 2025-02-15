@@ -189,13 +189,38 @@ namespace SingNature.Data
             return sightings;
         }
         
+        public bool CheckUserExists(int userId)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT COUNT(*) FROM User WHERE UserId = @UserId";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error checking user existence: {ex.Message}");
+                return false;
+            }
+        }
+        
         public Sighting? CreateSighting(Sighting? sighting)
         {
-            if (sighting.SpecieId <= 0)
+            if (sighting == null || sighting.SpecieId <= 0)
             {
                 throw new ArgumentException("Invalid SpecieId provided.");
             }
-            
+
+            Console.WriteLine($"📢 Trying to insert Sighting with UserId: {sighting.UserId}");
+
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
@@ -222,11 +247,28 @@ namespace SingNature.Data
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error creating sighting: " + ex.Message);
+                Console.WriteLine("❌ Error creating sighting: " + ex.Message);
                 return null;
             }
 
             return sighting;
+        }
+
+        // 辅助方法：映射数据库结果到 Sighting 对象
+        private Sighting MapSighting(MySqlDataReader reader)
+        {
+            return new Sighting(
+                reader.GetInt32("SightingId"),
+                reader.GetInt32("UserId"),
+                reader.GetString("UserName"),
+                reader.GetDateTime("Date"),
+                reader.GetInt32("SpecieId"),
+                reader.GetString("SpecieName"),
+                reader.IsDBNull(reader.GetOrdinal("Details")) ? "" : reader.GetString("Details"),
+                reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? "" : reader.GetString("ImageUrl"),
+                reader.GetDecimal("Latitude"),
+                reader.GetDecimal("Longitude")
+            );
         }
     }
 }

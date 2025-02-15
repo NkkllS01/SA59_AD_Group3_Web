@@ -13,9 +13,13 @@ namespace SingNature.Controllers
     {
         private readonly HttpClient _httpClient;
 
-        public UserController(HttpClient httpClient)
+        public UserController()
         {
-            _httpClient = httpClient;
+            var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true  // Disable SSL validation
+            };
+            _httpClient = new HttpClient(handler);
         }
 
         [HttpGet("Login")]

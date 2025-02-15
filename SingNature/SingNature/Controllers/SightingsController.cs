@@ -26,7 +26,7 @@ namespace SingNature.Controllers
         {
             var sightings = _sightingsDAO.GetAllSightings();
             var viewModel = new SightingListViewModel { Sightings = sightings };
-            return View("SightingList", viewModel);
+            return View(viewModel);
         }
 
         [Route("Sightings/Details/{id}")]
@@ -39,7 +39,7 @@ namespace SingNature.Controllers
             {
                 return NotFound("Sighting not found.");
             }
-            return View("SightingDetail", sighting);
+            return View(sighting);
         }
 
 

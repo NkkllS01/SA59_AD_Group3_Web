@@ -1,0 +1,51 @@
+@{}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Sighting</title>
+    <link rel="stylesheet" type="text/css" href="~/css/report.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Report Sighting</h1>
+
+        <form id="sightingForm">
+            <label for="species">Select Species:</label>
+            <select id="species" name="species" required>
+                <option value="">Select Species Name</option>
+                <option value="1">Asian Hornet</option>
+                <option value="2">Basket Stinkhorn</option>
+                <option value="3">Bracket Fungi</option>
+                <option value="4">Komodo Monitor Lizard</option>
+                <option value="5">Digger Bee</option>
+                <option value="6">Dumeril's Monitor Lizard</option>
+                <option value="7">Giant Honey Bee</option>
+                <option value="8">Geastrum Triplex</option>
+                <option value="9">Malaysian Water Monitor Lizard</option>
+            </select>
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required />
+
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required />
+            <img id="imagePreview" src="#" alt="Image Preview" />
+
+            <label>Click on Map to Select Location:</label>
+            <div id="map"></div>
+
+            <input type="hidden" id="latitude" name="latitude" />
+            <input type="hidden" id="longitude" name="longitude" />
+            <input type="hidden" id="timestamp" name="timestamp" />
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p class="error" id="error-message"></p>
+        <p class="success" id="success-message">Upload successful!</p>
+    </div>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QDles42NyhRJbN5WjMbYadWuYzyG5lo&callback=initMap"></script>
+    <script src="~/js/report.js"></script>
+</body>

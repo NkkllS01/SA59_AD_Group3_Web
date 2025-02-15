@@ -64,17 +64,31 @@ function initMap() {
 }
 
 function fetchSightings(map) {
-fetch("/api/sightings") 
-    .then(response => response.json())
-    .then(data => {
-        console.log("Fetched sightings:", data);
-        addSightingsToMap(map, data);
-    })
-    .catch(error => console.error("ERROR: Failed to fetch sightings data", error));
+    console.log("📢 Fetching sightings...");
+
+    fetch("/api/sightings")
+        .then(response => {
+            console.log("📢 Response status:", response.status);
+            if (!response.ok) {
+                throw new Error(`Server returned ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("✅ Fetched sightings:", data);
+            if (!Array.isArray(data) || data.length === 0) {
+                console.warn("⚠️ No sightings found or invalid data format.");
+                return;
+            }
+            addSightingsToMap(map, data);
+        })
+        .catch(error => {
+            console.error("❌ ERROR: Failed to fetch sightings data:", error);
+        });
 }
 
 function addSightingsToMap(map, sightings) {
-    const markers = []; 
+    const markers = [];
     sightings.forEach(sighting => {
         const position = { lat: sighting.latitude, lng: sighting.longitude };
 
@@ -102,6 +116,6 @@ function addSightingsToMap(map, sightings) {
         algorithm: new markerClusterer.GridAlgorithm({ gridSize: 50 }),
         renderer: new markerClusterer.DefaultRenderer(),
     });
-}       
+}
 
 window.initMap = initMap;

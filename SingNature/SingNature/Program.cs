@@ -70,6 +70,11 @@ builder.Services.AddCors(options =>
                   .AllowAnyHeader()
                   .AllowCredentials();
         });
+
+    options.AddPolicy("AllowedWebApp",
+        builder => builder.WithOrigins("https://167.172.73.161")
+        .AllowAnyMethod()
+        .AllowAnyHeader());
 });
 
 builder.WebHost.ConfigureKestrel(options =>

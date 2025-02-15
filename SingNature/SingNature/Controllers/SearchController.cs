@@ -14,7 +14,12 @@ namespace SingNature.Controllers
 
         public SearchController()
         {
-            _httpClient = new HttpClient();
+            var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true  // Disable SSL validation
+            };
+
+            _httpClient = new HttpClient(handler);
         }
 
         [HttpGet("/Search/Results")]

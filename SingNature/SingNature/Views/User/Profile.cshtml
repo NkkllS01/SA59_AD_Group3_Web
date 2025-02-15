@@ -224,7 +224,7 @@
             const newsletter = document.getElementById("subscribeNewsletter").checked;
 
             try {
-                const response = await axios.put("https://localhost:5076/api/auth/update-profile", {
+                const response = await axios.put("https://localhost:8080/api/auth/update-profile", {
                     UserId: userId,
                     Email: email,
                     Mobile: phone,

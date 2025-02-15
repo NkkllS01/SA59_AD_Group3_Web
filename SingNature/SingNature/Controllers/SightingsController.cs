@@ -58,7 +58,7 @@ namespace SingNature.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            return View("ReportSighting");
+            return View();
         }
 
 

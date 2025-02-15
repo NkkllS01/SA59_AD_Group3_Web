@@ -31,6 +31,7 @@ namespace SingNature.Data
                     FROM Sighting s
                     JOIN Specie sp ON s.specieId = sp.specieId
                     JOIN User u ON s.userId = u.userId
+                    ORDER BY s.date desc
                     ";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
@@ -145,6 +146,7 @@ namespace SingNature.Data
                     JOIN Specie sp ON s.specieId = sp.specieId
                     JOIN User u ON s.userId = u.userId
                     WHERE LOWER(sp.specieName) LIKE LOWER(@keyword)
+                    ORDER BY s.date desc
                     ";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))

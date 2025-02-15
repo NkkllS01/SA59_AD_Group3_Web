@@ -1,15 +1,141 @@
-@model SingNature.Models.Park
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Model.ParkName - Park Details</title>
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #81C784;
+            --background-color: #F1F8E9;
+            --text-color: #1B5E20;
+            --border-color: #A5D6A7;
+        }
 
-@{ 
-    ViewData["Title"] = "Park Details";
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
 
-<h2>@Model.ParkName</h2>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-<img src="@Model.ImageUrl" alt="@Model.ParkName" class="species-image" />
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
 
-<p><strong>Description</strong></p> @Model.ParkDescription</p>
+        .park-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
 
-<div>
-    <a href="@Url.Action("ParkList","Park", new {parkId = Model.ParkId})" class = "btn">Back to List</a>
-</div>
+        .image-container {
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .park-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .park-image:hover {
+            transform: scale(1.02);
+        }
+
+        .description-section {
+            background-color: var(--background-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .description-label {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .description-content {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>@Model.ParkName</h2>
+        
+        <div class="park-card">
+            <div class="image-container">
+                <img src="@Model.ImageUrl" 
+                     alt="@Model.ParkName" 
+                     class="park-image" />
+            </div>
+
+            <div class="description-section">
+                <span class="description-label">Description</span>
+                <div class="description-content">
+                    @Model.ParkDescription
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="@Url.Action("ParkList", "Park", new { parkId = Model.ParkId })" class="btn">
+                Back to List
+            </a>
+        </div>
+    </div>
+</body>
+</html>

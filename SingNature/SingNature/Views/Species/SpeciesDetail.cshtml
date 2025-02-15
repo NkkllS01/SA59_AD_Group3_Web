@@ -1,16 +1,145 @@
-@model SingNature.Models.Specie
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Model.SpecieName - Species Details</title>
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #81C784;
+            --background-color: #F1F8E9;
+            --text-color: #1B5E20;
+            --border-color: #A5D6A7;
+        }
 
-@{
-    ViewData["Title"] = "Species Details";
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
 
-<h2>@Model.SpecieName</h2>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-<img src="@Model.ImageUrl" alt="@Model.SpecieName" class="species-image" onerror="this.src='/images/image_placeholder.jpg';"/>
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
 
-<p><strong>Description:</strong> @Model.Description</p>
-<p><strong>Highlights:</strong> @Model.Highlights</p>
+        .details-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
 
-<div>
-    <a href="@Url.Action("SpeciesList", "Species", new { categoryId = Model.CategoryId })" class="btn">Back to List</a>
-</div>
+        .image-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .species-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .details-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: var(--background-color);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .details-label {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .details-value {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>@Model.SpecieName</h2>
+        
+        <div class="details-card">
+            <div class="image-container">
+                <img src="@Model.ImageUrl" 
+                     alt="@Model.SpecieName" 
+                     class="species-image" 
+                     onerror="this.src='/images/image_placeholder.jpg'"/>
+            </div>
+
+            <div class="details-grid">
+                <div class="details-item">
+                    <span class="details-label">Description</span>
+                    <div class="details-value">@Model.Description</div>
+                </div>
+
+                <div class="details-item">
+                    <span class="details-label">Highlights</span>
+                    <div class="details-value">@Model.Highlights</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="@Url.Action("SpeciesList", "Species", new { categoryId = Model.CategoryId })" class="btn">
+                Back to List
+            </a>
+        </div>
+    </div>
+</body>
+</html>

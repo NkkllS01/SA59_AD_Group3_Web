@@ -211,11 +211,11 @@
             Mobile: mobile
         });
 
-        console.log("✅ Registration response:", response.data); // 输出成功信息
+        console.log("✅ Registration response:", response.data);
 
         if (response.status === 201 || response.status === 200) {
             alert("Registration successful!");
-            window.location.href = "/user/profile";
+            window.location.href = "/home";
         }
     } catch (error) {
         console.error("❌ Registration failed:", error.response?.data || error.message);

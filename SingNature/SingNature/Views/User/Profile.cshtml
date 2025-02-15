@@ -137,10 +137,6 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1>Wildlife Information</h1>
-    </header>
-
     <div class="profile-container">
         <h2 class="profile-title">User Profile</h2>
 
@@ -198,7 +194,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", async function() {
             try {
-                const response = await axios.get("https://localhost:5076/api/auth/profile");
+                const response = await axios.get("https://167.172.73.161/api/auth/profile");
                 if (response.status === 200) {
                     const user = response.data;
                     document.getElementById("username").textContent = user.username;
@@ -224,7 +220,7 @@
             const newsletter = document.getElementById("subscribeNewsletter").checked;
 
             try {
-                const response = await axios.put("https://localhost:8080/api/auth/update-profile", {
+                const response = await axios.put("https://167.172.73.161/api/auth/update-profile", {
                     UserId: userId,
                     Email: email,
                     Mobile: phone,
@@ -242,7 +238,7 @@
         });
 
         document.querySelector(".logout-btn").addEventListener("click", function() {
-            axios.post("https://localhost:5076/api/auth/logout")
+            axios.post("https://167.172.73.161/api/auth/logout")
                 .then(() => {
                     alert("Logged out successfully.");
                     window.location.href = "/home";

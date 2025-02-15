@@ -39,7 +39,7 @@ namespace SingNature.Controllers
         [HttpPost("Register")]
         private async Task<UserResponse> RegisterUser(RegisterRequest request)
         {
-            var apiUrl = "https://167.172.73.161:8080/api/auth/register";
+            var apiUrl = "https://167.172.73.161/api/auth/register";
             try
             {
                 var jsonContent = new StringContent(JsonConvert.SerializeObject(request), System.Text.Encoding.UTF8, "application/json");
@@ -60,7 +60,7 @@ namespace SingNature.Controllers
 
         private async Task<UserResponse> AuthenticateUser(LoginRequest request)
         {
-            var apiUrl = "https://167.172.73.161:8080/api/auth/login";
+            var apiUrl = "https://167.172.73.161/api/auth/login";
             try
             {
                 var jsonContent = new StringContent(JsonConvert.SerializeObject(request), System.Text.Encoding.UTF8, "application/json");

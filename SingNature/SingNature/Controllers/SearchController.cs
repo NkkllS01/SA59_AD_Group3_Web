@@ -40,7 +40,7 @@ namespace SingNature.Controllers
 
         private async Task<List<Sighting>> FetchSightings(string keyword)
         {
-            var apiUrl = $"https://localhost:5076/api/sightings/search/{keyword}";
+            var apiUrl = $"https://localhost:8080/api/sightings/search/{keyword}";
             try 
             {
                 var response = await _httpClient.GetStringAsync(apiUrl);
@@ -56,7 +56,7 @@ namespace SingNature.Controllers
 
         private async Task<List<Specie>> FetchSpecies(string keyword)
         {
-            var apiUrl = $"https://localhost:5076/api/species/search/{keyword}";
+            var apiUrl = $"https://localhost:8080/api/species/search/{keyword}";
             try
             {
                 var response = await _httpClient.GetStringAsync(apiUrl);

@@ -11,17 +11,26 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration.GetSection("DigitalOcean");
 var accessKey = config["AccessKey"];
 var secretKey = config["SecretKey"];
-var region = config["Region"];
 var endpointUrl = config["EndpointUrl"];
+
+if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey) || string.IsNullOrEmpty(endpointUrl))
+{
+    throw new Exception("❌ DigitalOcean Spaces 配置缺失! 请检查 appsettings.json.");
+}
+
+Console.WriteLine($"✅ DigitalOcean ServiceURL: {endpointUrl}");
 
 var s3Config = new AmazonS3Config
 {
-    ServiceURL = endpointUrl, // DigitalOcean Spaces API 地址
-    ForcePathStyle = true     // 必须启用，否则 DigitalOcean 不能正确解析
+    ServiceURL = endpointUrl, // ✅ DigitalOcean 需要 `ServiceURL`
+    ForcePathStyle = true     // ✅ 兼容 DigitalOcean Spaces
 };
 
-var s3Client = new AmazonS3Client(new BasicAWSCredentials(accessKey, secretKey), s3Config);
-builder.Services.AddSingleton<IAmazonS3>(s3Client);
+// ✅ 统一注册 `IAmazonS3`，防止 `ServiceURL` 丢失
+builder.Services.AddScoped<IAmazonS3>(_ => new AmazonS3Client(new BasicAWSCredentials(accessKey, secretKey), s3Config));
+
+// ✅ `S3Service` 复用 `IAmazonS3`，避免重复创建
+builder.Services.AddScoped<S3Service>();
 
 if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey) || string.IsNullOrEmpty(endpointUrl))
 {
@@ -41,8 +50,8 @@ if (string.IsNullOrEmpty(connectionString))
 // Print connection string for debugging (REMOVE in production)
 Console.WriteLine($"Using Database Connection: {connectionString}");
 
-	builder.Services.AddSingleton<IAmazonS3, AmazonS3Client>();
-    builder.Services.AddSingleton<S3Service>();
+
+    
     builder.Services.AddScoped<UserDao>();
 	builder.Services.AddScoped<SightingsDAO>();
 	builder.Services.AddScoped<SpeciesDAO>();

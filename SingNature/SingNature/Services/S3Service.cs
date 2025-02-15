@@ -1,6 +1,5 @@
 using Amazon.S3;
 using Amazon.S3.Model;
-using Amazon;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,37 +15,21 @@ namespace SingNature.Services
         private readonly string _cdnUrl;
         private readonly ILogger<S3Service> _logger;
 
-        public S3Service(IConfiguration configuration, ILogger<S3Service> logger)
+        public S3Service(IAmazonS3 s3Client, IConfiguration configuration, ILogger<S3Service> logger)
         {
+            _s3Client = s3Client ?? throw new ArgumentNullException(nameof(s3Client));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-            // ✅ Read configuration values from appsettings.json
-            string accessKey = configuration["DigitalOcean:AccessKey"];
-            string secretKey = configuration["DigitalOcean:SecretKey"];
             _bucketName = configuration["DigitalOcean:BucketName"];
-            string endpointUrl = configuration["DigitalOcean:EndpointUrl"];
             _cdnUrl = configuration["DigitalOcean:CdnUrl"];
 
-            // ✅ Ensure all required configurations are present
-            if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey) ||
-                string.IsNullOrEmpty(endpointUrl) || string.IsNullOrEmpty(_bucketName) || string.IsNullOrEmpty(_cdnUrl))
+            if (string.IsNullOrEmpty(_bucketName) || string.IsNullOrEmpty(_cdnUrl))
             {
-                _logger.LogError("❌ Missing DigitalOcean Spaces configuration. Please check appsettings.json.");
-                throw new Exception("DigitalOcean Spaces configuration is incomplete. Please check appsettings.json.");
+                _logger.LogError("❌ DigitalOcean 配置缺失");
+                throw new Exception("DigitalOcean Spaces 配置错误");
             }
 
-            _logger.LogInformation("🚀 DigitalOcean S3 Service initialized.");
-            _logger.LogInformation($"🌍 Endpoint URL: {endpointUrl}");
-            _logger.LogInformation($"🔗 CDN URL: {_cdnUrl}");
-
-            // ✅ Initialize Amazon S3 Client for DigitalOcean Spaces
-            var clientConfig = new AmazonS3Config
-            {
-                ServiceURL = endpointUrl, // ✅ Required for DigitalOcean Spaces
-                ForcePathStyle = true  // ✅ Required for DigitalOcean Spaces
-            };
-
-            _s3Client = new AmazonS3Client(accessKey, secretKey, clientConfig);
+            _logger.LogInformation("🚀 DigitalOcean S3 Service 初始化成功");
         }
 
         public async Task<string> UploadFileAsync(Stream fileStream, string fileName, string contentType)
@@ -54,9 +37,8 @@ namespace SingNature.Services
             try
             {
                 if (fileStream == null || fileStream.Length == 0)
-                    throw new ArgumentException("❌ File stream is empty or invalid", nameof(fileStream));
+                    throw new ArgumentException("❌ 文件流为空或无效", nameof(fileStream));
 
-                // ✅ Generate a unique filename
                 string objectKey = $"uploads/{Guid.NewGuid()}_{fileName}";
 
                 var putRequest = new PutObjectRequest
@@ -65,30 +47,30 @@ namespace SingNature.Services
                     Key = objectKey,
                     InputStream = fileStream,
                     ContentType = contentType,
-                    CannedACL = S3CannedACL.PublicRead  // ✅ Make the file publicly accessible
+                    CannedACL = S3CannedACL.PublicRead
                 };
 
-                _logger.LogInformation($"📤 Uploading file: {objectKey}...");
+                _logger.LogInformation($"📤 上传文件: {objectKey}...");
 
                 var response = await _s3Client.PutObjectAsync(putRequest);
 
                 if (response.HttpStatusCode == System.Net.HttpStatusCode.OK)
                 {
                     string fileUrl = $"{_cdnUrl}/{objectKey}";
-                    _logger.LogInformation($"✅ Upload successful: {fileUrl}");
-                    return fileUrl; // ✅ Return correct file URL using CDN
+                    _logger.LogInformation($"✅ 上传成功: {fileUrl}");
+                    return fileUrl;
                 }
 
-                throw new Exception($"❌ Upload failed, HTTP Status Code: {response.HttpStatusCode}");
+                throw new Exception($"❌ 上传失败, HTTP 状态码: {response.HttpStatusCode}");
             }
             catch (AmazonS3Exception s3Ex)
             {
-                _logger.LogError($"🛑 AmazonS3 Exception: {s3Ex.Message}", s3Ex);
+                _logger.LogError($"🛑 AmazonS3 异常: {s3Ex.Message}", s3Ex);
                 throw;
             }
             catch (Exception ex)
             {
-                _logger.LogError($"🛑 Upload failed: {ex.Message}", ex);
+                _logger.LogError($"🛑 上传失败: {ex.Message}", ex);
                 throw;
             }
         }

@@ -88,7 +88,7 @@ function fetchSightings(map) {
 }
 
 function addSightingsToMap(map, sightings) {
-    const markers = []; 
+    const markers = [];
     sightings.forEach(sighting => {
         const position = { lat: sighting.latitude, lng: sighting.longitude };
 
@@ -116,6 +116,6 @@ function addSightingsToMap(map, sightings) {
         algorithm: new markerClusterer.GridAlgorithm({ gridSize: 50 }),
         renderer: new markerClusterer.DefaultRenderer(),
     });
-}       
+}
 
 window.initMap = initMap;

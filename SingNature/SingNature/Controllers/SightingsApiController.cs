@@ -41,7 +41,7 @@ namespace SingNature.Controllers
         public ActionResult<Sighting> GetSightingById(int id)
         {
             var sighting = _sightingsDAO.GetSightingById(id);
-            if (sighting == null) 
+            if (sighting == null)
             {
                 return NotFound("Sighting not found.");
             }
@@ -49,10 +49,10 @@ namespace SingNature.Controllers
         }
 
         [HttpGet("search/{keyword}")]
-         public ActionResult<List<Sighting>> GetSightingsByKeyword(string keyword)
+        public ActionResult<List<Sighting>> GetSightingsByKeyword(string keyword)
         {
             var sightings = _sightingsDAO.GetSightingsByKeyword(keyword);
-            if (sightings == null || sightings.Count == 0) 
+            if (sightings == null || sightings.Count == 0)
             {
                 return NotFound("No sightings found.");
             }
@@ -60,7 +60,7 @@ namespace SingNature.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSighting([FromForm] string sighting, 
+        public async Task<IActionResult> CreateSighting([FromForm] string sighting,
             [FromForm] IFormFile file)
         {
             Console.WriteLine($"Received sighting: {JsonSerializer.Serialize(sighting)}");
@@ -69,31 +69,31 @@ namespace SingNature.Controllers
                 PropertyNameCaseInsensitive = true
             });
             if (sightingObject == null)
-                {
-                    return BadRequest("Sighting object is null.");
-                }
+            {
+                return BadRequest("Sighting object is null.");
+            }
             Console.WriteLine($"Parsed Sighting Object: {JsonSerializer.Serialize(sightingObject)}");
-    
+
             if (file == null || file.Length == 0)
-                {
-                    return BadRequest("No file uploaded.");
-                }
-    
+            {
+                return BadRequest("No file uploaded.");
+            }
+
             if (sightingObject.SpecieId <= 0)
-                {
-                    return BadRequest("Invalid SpecieId or SpecieName provided.");
-                }
+            {
+                return BadRequest("Invalid SpecieId or SpecieName provided.");
+            }
 
             try
             {
                 var fileUrl = await UploadFileToSpace(file);
                 sightingObject.ImageUrl = fileUrl;
-        
+
                 var createdSighting = _sightingsDAO.CreateSighting(sightingObject);
                 if (createdSighting != null)
-                    {
-                        return CreatedAtAction(nameof(GetSightingById), new { id = createdSighting.SightingId }, createdSighting);
-                    }
+                {
+                    return CreatedAtAction(nameof(GetSightingById), new { id = createdSighting.SightingId }, createdSighting);
+                }
             }
             catch (Exception ex)
             {
@@ -110,17 +110,17 @@ namespace SingNature.Controllers
             var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
 
             var putRequest = new PutObjectRequest
-                {
-                    BucketName = bucketName,
-                    Key = fileName,
-                    InputStream = file.OpenReadStream(),
-                    ContentType = file.ContentType,
-                    CannedACL = S3CannedACL.PublicRead
-                };
-    
+            {
+                BucketName = bucketName,
+                Key = fileName,
+                InputStream = file.OpenReadStream(),
+                ContentType = file.ContentType,
+                CannedACL = S3CannedACL.PublicRead
+            };
+
             await _s3Client.PutObjectAsync(putRequest);
 
-            return$"https://{bucketName}.sgp1.cdn.digitaloceanspaces.com/{fileName}";
-        }   
+            return $"https://{bucketName}.sgp1.cdn.digitaloceanspaces.com/{fileName}";
+        }
     }
 }
